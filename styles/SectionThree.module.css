@@ -1,0 +1,9 @@
+.sectionThreeBg {
+  /*** 10rem paddingtop is for making space for navBar **/
+  @apply w-full pt-[6rem] pb-[5rem] flex flex-col items-center min-h-screen relative text-green-900;
+  background-image: linear-gradient(
+    -225deg,
+    rgb(184, 255, 198),
+    rgb(227, 199, 255)
+  );
+}

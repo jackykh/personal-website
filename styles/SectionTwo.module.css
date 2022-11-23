@@ -1,0 +1,23 @@
+.intro {
+  @apply w-[60rem] max-w-full px-10 pb-[16rem] flex flex-col justify-center items-center text-green-900;
+}
+
+.skill_card {
+  @apply mt-[-12rem] w-[70rem] max-w-[90%] lg:h-[22rem] md:h-auto sm:h-auto bg-white rounded-2xl overflow-hidden flex  flex-col sm:flex-col md:flex-col lg:flex-row  border-solid border shadow-lg shadow-black/30;
+}
+
+.skill_card_item_left {
+  @apply flex flex-col items-center  py-12 lg:py-12 sm:py-12 px-16 border-solid lg:border-r lg:border-b-0 border-b sm:border-b;
+}
+
+.skill_card_item_middle {
+  @apply flex flex-col items-center py-12 lg:py-12 sm:py-12 px-16;
+}
+
+.skill_card_item_right {
+  @apply flex flex-col items-center py-12 lg:py-12 sm:py-12 px-16 border-solid lg:border-l lg:border-t-0 border-t sm:border-t;
+}
+
+.skill_card_logo {
+  @apply h-16 w-16 rounded-full p-2  bg-purple-300 flex justify-center items-center text-4xl  mb-2;
+}
