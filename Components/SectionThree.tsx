@@ -45,7 +45,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
         <ImageBox
           img="/personal_website.png"
           caption="A Portfolio Website (this website)"
-          link="https://jackiecheunq.github.io/Bookstore/"
+          link="https://jackycheung.dev/"
         />
       </motion.div>
 
