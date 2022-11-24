@@ -5,9 +5,7 @@ import SectionThree from "../Components/SectionThree";
 import SectionFour from "../Components/SectionFour";
 import Footer from "../Components/Footer";
 import SectionNav from "../Components/uiComponents/SectionNav";
-import NavBar from "../Components/NavBar";
 import { useMediaQuery } from "react-responsive";
-import Head from "next/head";
 
 export default function Home() {
   const sectionOneRef = useRef(null);
@@ -93,11 +91,6 @@ export default function Home() {
 
   return (
     <main className="w-full">
-      <Head>
-        <title>Jacky Cheung | A self-taught Web Developer</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <NavBar />
       <SectionOne ref={sectionOneRef} />
       <SectionTwo ref={sectionTwoRef} />
       <SectionThree ref={sectionThreeRef} />

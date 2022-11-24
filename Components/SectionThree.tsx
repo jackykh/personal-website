@@ -20,10 +20,9 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
   return (
     <section ref={ref} className={classes.sectionThreeBg}>
       <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-16">
-        <h1 className="text-4xl font-bold mb-4">My Recent Work</h1>
+        <h1 className="text-4xl font-bold mb-4">My Side Project</h1>
         <p className="text-xl">
-          Here are a few past design projects i&apos;ve worked on. Want to see
-          more? Email me.
+          Here are some side projects I&apos;ve worked on recently.
         </p>
       </div>
       <motion.div
@@ -35,17 +34,17 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
       >
         <ImageBox
           img="/bookstore.png"
-          caption="Lorem ipsum dolor sit amet "
+          caption="A responsive Book Store website"
           link="https://jackiecheunq.github.io/Bookstore/"
         />
         <ImageBox
           img="/milktea_store.png"
-          caption="Lorem ipsum dolor sit amet "
+          caption="A full stack E-commerce project (Non-responsive)"
           link="https://milk-tea-8ddb5.web.app/"
         />
         <ImageBox
           img="/personal_website.png"
-          caption="Lorem ipsum dolor sit amet "
+          caption="A Portfolio Website (this website)"
           link="https://jackiecheunq.github.io/Bookstore/"
         />
       </motion.div>

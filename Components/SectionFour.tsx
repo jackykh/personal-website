@@ -41,9 +41,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
     >
       <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24">
         <h1 className="text-2xl font-bold mb-4">Send me a message!</h1>
-        <p className="text-lg">
-          Got a question or proposal, or just want to say hello? Go ahead.
-        </p>
+        <p className="text-lg">Want to say hello? Go ahead.</p>
       </div>
       <form
         onSubmit={onSubmitHandler}
@@ -82,7 +80,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
           </label>
           <textarea
             className={classes.input}
-            placeholder="Hi, I think we need a design system for our products!
+            placeholder="Hello, I want to build a website for my products!
             "
             rows={3}
             name="message"

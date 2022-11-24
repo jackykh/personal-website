@@ -13,30 +13,31 @@ const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
               Developer.
             </h1>
             <h3 className="text-3xl text-[#c1deae] mt-6 pr-10">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Provident voluptatum
+              I love building beautiful website and learning frontend
+              engineering.
             </h3>
           </div>
         </div>
         <div className="flex w-[50rem] max-w-full  [&>*]:mr-6 text-[#c1deae]">
           <h3>
-            Lorem ipsum dolor, sit amet consectetur, <br />
-            dolore, officiis rem cumque autem est.
+            Proficient in using popular
+            <br />
+            frontend tech stacks.
           </h3>
           <h3>
-            Lorem ipsum dolor, sit amet consectetur, <br />
-            dolore, officiis rem cumque autem est.å
+            Strong Problem Solving Skill <br />
+            obtained in the process of self study.
           </h3>
         </div>
       </div>
       <div className="sm:w-[30%]">
-        <div className="w-[15rem] h-[15rem]">
+        <div className="sm:ml-[-25%] w-[15rem] h-[15rem] bg-purple-100 rounded-full overflow-hidden ">
           <Image
-            className="sm:ml-[-45%]  w-full"
-            src="/149071.png"
+            className=" w-full"
+            src="/memoji.png"
             alt="Icon"
-            width={200}
-            height={200}
+            width={420}
+            height={420}
           />
         </div>
       </div>

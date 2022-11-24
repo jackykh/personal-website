@@ -14,10 +14,9 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
           Hi, I’m Jacky. Nice to meet you.
         </h1>
         <p className="text-2xl">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores
-          error saepe eius eligendi ut exercitationem quidem ullam. Culpa
-          laborum aliquam porro, praesentium mollitia commodi odit esse quaerat
-          velit iusto voluptatum!
+          I am a 2019 graduate in Hong Kong. After graduation, I find my real
+          passion for frontend deveploment and throw all my energies into
+          pursuing related knowledge.
         </p>
       </div>
       <div className="flex-1 w-full bg-[#219f94] flex justify-center pb-[10rem]">
@@ -26,31 +25,42 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
             <div className={classes.skill_card_logo}>
               <FontAwesomeIcon icon={faReact} />
             </div>
-            <h3 className="mb-3 text-xl font-bold">React</h3>
-            <p className="text-center text-sm">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-              tenetur impedit iusto ut, consectetur labore amet
-            </p>
+            <h3 className="mb-2 text-xl font-bold">React</h3>
+
+            <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
+              <li>TypeScript React</li>
+              <li>React Hooks</li>
+              <li>React Router</li>
+              <li>Redux Toolkit</li>
+              <li>Create React App</li>
+              <li>Next.js</li>
+            </ul>
           </div>
           <div className={classes.skill_card_item_middle}>
             <div className={classes.skill_card_logo}>
               <FontAwesomeIcon icon={faNode} />
             </div>
-            <h3 className="mb-3 text-xl font-bold">Node.js</h3>
-            <p className="text-center text-sm">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-              tenetur impedit iusto ut, consectetur labore amet
-            </p>
+            <h3 className="mb-2 text-xl font-bold">Node.js</h3>
+
+            <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
+              <li>Express.js</li>
+              <li>Mongoose</li>
+              <li>REST APIs</li>
+              <li>JSON Web Tokens</li>
+            </ul>
           </div>
           <div className={classes.skill_card_item_right}>
             <div className={classes.skill_card_logo}>
               <FontAwesomeIcon icon={faCss3} />
             </div>
-            <h3 className="mb-3 text-xl font-bold text-center">CSS</h3>
-            <p className="text-center text-sm ">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime
-              tenetur impedit iusto ut, consectetur labore amet
-            </p>
+            <h3 className="mb-2 text-xl font-bold text-center">CSS</h3>
+
+            <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
+              <li>SASS</li>
+              <li>Tailwind CSS</li>
+              <li>FlexBox</li>
+              <li>Grid</li>
+            </ul>
           </div>
         </div>
       </div>
