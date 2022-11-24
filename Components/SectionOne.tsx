@@ -34,7 +34,7 @@ const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
         <div className="sm:ml-[-25%] w-[15rem] h-[15rem] bg-purple-100 rounded-full overflow-hidden ">
           <Image
             className=" w-full"
-            src="/Memoji.png"
+            src="/memoji_Icon.png"
             alt="Icon"
             width={420}
             height={420}
