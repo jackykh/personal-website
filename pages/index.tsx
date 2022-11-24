@@ -46,7 +46,6 @@ export default function Home() {
       const notRapidSuccession =
         currentTime > lastTimeRef.current + animationBreak;
       if (notRapidSuccession) {
-        console.log(event.deltaY);
         if (event.deltaY < 0) {
           setCurrentSection((prevState) => {
             if (prevState > 0) {
