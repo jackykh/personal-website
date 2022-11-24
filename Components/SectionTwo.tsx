@@ -14,9 +14,9 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
           Hi, I’m Jacky. Nice to meet you.
         </h1>
         <p className="text-2xl">
-          I am a 2019 graduate in Hong Kong. After graduation, I find my real
-          passion for frontend deveploment and throw all my energies into
-          pursuing related knowledge.
+          I am a 2021 graduate with a history degree in Hong Kong. After
+          graduation, I find my real passion for frontend deveploment and throw
+          all my energies into pursuing related knowledge.
         </p>
       </div>
       <div className="flex-1 w-full bg-[#219f94] flex justify-center pb-[10rem]">
