@@ -161,7 +161,6 @@ export default function Home() {
 
   useEffect(() => {
     if (sectionRefList[currentSection].current) {
-      console.log(currentSection);
       (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView();
     }
   }, [currentSection, sectionRefList]);
