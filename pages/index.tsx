@@ -69,6 +69,47 @@ export default function Home() {
     [sectionRefList]
   );
 
+  const isKeyHandled = useRef<boolean>(false);
+
+  const sectionKeyDownHandler = useCallback(
+    (event: KeyboardEvent) => {
+      event.preventDefault();
+      /// The Length of sectionRefList
+      if (!isKeyHandled.current) {
+        const sectionRefNumber = sectionRefList.length;
+        if (event.key == "ArrowUp") {
+          // up arrow
+          setCurrentSection((prevState) => {
+            if (prevState > 0) {
+              return prevState - 1;
+            } else {
+              return prevState;
+            }
+          });
+        } else if (event.key == "ArrowDown") {
+          // down arrow
+          setCurrentSection((prevState) => {
+            if (prevState < sectionRefNumber - 1) {
+              return prevState + 1;
+            } else {
+              return prevState;
+            }
+          });
+        }
+        isKeyHandled.current = true;
+      }
+    },
+    [sectionRefList]
+  );
+
+  const sectionKeyUpHandler = useCallback((event: KeyboardEvent) => {
+    if (isKeyHandled.current) {
+      if (event.key == "ArrowUp" || event.key == "ArrowDown") {
+        isKeyHandled.current = false;
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (isMiddleScreen) {
       document.addEventListener("wheel", sectionWheelHandler, {
@@ -76,11 +117,18 @@ export default function Home() {
       });
       setSectionNav(true);
     }
+    document.addEventListener("keydown", sectionKeyDownHandler);
+    document.addEventListener("keyup", sectionKeyUpHandler);
     return () => {
       document.removeEventListener("wheel", sectionWheelHandler);
       setSectionNav(false);
     };
-  }, [isMiddleScreen, sectionWheelHandler]);
+  }, [
+    isMiddleScreen,
+    sectionWheelHandler,
+    sectionKeyDownHandler,
+    sectionKeyUpHandler,
+  ]);
 
   useEffect(() => {
     if (sectionRefList[currentSection].current) {

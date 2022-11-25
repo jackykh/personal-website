@@ -40,8 +40,8 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
       className="bg-purple-50 w-full min-h-screen py-[10rem]  flex flex-col items-center "
     >
       <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24">
-        <h1 className="text-2xl font-bold mb-4">Send me a message!</h1>
-        <p className="text-lg">Want to say hello? Go ahead.</p>
+        <h1 className="text-4xl font-bold mb-4">Send me a message!</h1>
+        <p className="text-xl">Want to say hello? Go ahead.</p>
       </div>
       <form
         onSubmit={onSubmitHandler}
