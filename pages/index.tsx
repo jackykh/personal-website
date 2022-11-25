@@ -34,41 +34,49 @@ export default function Home() {
 
   const lastTimeRef = useRef<number>(0);
 
+  const goToNextSection = useCallback(() => {
+    /// The Length of sectionRefList
+    const sectionRefNumber = sectionRefList.length;
+    setCurrentSection((prevState) => {
+      if (prevState < sectionRefNumber - 1) {
+        return prevState + 1;
+      } else {
+        return prevState;
+      }
+    });
+  }, [sectionRefList]);
+
+  const goToPrevSection = useCallback(() => {
+    setCurrentSection((prevState) => {
+      if (prevState > 0) {
+        return prevState - 1;
+      } else {
+        return prevState;
+      }
+    });
+  }, []);
+
+  //// HANDLE WHEEL EVENT
   const sectionWheelHandler = useCallback(
     (event: WheelEvent) => {
       event.preventDefault();
-
-      /// The Length of sectionRefList
-      const sectionRefNumber = sectionRefList.length;
-
       const currentTime = Date.now();
       const animationBreak = 1800;
       const notRapidSuccession =
         currentTime > lastTimeRef.current + animationBreak;
       if (notRapidSuccession) {
         if (event.deltaY < 0) {
-          setCurrentSection((prevState) => {
-            if (prevState > 0) {
-              return prevState - 1;
-            } else {
-              return prevState;
-            }
-          });
+          goToPrevSection();
         } else if (event.deltaY >= 0) {
-          setCurrentSection((prevState) => {
-            if (prevState < sectionRefNumber - 1) {
-              return prevState + 1;
-            } else {
-              return prevState;
-            }
-          });
+          goToNextSection();
         }
         lastTimeRef.current = currentTime;
       }
     },
-    [sectionRefList]
+    [goToPrevSection, goToNextSection]
   );
 
+  /// HANDLE UP ARROW AND DOWN ARROW EVENT
   const isKeyHandled = useRef<boolean>(false);
 
   const sectionKeyDownHandler = useCallback(
@@ -79,27 +87,16 @@ export default function Home() {
         const sectionRefNumber = sectionRefList.length;
         if (event.key == "ArrowUp") {
           // up arrow
-          setCurrentSection((prevState) => {
-            if (prevState > 0) {
-              return prevState - 1;
-            } else {
-              return prevState;
-            }
-          });
+          goToPrevSection();
         } else if (event.key == "ArrowDown") {
           // down arrow
-          setCurrentSection((prevState) => {
-            if (prevState < sectionRefNumber - 1) {
-              return prevState + 1;
-            } else {
-              return prevState;
-            }
-          });
+
+          goToNextSection();
         }
         isKeyHandled.current = true;
       }
     },
-    [sectionRefList]
+    [sectionRefList, goToPrevSection, goToNextSection]
   );
 
   const sectionKeyUpHandler = useCallback((event: KeyboardEvent) => {
@@ -110,17 +107,46 @@ export default function Home() {
     }
   }, []);
 
+  //// HANDLE TOUCH EVENT
+  const touchY = useRef<number>(0);
+  const touchstartHandler = useCallback((event: TouchEvent) => {
+    touchY.current = event.touches[0].clientY;
+  }, []);
+  const touchMoveHandler = useCallback((event: TouchEvent) => {
+    event.preventDefault();
+  }, []);
+  const touchEndHandler = useCallback(
+    (event: TouchEvent) => {
+      const curTouchY = event.changedTouches[0].clientY;
+      if (touchY.current > curTouchY) {
+        goToNextSection();
+      } else {
+        goToPrevSection();
+      }
+    },
+    [goToNextSection, goToPrevSection]
+  );
+
   useEffect(() => {
     if (isMiddleScreen) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
+      document.addEventListener("touchstart", touchstartHandler);
+      document.addEventListener("touchmove", touchMoveHandler, {
+        passive: false,
+      });
+      document.addEventListener("touchend", touchEndHandler);
       setSectionNav(true);
     }
     document.addEventListener("keydown", sectionKeyDownHandler);
     document.addEventListener("keyup", sectionKeyUpHandler);
+
     return () => {
       document.removeEventListener("wheel", sectionWheelHandler);
+      document.removeEventListener("touchstart", touchstartHandler);
+      document.removeEventListener("touchmove", touchMoveHandler);
+      document.removeEventListener("touchend", touchEndHandler);
       setSectionNav(false);
     };
   }, [
@@ -128,10 +154,14 @@ export default function Home() {
     sectionWheelHandler,
     sectionKeyDownHandler,
     sectionKeyUpHandler,
+    touchstartHandler,
+    touchMoveHandler,
+    touchEndHandler,
   ]);
 
   useEffect(() => {
     if (sectionRefList[currentSection].current) {
+      console.log(currentSection);
       (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView();
     }
   }, [currentSection, sectionRefList]);

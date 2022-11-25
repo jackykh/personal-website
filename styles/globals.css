@@ -12,6 +12,7 @@ body {
   @apply text-sm sm:text-sm  md:text-base lg:text-lg;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  touch-action: none;
 }
 
 body::-webkit-scrollbar {
