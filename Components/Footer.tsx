@@ -25,9 +25,9 @@ const Footer = forwardRef<HTMLElement>((_props, ref) => {
             </li>
           </ul>
           <ul className="flex flex-col">
-            <Link href="mailto:jackycheungtester@gmail.com">
-              Ask for My Resume
-            </Link>
+            <li>
+              <Link href="/">My Resume</Link>
+            </li>
           </ul>
         </div>
         <div className="p-8 flex">

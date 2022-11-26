@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Jacky Cheung | A self-taught Web Developer</title>
         <meta
           name="description"
-          content="I am Jacky Cheung, A self-taught Web Developer. "
+          content="I am Jacky Cheung, A self-taught Frontend Web Developer. "
         />
         <link rel="icon" href="/memoji_Icon.png" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />

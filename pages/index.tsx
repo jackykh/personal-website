@@ -81,22 +81,21 @@ export default function Home() {
 
   const sectionKeyDownHandler = useCallback(
     (event: KeyboardEvent) => {
+      if (!(event.key === "ArrowUp" || event.key === "ArrowDown")) return;
       event.preventDefault();
       /// The Length of sectionRefList
       if (!isKeyHandled.current) {
-        const sectionRefNumber = sectionRefList.length;
-        if (event.key == "ArrowUp") {
+        if (event.key === "ArrowUp") {
           // up arrow
           goToPrevSection();
-        } else if (event.key == "ArrowDown") {
+        } else if (event.key === "ArrowDown") {
           // down arrow
-
           goToNextSection();
         }
         isKeyHandled.current = true;
       }
     },
-    [sectionRefList, goToPrevSection, goToNextSection]
+    [goToPrevSection, goToNextSection]
   );
 
   const sectionKeyUpHandler = useCallback((event: KeyboardEvent) => {
@@ -137,16 +136,18 @@ export default function Home() {
         passive: false,
       });
       document.addEventListener("touchend", touchEndHandler);
+      document.addEventListener("keydown", sectionKeyDownHandler);
+      document.addEventListener("keyup", sectionKeyUpHandler);
       setSectionNav(true);
     }
-    document.addEventListener("keydown", sectionKeyDownHandler);
-    document.addEventListener("keyup", sectionKeyUpHandler);
 
     return () => {
       document.removeEventListener("wheel", sectionWheelHandler);
       document.removeEventListener("touchstart", touchstartHandler);
       document.removeEventListener("touchmove", touchMoveHandler);
       document.removeEventListener("touchend", touchEndHandler);
+      document.removeEventListener("keydown", sectionKeyDownHandler);
+      document.removeEventListener("keyup", sectionKeyUpHandler);
       setSectionNav(false);
     };
   }, [
@@ -161,7 +162,9 @@ export default function Home() {
 
   useEffect(() => {
     if (sectionRefList[currentSection].current) {
-      (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView();
+      (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView({
+        behavior: "smooth",
+      });
     }
   }, [currentSection, sectionRefList]);
 

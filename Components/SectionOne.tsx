@@ -9,7 +9,7 @@ const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
         <div className="w-full flex justify-center mb-8">
           <div className="w-[50rem] ">
             <h1 className="text-transparent text-6xl font-bold bg-gradient-to-r from-[#00FFAB]  to-[#E3FCBF] bg-clip-text inline">
-              Frontend <br />
+              Frontend Web <br />
               Developer.
             </h1>
             <h3 className="text-3xl text-[#c1deae] mt-6 pr-10">

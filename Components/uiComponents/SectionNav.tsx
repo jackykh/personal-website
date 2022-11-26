@@ -21,6 +21,7 @@ const SectionNav: React.FC<{
       navButtonsList.push(
         <li key={uuidv4()}>
           <button
+            type="button"
             className={`w-3 h-3 transition-all ${
               props.currentSection === i ? activeSectionClass : sectionClass
             }`}

@@ -28,7 +28,12 @@ const ImageBox: React.FC<{
       />
       <div className="text-white text-center translate-y-[20rem] font-bold group-hover:translate-y-[5rem] transition-all">
         <figcaption className="mb-5 text-lg ">{props.caption}</figcaption>
-        <Link href={props.link} className="btn text-base">
+        <Link
+          href={props.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn text-base"
+        >
           Visit Website
         </Link>
       </div>
