@@ -6,14 +6,23 @@ import {
   faLocationDot,
   faPhone,
   faCalendarDays,
+  faFileArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 const Resume = () => {
   return (
-    <main className="lg:p-16">
-      <div className=" w-full flex flex-col md:flex-row ">
-        <div className=" border border-solid border-black">
-          {/* Left Part */}
+    <main className="lg:p-16 ">
+      <div className=" w-full flex flex-col md:flex-row print:flex-row border border-solid border-black relative">
+        <a
+          href="/resume.pdf"
+          download="resume"
+          className="absolute right-5 top-3 md:text-black text-white md:hover:bg-purple-200 p-2 rounded"
+        >
+          <FontAwesomeIcon icon={faFileArrowDown} className="mr-2" />
+          Download
+        </a>
+        {/* Left Part */}
+        <div>
           <div className="w-full flex flex-col [&>*]:p-8">
             <div className=" bg-purple-800 text-white">
               <div className="flex flex-col mb-6">
@@ -78,15 +87,16 @@ const Resume = () => {
           </div>
         </div>
         {/* Right Part  */}
-        <div className="flex-1 h-full border border-solid border-black bg-purple-50 p-16">
+        <div className="flex-1 h-full bg-purple-50 p-16">
           <div className="w-full flex flex-col  [&>*]:mb-8">
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif mb-2">Career Objective</h1>
               <p>
-                I am a 2021 graduate with a history degree in Hong Kong. After
+                A 2021 graduate with a history degree in Hong Kong. After
                 graduation, I find my real passion for frontend deveploment and
-                throw all my energies into pursuing related knowledge. I really
-                want to be a frontend web developer
+                throw all my energies into pursuing related knowledge.
+                Proficient in using popular frontend tech stacks. Hoping to join
+                a tech company where I can put my skills to good use.
               </p>
             </div>
             <div className="flex flex-col">

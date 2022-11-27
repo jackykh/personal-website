@@ -12,6 +12,9 @@ module.exports = {
         // auto-fit columns
         "autofit-20": "repeat(auto-fit, minmax(20rem, 1fr))",
       },
+      screens: {
+        print: { raw: "print" },
+      },
     },
   },
   plugins: [],

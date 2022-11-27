@@ -26,7 +26,7 @@ const Footer = forwardRef<HTMLElement>((_props, ref) => {
           </ul>
           <ul className="flex flex-col">
             <li>
-              <Link href="/">My Resume</Link>
+              <Link href="/resume">My Resume</Link>
             </li>
           </ul>
         </div>
