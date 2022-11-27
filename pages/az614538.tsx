@@ -11,8 +11,8 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 const Resume = () => {
   return (
     <main className="lg:p-16">
-      <div className=" h-[60rem] w-full flex flex-col md:flex-row">
-        <div className="h-full  border border-solid border-black">
+      <div className=" w-full flex flex-col md:flex-row ">
+        <div className=" border border-solid border-black">
           {/* Left Part */}
           <div className="w-full flex flex-col [&>*]:p-8">
             <div className=" bg-purple-800 text-white">
@@ -79,19 +79,19 @@ const Resume = () => {
         </div>
         {/* Right Part  */}
         <div className="flex-1 h-full border border-solid border-black bg-purple-50 p-16">
-          <div className="w-full flex flex-col [&>*]:mb-8">
+          <div className="w-full flex flex-col  [&>*]:mb-8">
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif mb-2">Career Objective</h1>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Tempora ad minus, enim nisi fugiat natus corrupti, fuga eius
-                obcaecati suscipit nostrum? Dolores, sed aperiam ex deleniti
-                totam deserunt eius iste!
+                I am a 2021 graduate with a history degree in Hong Kong. After
+                graduation, I find my real passion for frontend deveploment and
+                throw all my energies into pursuing related knowledge. I really
+                want to be a frontend web developer
               </p>
             </div>
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif mb-2">Core Skill</h1>
-              <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc">
+              <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc list-inside">
                 <li>HTML, CSS, JavaScript</li>
                 <li>React</li>
                 <li>Redux</li>
@@ -106,10 +106,10 @@ const Resume = () => {
             </div>
             <div className="flex flex-col">
               <h1 className="text-2xl font-serif mb-2">Portfolio</h1>
-              <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc [&>*]:p-4">
+              <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc list-inside ">
                 <li>
                   <Link
-                    href="https://github.com/jackiecheunq"
+                    href="https://jackiecheunq.github.io/Bookstore/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -119,7 +119,7 @@ const Resume = () => {
                 </li>
                 <li>
                   <Link
-                    href="https://github.com/jackiecheunq"
+                    href="https://milk-tea-8ddb5.web.app/home"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -130,7 +130,7 @@ const Resume = () => {
 
                 <li>
                   <Link
-                    href="https://github.com/jackiecheunq"
+                    href="https://jackycheung.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -139,8 +139,42 @@ const Resume = () => {
                 </li>
               </ul>
             </div>
-            <div className="flex flex-col">
-              <h1 className="text-2xl font-serif mb-2">Work History</h1>
+            <div className="flex flex-col ">
+              <h1 className="text-2xl font-serif mb-4">Work History</h1>
+              <div className="flex flex-col mb-4">
+                <div className="flex">
+                  <div className="w-[30%] mr-4">
+                    <h3 className="font-semibold">Hospital Authority</h3>
+                    <p>Sep 2021- Dec 2021</p>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold">Executive Assistant</h3>
+                    <p>Perform reception, data entry and clerical duties</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="flex">
+                  <div className="w-[30%] mr-4">
+                    <h3 className="font-semibold ">
+                      The Chinese University of Hong Kong
+                    </h3>
+                    <p>Dec 2021- March 2022</p>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold">Project Assistant</h3>
+                    <p>Perform reception, data entry and clerical duties</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col ">
+              <h1 className="text-2xl font-serif mb-4">Languages</h1>
+              <ul className="list-disc list-inside">
+                <li>Cantonese (Native)</li>
+                <li>Mandarin (Proficient)</li>
+                <li>English (Good command)</li>
+              </ul>
             </div>
           </div>
         </div>
