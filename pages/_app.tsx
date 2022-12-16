@@ -5,7 +5,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
-import Footer from "../Components/Footer";
 
 config.autoAddCss = false;
 

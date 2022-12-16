@@ -174,7 +174,7 @@ export default function Home() {
       <SectionTwo ref={sectionTwoRef} />
       <SectionThree ref={sectionThreeRef} />
       <SectionFour ref={sectionFourRef} />
-      <Footer ref={footerRef} />
+      <Footer ref={footerRef} fullScreen={true} />
       {showSectionNav && (
         <SectionNav
           currentSection={currentSection}
