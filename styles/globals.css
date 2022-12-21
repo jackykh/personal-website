@@ -49,7 +49,7 @@ a {
 }
 
 .form_group {
-  @apply flex-1 mb-3 sm:mr-4 sm:last:mr-0 flex flex-col;
+  @apply w-full flex-1 mb-3 sm:mr-4 sm:last:mr-0 flex flex-col;
 }
 
 /***************  Loading Spinner ****************/

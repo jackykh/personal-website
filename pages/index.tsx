@@ -172,26 +172,29 @@ export default function Home() {
   }, [currentSection, sectionRefList]);
 
   return (
-    <main className="w-full">
-      <Navigation
-        fixed={isLargeScreen}
-        isBgDark={
-          !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
-        }
-      />
-      <SectionOne ref={sectionOneRef} />
-      <SectionTwo ref={sectionTwoRef} />
-      <SectionThree ref={sectionThreeRef} />
-      <SectionFour ref={sectionFourRef} />
-      <Footer ref={footerRef} fullScreen={true} />
-      {showSectionNav && (
-        <SectionNav
-          currentSection={currentSection}
-          sectionNumber={sectionRefList.length}
-          setCurrentSection={setCurrentSection}
-          sectionBgWithDarkColor={sectionBgWithDarkColor}
+    <>
+      <div id="portal"></div>
+      <main className="w-full">
+        <Navigation
+          fixed={isLargeScreen}
+          isBgDark={
+            !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
+          }
         />
-      )}
-    </main>
+        <SectionOne ref={sectionOneRef} />
+        <SectionTwo ref={sectionTwoRef} />
+        <SectionThree ref={sectionThreeRef} />
+        <SectionFour ref={sectionFourRef} />
+        <Footer ref={footerRef} fullScreen={true} />
+        {showSectionNav && (
+          <SectionNav
+            currentSection={currentSection}
+            sectionNumber={sectionRefList.length}
+            setCurrentSection={setCurrentSection}
+            sectionBgWithDarkColor={sectionBgWithDarkColor}
+          />
+        )}
+      </main>
+    </>
   );
 }

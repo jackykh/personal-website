@@ -1,98 +1,120 @@
-import { FormEventHandler, forwardRef } from "react";
+import { FormEventHandler, forwardRef, useRef } from "react";
+import { gql, useMutation } from "@apollo/client";
+import LoadingSpinner from "./uiComponents/LoadingSpinner";
+import ErrorMessage from "./uiComponents/ErrorMessage";
 
 const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
+  const CREATE_MESSAGE = gql`
+    mutation createMessage($name: String!, $email: String!, $message: String!) {
+      createMessage(data: { name: $name, email: $email, message: $message }) {
+        data {
+          id
+        }
+      }
+    }
+  `;
+  const [createMessage, { loading: creating, error }] =
+    useMutation(CREATE_MESSAGE);
+
+  const formRef = useRef<HTMLFormElement>(null);
   const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    const name = (
-      event.currentTarget.elements.namedItem("name") as HTMLInputElement
-    ).value;
-    const email = (
-      event.currentTarget.elements.namedItem("email") as HTMLInputElement
-    ).value;
-    const message = (
-      event.currentTarget.elements.namedItem("message") as HTMLInputElement
-    ).value;
-    if (
-      name.trim().length === 0 ||
-      email.trim().length === 0 ||
-      message.trim().length === 0
-    ) {
-      return alert("Please enter all field.");
+    try {
+      const name = (
+        event.currentTarget.elements.namedItem("name") as HTMLInputElement
+      ).value;
+      const email = (
+        event.currentTarget.elements.namedItem("email") as HTMLInputElement
+      ).value;
+      const message = (
+        event.currentTarget.elements.namedItem("message") as HTMLInputElement
+      ).value;
+      if (
+        name.trim().length === 0 ||
+        email.trim().length === 0 ||
+        message.trim().length === 0
+      ) {
+        return alert("Please enter all field.");
+      }
+      await createMessage({ variables: { name, email, message } });
+      formRef.current!.reset();
+      alert("Sent Sucessfully!");
+    } catch (error) {
+      console.log(error);
     }
-    const response = await fetch("/api/posts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-      }),
-    });
-    const result = await response.json();
-    alert(result.message);
   };
+
   return (
-    <section
-      ref={ref}
-      className="bg-purple-50 w-full min-h-screen py-[10rem]  flex flex-col items-center "
-    >
-      <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24">
-        <h1 className="text-4xl font-bold mb-4">Send me a message!</h1>
-        <p className="text-xl">Want to say hello? Go ahead.</p>
-      </div>
-      <form
-        onSubmit={onSubmitHandler}
-        className="w-[60rem] max-w-[90%]"
-        name="messageForm"
+    <>
+      {error && <ErrorMessage content={error.message} />}
+      <section
+        ref={ref}
+        className="bg-purple-50 w-full min-h-screen py-[10rem]  flex flex-col items-center "
       >
-        <div className="flex flex-col sm:flex-row">
-          <div className="form_group">
-            <input
-              type="text"
-              className="input"
-              placeholder="name"
-              name="name"
-              required
-            />
-            <label htmlFor="name" className="label">
-              name
-            </label>
+        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24">
+          <h1 className="text-4xl font-bold mb-4">Send me a message!</h1>
+          <p className="text-xl">Want to say hello? Go ahead.</p>
+        </div>
+        <form
+          onSubmit={onSubmitHandler}
+          className="w-[60rem] max-w-[90%]"
+          name="messageForm"
+          ref={formRef}
+        >
+          <div className="flex flex-col sm:flex-row">
+            <div className="form_group">
+              <input
+                type="text"
+                className="input rounded"
+                placeholder="name"
+                name="name"
+                required
+              />
+              <label htmlFor="name" className="label">
+                name
+              </label>
+            </div>
+            <div className="form_group">
+              <input
+                type="email"
+                className="input rounded"
+                placeholder="email"
+                name="email"
+                required
+              />
+              <label htmlFor="email" className="label">
+                email
+              </label>
+            </div>
           </div>
           <div className="form_group">
-            <input
-              type="email"
-              className="input"
-              placeholder="email"
-              name="email"
+            <label htmlFor="email" className="text-base p-2">
+              Message
+            </label>
+            <textarea
+              className="input rounded"
+              placeholder="Hello, I want to build a website for my products!
+          "
+              rows={3}
+              name="message"
               required
             />
-            <label htmlFor="email" className="label">
-              email
-            </label>
           </div>
-        </div>
-        <div className="form_group">
-          <label htmlFor="email" className="text-base p-2">
-            Message
-          </label>
-          <textarea
-            className="input"
-            placeholder="Hello, I want to build a website for my products!
-            "
-            rows={3}
-            name="message"
-            required
-          />
-        </div>
-        <div className="w-full text-center mt-6">
-          <button type="submit" className="btn ">
-            Submit
-          </button>
-        </div>
-      </form>
-    </section>
+          {!creating && (
+            <div className="w-full text-center mt-6">
+              <button type="submit" className="btn ">
+                Submit
+              </button>
+            </div>
+          )}
+          {creating && (
+            <div className="w-full flex justify-center">
+              <LoadingSpinner />
+            </div>
+          )}
+        </form>
+      </section>
+    </>
   );
 });
 
