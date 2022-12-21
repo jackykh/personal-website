@@ -22,17 +22,29 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               Contact Me
             </li>
             <li>
-              <Link href="mailto:jackycheungtester@gmail.com">
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="mailto:jackycheungtester@gmail.com"
+              >
                 jackycheungtester@gmail.com
               </Link>
             </li>
             <li>
-              <Link href="https://t.me/az614538">t.me/az614538</Link>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://t.me/az614538"
+              >
+                t.me/az614538
+              </Link>
             </li>
           </ul>
           <ul className="flex flex-col">
             <li>
-              <Link href="/resume">My Resume</Link>
+              <Link target="_blank" rel="noopener noreferrer" href="/resume">
+                My Resume
+              </Link>
             </li>
           </ul>
         </div>
@@ -42,7 +54,11 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
             <span>Made With TailwindCSS</span>
           </div>
           <div className="[&>*]:mr-8">
-            <Link href="https://github.com/jackiecheunq">
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://github.com/jackiecheunq"
+            >
               <FontAwesomeIcon icon={faGithub} />
             </Link>
           </div>

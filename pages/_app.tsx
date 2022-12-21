@@ -5,6 +5,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
+import { ApolloProvider } from "@apollo/client";
+import client from "../lib/apollo-client";
 
 config.autoAddCss = false;
 
@@ -20,7 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/memoji_Icon.png" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Component {...pageProps} />
+      <ApolloProvider client={client}>
+        <Component {...pageProps} />
+      </ApolloProvider>
       <Analytics />
     </>
   );

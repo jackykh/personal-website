@@ -4,8 +4,9 @@ import SectionTwo from "../Components/SectionTwo";
 import SectionThree from "../Components/SectionThree";
 import SectionFour from "../Components/SectionFour";
 import Footer from "../Components/Footer";
+import Navigation from "../Components/uiComponents/Navigation";
 import SectionNav from "../Components/uiComponents/SectionNav";
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 export default function Home() {
   const sectionOneRef = useRef(null);
@@ -30,7 +31,9 @@ export default function Home() {
 
   const [showSectionNav, setSectionNav] = useState(false);
 
-  const isMiddleScreen = useMediaQuery({ query: "(min-width: 1024px)" });
+  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+
+  const isSmallScreen = useMediaQuery("(min-width: 640px)");
 
   const lastTimeRef = useRef<number>(0);
 
@@ -127,7 +130,7 @@ export default function Home() {
   );
 
   useEffect(() => {
-    if (isMiddleScreen) {
+    if (isLargeScreen) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
@@ -151,7 +154,7 @@ export default function Home() {
       setSectionNav(false);
     };
   }, [
-    isMiddleScreen,
+    isLargeScreen,
     sectionWheelHandler,
     sectionKeyDownHandler,
     sectionKeyUpHandler,
@@ -170,6 +173,12 @@ export default function Home() {
 
   return (
     <main className="w-full">
+      <Navigation
+        fixed={isLargeScreen}
+        isBgDark={
+          !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
+        }
+      />
       <SectionOne ref={sectionOneRef} />
       <SectionTwo ref={sectionTwoRef} />
       <SectionThree ref={sectionThreeRef} />

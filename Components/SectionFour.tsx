@@ -1,5 +1,4 @@
 import { FormEventHandler, forwardRef } from "react";
-import classes from "../styles/SectionFour.module.css";
 
 const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
   const onSubmitHandler: FormEventHandler<HTMLFormElement> = async (event) => {
@@ -49,37 +48,37 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
         name="messageForm"
       >
         <div className="flex flex-col sm:flex-row">
-          <div className={classes.form_group}>
+          <div className="form_group">
             <input
               type="text"
-              className={classes.input}
+              className="input"
               placeholder="name"
               name="name"
               required
             />
-            <label htmlFor="name" className={classes.label}>
+            <label htmlFor="name" className="label">
               name
             </label>
           </div>
-          <div className={classes.form_group}>
+          <div className="form_group">
             <input
               type="email"
-              className={classes.input}
+              className="input"
               placeholder="email"
               name="email"
               required
             />
-            <label htmlFor="email" className={classes.label}>
+            <label htmlFor="email" className="label">
               email
             </label>
           </div>
         </div>
-        <div className={classes.form_group}>
+        <div className="form_group">
           <label htmlFor="email" className="text-base p-2">
             Message
           </label>
           <textarea
-            className={classes.input}
+            className="input"
             placeholder="Hello, I want to build a website for my products!
             "
             rows={3}
