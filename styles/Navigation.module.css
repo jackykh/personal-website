@@ -1,0 +1,49 @@
+.navi_toggle {
+  @apply absolute right-6 top-6 z-[100];
+}
+.navi_icon,
+.navi_icon_close {
+  @apply relative;
+}
+
+.navi_icon,
+.navi_icon::before,
+.navi_icon::after {
+  @apply w-8 h-[2px] inline-block;
+}
+
+.navi_icon_close {
+  @apply w-8 h-[2px] bg-transparent inline-block;
+}
+
+.navi_icon_close::before,
+.navi_icon_close::after {
+  @apply w-8 h-[2px]  inline-block;
+}
+
+.navi_icon::before,
+.navi_icon::after,
+.navi_icon_close::before,
+.navi_icon_close::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  transition: all 0.2s;
+}
+
+.navi_icon::before {
+  top: -0.8rem;
+}
+
+.navi_icon::after {
+  top: 0.8rem;
+}
+
+.navi_icon_close::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.navi_icon_close::after {
+  top: 0;
+  transform: rotate(-135deg);
+}

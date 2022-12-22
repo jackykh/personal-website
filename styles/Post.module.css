@@ -1,0 +1,3 @@
+.list_disc ul {
+  @apply list-disc;
+}
