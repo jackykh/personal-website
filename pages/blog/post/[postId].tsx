@@ -29,6 +29,7 @@ interface postProps {
     date: string;
   }>;
   totalComments: number;
+  isPageValid: boolean;
 }
 
 const commentsLoadPerClick = 1;
@@ -142,7 +143,7 @@ const Post = (props: postProps) => {
     setNewComment(event.target.value);
   };
 
-  const commentBox = (
+  const commentBox = props.isPageValid && (
     <div className="border w-full text-sm">
       <div className="py-2 px-6 border-b text-xl bg-slate-200 flex justify-between items-center">
         <h3>Comments</h3>
@@ -299,7 +300,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   interface PostData {
     post: {
-      data: {
+      data?: {
         id: string;
         attributes: {
           title: string;
@@ -341,10 +342,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   });
 
   const postData = data as PostData;
-  const id = postData.post.data.id;
-  const comments = postData.comments;
-  const { title, content, createdAt, categories } =
-    postData.post.data.attributes;
+  const id = postData.post.data?.id || "";
+  const comments = postData.comments || [];
+  const { title, content, createdAt, categories } = postData.post.data
+    ?.attributes || {
+    title: "Post Not found",
+    content: "This post doesn't existed or has been removed.",
+    createdAt: Date.now(),
+    categories: { data: [] },
+  };
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -367,6 +373,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         };
       }),
       totalComments: comments.meta.pagination.total,
+      isPageValid: !!postData.post.data,
     },
     revalidate: 10,
   };
