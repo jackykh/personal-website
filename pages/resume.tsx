@@ -14,7 +14,7 @@ const Resume = () => {
     <main className="lg:p-16 ">
       <div className=" w-full flex flex-col md:flex-row print:flex-row border border-solid border-black relative">
         <a
-          href="/resume.pdf"
+          href="/my_resume.pdf"
           download="resume"
           className="absolute right-5 top-3 md:text-black text-white md:hover:bg-purple-200 p-2 rounded"
         >
@@ -108,6 +108,7 @@ const Resume = () => {
                 <li>TypeScript</li>
                 <li>SASS</li>
                 <li>REST APIs</li>
+                <li>GraphQL</li>
                 <li>Node.js</li>
                 <li>Express.js</li>
                 <li>MongoDB/Mongoose</li>
@@ -144,7 +145,7 @@ const Resume = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    A Personal Portfolio Website made with Next.js
+                    A Personal Portfolio Website made with Next.js and Strapi
                   </Link>
                 </li>
               </ul>

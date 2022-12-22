@@ -32,7 +32,6 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
               <li>React Hooks</li>
               <li>React Router</li>
               <li>Redux Toolkit</li>
-              <li>Create React App</li>
               <li>Next.js</li>
             </ul>
           </div>
@@ -45,8 +44,8 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
             <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
               <li>Express.js</li>
               <li>Mongoose</li>
+              <li>GraphQL</li>
               <li>REST APIs</li>
-              <li>JSON Web Tokens</li>
             </ul>
           </div>
           <div className={classes.skill_card_item_right}>
