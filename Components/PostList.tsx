@@ -33,7 +33,7 @@ const PostList = (props: postListProps) => {
       <Navigation />
       <main className="py-24  px-8 flex flex-col items-center">
         <h1 className="text-4xl mb-4">{props.listTitle}</h1>
-        <div className="mb-12 w-full flex justify-center">
+        <div className="mb-12 w-full flex flex-col items-center">
           {postPreviewList}
         </div>
         <Pagination
