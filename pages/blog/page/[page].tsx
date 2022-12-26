@@ -63,7 +63,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const POSTS = gql`
     query GetPosts($page: Int!, $pageSize: Int!) {
-      getPostsData: posts(pagination: { page: $page, pageSize: $pageSize }) {
+      getPostsData: posts(
+        pagination: { page: $page, pageSize: $pageSize }
+        sort: "createdAt:desc"
+      ) {
         data {
           id: id
           attributes {

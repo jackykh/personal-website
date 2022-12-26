@@ -92,7 +92,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           id: id
           attributes {
             name
-            posts(pagination: { page: $page, pageSize: $pageSize }) {
+            posts(
+              pagination: { page: $page, pageSize: $pageSize }
+              sort: "createdAt:desc"
+            ) {
               data {
                 id: id
                 attributes {
