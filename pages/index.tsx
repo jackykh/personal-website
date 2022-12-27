@@ -130,7 +130,8 @@ export default function Home() {
   );
 
   useEffect(() => {
-    if (isLargeScreen) {
+    const userAgent = navigator.userAgent;
+    if (isLargeScreen && !(userAgent.indexOf("Firefox") > -1)) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
