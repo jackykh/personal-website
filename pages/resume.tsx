@@ -14,7 +14,7 @@ const Resume = () => {
     <main className="lg:p-16 ">
       <div className=" w-full flex flex-col md:flex-row print:flex-row border border-solid border-black relative">
         <a
-          href="/my_resume.pdf"
+          href="/resume.pdf"
           download="resume"
           className="absolute right-5 top-3 md:text-black text-white md:hover:bg-purple-200 p-2 rounded"
         >
@@ -32,8 +32,8 @@ const Resume = () => {
               <ul>
                 <li className="flex items-center">
                   <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-                  <Link href="mailto:jackycheungtester@gmail.com">
-                    jackycheungtester@gmail.com
+                  <Link href="mailto:hello@jackycheung.dev">
+                    hello@jackycheung.dev
                   </Link>
                 </li>
                 <li className="flex items-center">

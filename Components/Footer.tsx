@@ -25,9 +25,9 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
-                href="mailto:jackycheungtester@gmail.com"
+                href="mailto:hello@jackycheung.dev"
               >
-                jackycheungtester@gmail.com
+                hello@jackycheung.dev
               </Link>
             </li>
             <li>
