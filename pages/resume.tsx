@@ -14,7 +14,7 @@ const Resume = () => {
     <main className="lg:p-16 ">
       <div className=" w-full flex flex-col md:flex-row print:flex-row border border-solid border-black relative">
         <a
-          href="/my_resume.pdf"
+          href="/resume.pdf"
           download="resume"
           className="absolute right-5 top-3 md:text-black text-white md:hover:bg-purple-200 p-2 rounded"
         >
@@ -113,6 +113,7 @@ const Resume = () => {
                 <li>Express.js</li>
                 <li>MongoDB/Mongoose</li>
                 <li>Next.js</li>
+                <li>Git</li>
               </ul>
             </div>
             <div className="flex flex-col">
@@ -149,35 +150,6 @@ const Resume = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            <div className="flex flex-col ">
-              <h1 className="text-2xl font-serif mb-4">Work History</h1>
-              <div className="flex flex-col mb-4">
-                <div className="flex">
-                  <div className="w-[30%] mr-4">
-                    <h3 className="font-semibold">Hospital Authority</h3>
-                    <p>Sep 2021- Dec 2021</p>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold">Executive Assistant</h3>
-                    <p>Perform reception, data entry and clerical duties</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex">
-                  <div className="w-[30%] mr-4">
-                    <h3 className="font-semibold ">
-                      The Chinese University of Hong Kong
-                    </h3>
-                    <p>Dec 2021- March 2022</p>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold">Project Assistant</h3>
-                    <p>Perform reception, data entry and clerical duties</p>
-                  </div>
-                </div>
-              </div>
             </div>
             <div className="flex flex-col ">
               <h1 className="text-2xl font-serif mb-4">Languages</h1>
