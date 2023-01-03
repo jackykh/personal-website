@@ -1,3 +1,7 @@
 .list_disc ul {
   @apply list-disc;
 }
+
+.list_disc ol {
+  @apply list-decimal;
+}
