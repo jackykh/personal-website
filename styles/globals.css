@@ -12,16 +12,13 @@ body {
   @apply text-sm sm:text-sm  md:text-base lg:text-lg;
 }
 
-@media only screen and (min-width: 1024px) {
-  html,
-  body {
-    -ms-overflow-style: none;
-    touch-action: none;
-  }
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  touch-action: none;
+}
 
-  body::-webkit-scrollbar {
-    display: none;
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 a {

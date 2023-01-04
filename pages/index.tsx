@@ -131,7 +131,8 @@ export default function Home() {
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
-    if (isLargeScreen && !(userAgent.indexOf("Firefox") > -1)) {
+    const isFirefox = userAgent.indexOf("Firefox") > -1;
+    if (isLargeScreen && !isFirefox) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
@@ -143,16 +144,20 @@ export default function Home() {
       document.addEventListener("keydown", sectionKeyDownHandler);
       document.addEventListener("keyup", sectionKeyUpHandler);
       setSectionNav(true);
+      document.body.classList.add("scrollbar-hide");
     }
 
     return () => {
-      document.removeEventListener("wheel", sectionWheelHandler);
-      document.removeEventListener("touchstart", touchstartHandler);
-      document.removeEventListener("touchmove", touchMoveHandler);
-      document.removeEventListener("touchend", touchEndHandler);
-      document.removeEventListener("keydown", sectionKeyDownHandler);
-      document.removeEventListener("keyup", sectionKeyUpHandler);
-      setSectionNav(false);
+      if (!isFirefox) {
+        document.removeEventListener("wheel", sectionWheelHandler);
+        document.removeEventListener("touchstart", touchstartHandler);
+        document.removeEventListener("touchmove", touchMoveHandler);
+        document.removeEventListener("touchend", touchEndHandler);
+        document.removeEventListener("keydown", sectionKeyDownHandler);
+        document.removeEventListener("keyup", sectionKeyUpHandler);
+        setSectionNav(false);
+        document.body.classList.remove("scrollbar-hide");
+      }
     };
   }, [
     isLargeScreen,
@@ -165,12 +170,18 @@ export default function Home() {
   ]);
 
   useEffect(() => {
-    if (sectionRefList[currentSection].current) {
-      (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView({
-        behavior: "smooth",
-      });
+    if (isLargeScreen && sectionRefList[currentSection].current) {
+      setTimeout(
+        () =>
+          (
+            sectionRefList[currentSection].current! as HTMLElement
+          ).scrollIntoView({
+            behavior: "smooth",
+          }),
+        100
+      );
     }
-  }, [currentSection, sectionRefList]);
+  }, [isLargeScreen, currentSection, sectionRefList]);
 
   return (
     <>
