@@ -6,7 +6,8 @@ import SectionFour from "../Components/SectionFour";
 import Footer from "../Components/Footer";
 import Navigation from "../Components/uiComponents/Navigation";
 import SectionNav from "../Components/uiComponents/SectionNav";
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import useMediaQuery from "../hooks/useMediaQuery";
+import useEffectDebugger from "../hooks/useEffectDebugger";
 
 export default function Home() {
   const sectionOneRef = useRef(null);
@@ -169,19 +170,26 @@ export default function Home() {
     touchEndHandler,
   ]);
 
-  useEffect(() => {
-    if (isLargeScreen && sectionRefList[currentSection].current) {
-      setTimeout(
-        () =>
-          (
-            sectionRefList[currentSection].current! as HTMLElement
-          ).scrollIntoView({
-            behavior: "smooth",
-          }),
-        100
-      );
-    }
-  }, [isLargeScreen, currentSection, sectionRefList]);
+  useEffectDebugger(
+    (changedDeps: {
+      [keyName: string]: {
+        before: any;
+        after: any;
+      };
+    }) => {
+      const isScreenChange = changedDeps.isLargeScreen;
+      const scrollOption: ScrollIntoViewOptions = isScreenChange
+        ? { behavior: "auto" }
+        : { behavior: "smooth" };
+      if (isLargeScreen && sectionRefList[currentSection].current) {
+        (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView(
+          scrollOption
+        );
+      }
+    },
+    [isLargeScreen, currentSection, sectionRefList],
+    ["isLargeScreen", "currentSection", "sectionRefList"]
+  );
 
   return (
     <>
