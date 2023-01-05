@@ -12,6 +12,7 @@ body {
 }
 
 .scrollbar-hide {
+  overflow-anchor: none;
   -ms-overflow-style: none;
   touch-action: none;
 }
