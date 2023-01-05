@@ -178,9 +178,11 @@ export default function Home() {
       };
     }) => {
       const isScreenChange = changedDeps.isLargeScreen;
-      const scrollOption: ScrollIntoViewOptions = isScreenChange
-        ? { behavior: "auto" }
-        : { behavior: "smooth" };
+      const isInitial = changedDeps?.currentSection === undefined;
+      const scrollOption: ScrollIntoViewOptions =
+        isScreenChange || isInitial
+          ? { behavior: "auto" }
+          : { behavior: "smooth" };
       if (isLargeScreen && sectionRefList[currentSection].current) {
         (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView(
           scrollOption
