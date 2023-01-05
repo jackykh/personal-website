@@ -170,10 +170,6 @@ export default function Home() {
     touchEndHandler,
   ]);
 
-  useEffect(() => {
-    setCurrentSection(0);
-  }, []);
-
   useEffectDebugger(
     (changedDeps: {
       [keyName: string]: {
@@ -186,8 +182,12 @@ export default function Home() {
         ? { behavior: "auto" }
         : { behavior: "smooth" };
       if (isLargeScreen && sectionRefList[currentSection].current) {
-        (sectionRefList[currentSection].current! as HTMLElement).scrollIntoView(
-          scrollOption
+        setTimeout(
+          () =>
+            (
+              sectionRefList[currentSection].current! as HTMLElement
+            ).scrollIntoView(scrollOption),
+          100
         );
       }
     },
