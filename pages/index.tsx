@@ -170,6 +170,10 @@ export default function Home() {
     touchEndHandler,
   ]);
 
+  useEffect(() => {
+    setCurrentSection(0);
+  }, []);
+
   useEffectDebugger(
     (changedDeps: {
       [keyName: string]: {
