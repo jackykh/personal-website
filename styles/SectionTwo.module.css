@@ -3,7 +3,7 @@
 }
 
 .skill_card {
-  @apply mt-[-12rem] w-[70rem] max-w-[90%] lg:h-[25rem] md:h-auto sm:h-auto bg-white rounded-2xl overflow-hidden flex  flex-col sm:flex-col md:flex-col lg:flex-row  border-solid border shadow-lg shadow-black/30;
+  @apply mt-[-12rem] w-[70rem] max-w-[90%] h-auto bg-white rounded-2xl overflow-hidden flex  flex-col sm:flex-col md:flex-col lg:flex-row  border-solid border shadow-lg shadow-black/30;
 }
 
 .skill_card_item_left {

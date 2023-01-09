@@ -1,35 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, MouseEventHandler } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import classes from "../../styles/Navigation.module.css";
 import Link from "next/link";
+import useCloseDropdownWhenClickedOutside from "../../hooks/useCloseDropdownWhenClickedOutside";
+
 const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
   const [showNav, setShowNav] = useState(false);
   const navRef = useRef(null);
 
   const closeNav = () => setShowNav(false);
-  const toggleNav = () => setShowNav((prevState) => !prevState);
-
-  const useCloseDropdownWhenClickedOutside = (
-    ref: React.RefObject<HTMLElement>,
-    onClose: (clickedItem: Node) => void
-  ) => {
-    useEffect(() => {
-      /**
-       * close the dropdown if clicked on outside of element
-       */
-      const handleClickOutside = (event: MouseEvent) => {
-        const clickedItem = event.target as Node;
-        if (ref.current && !ref.current.contains(clickedItem)) {
-          onClose(clickedItem);
-        }
-      };
-      // Bind the event listener
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [ref, onClose]);
+  const toggleNav: MouseEventHandler = (e) => {
+    e.stopPropagation();
+    setShowNav((prevState) => !prevState);
   };
 
   useCloseDropdownWhenClickedOutside(navRef, closeNav);
@@ -45,6 +27,9 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
         props.fixed ? "fixed" : "absolute"
       } right-5 top-5 md:right-14 md:top-14 z-[80]`}
       ref={navRef}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
     >
       <button className={classes.navi_toggle} onClick={toggleNav}>
         <span
