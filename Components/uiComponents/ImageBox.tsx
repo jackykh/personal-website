@@ -18,6 +18,9 @@ const ImageBox: React.FC<{
     <motion.div
       className="w-full h-[15rem] rounded-xl overflow-hidden group relative bg-slate-200 shadow-lg shadow-black/30 border border-solid"
       variants={item}
+      onTouchStart={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
+      onTouchEnd={(e) => e.stopPropagation()}
     >
       <Image
         src={props.img}
