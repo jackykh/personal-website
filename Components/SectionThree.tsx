@@ -19,7 +19,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
 
   return (
     <section ref={ref} className={classes.sectionThreeBg}>
-      <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-16">
+      <div className="w-[60rem] max-w-full px-10 pt-[2rem] flex flex-col justify-center items-center text-center mb-16">
         <h1 className="text-4xl font-bold mb-4">My Side Project</h1>
         <p className="text-xl">
           Here are some side projects I&apos;ve worked on recently.
