@@ -100,7 +100,7 @@ const Post = (props: postProps) => {
     variables: {
       id: props.id,
       pageSize: commentsLoadPerClick,
-      page: pageOfComments,
+      page: pageOfComments + 1,
     },
   });
 
