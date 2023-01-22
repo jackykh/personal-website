@@ -146,7 +146,7 @@ const Post = (props: postProps) => {
   const commentBox = props.isPageValid && (
     <div className="border w-full text-sm">
       <div className="py-2 px-6 border-b text-xl bg-slate-200 flex justify-between items-center">
-        <h3>Comments</h3>
+        <h3>Comments ({props.totalComments})</h3>
         <button
           className="py-2 px-3 hover:bg-slate-400 rounded"
           onClick={() => setShowEditor((prevState) => !prevState)}
