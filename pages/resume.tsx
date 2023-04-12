@@ -135,8 +135,8 @@ const Resume = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    A Full Stack Products Showcase Website Project made with
-                    MERN (MongoDB, Express.js, React, Node.js) stack
+                    A Full Stack e-commerce Website Project made with MERN
+                    (MongoDB, Express.js, React, Node.js) stack
                   </Link>
                 </li>
 

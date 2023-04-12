@@ -34,12 +34,12 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
       >
         <ImageBox
           img="/bookstore.png"
-          caption="A responsive Book Store website"
+          caption="A responsive Book Store website DEMO"
           link="https://jackiecheunq.github.io/Bookstore/"
         />
         <ImageBox
           img="/milktea_store.png"
-          caption="A full stack Products Showcase Website Project"
+          caption="A full stack e-commerce Website Project"
           link="https://milk-tea-8ddb5.web.app/"
         />
         <ImageBox
