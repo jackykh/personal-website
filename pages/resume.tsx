@@ -14,7 +14,7 @@ const Resume = () => {
     <main className="lg:p-16 ">
       <div className=" w-full flex flex-col md:flex-row print:flex-row border border-solid border-black relative">
         <a
-          href="/resume.pdf"
+          href="/resumeA4.pdf"
           download="resume"
           className="absolute right-5 top-3 md:text-black text-white md:hover:bg-purple-200 p-2 rounded"
         >
@@ -106,7 +106,7 @@ const Resume = () => {
                 <li>React.js</li>
                 <li>Redux</li>
                 <li>TypeScript</li>
-                <li>Vue.js</li>
+                <li>Vue.js (Vue 3)</li>
                 <li>SASS</li>
                 <li>REST APIs</li>
                 <li>GraphQL</li>
