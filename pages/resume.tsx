@@ -103,9 +103,10 @@ const Resume = () => {
               <h1 className="text-2xl font-serif mb-2">Core Skill</h1>
               <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc list-inside">
                 <li>HTML, CSS, JavaScript</li>
-                <li>React</li>
+                <li>React.js</li>
                 <li>Redux</li>
                 <li>TypeScript</li>
+                <li>Vue.js</li>
                 <li>SASS</li>
                 <li>REST APIs</li>
                 <li>GraphQL</li>
