@@ -131,11 +131,7 @@ export default function Home() {
   );
 
   useEffect(() => {
-    const userAgent = navigator.userAgent;
-    const isFirefox = userAgent.indexOf("Firefox") > -1;
-    const isSafari = userAgent.indexOf("Safari") > -1;
-    const showScrollBar = isSafari || isFirefox;
-    if (isLargeScreen && !showScrollBar) {
+    if (isLargeScreen) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
@@ -147,20 +143,16 @@ export default function Home() {
       document.addEventListener("keydown", sectionKeyDownHandler);
       document.addEventListener("keyup", sectionKeyUpHandler);
       setSectionNav(true);
-      document.body.classList.add("scrollbar-hide");
     }
 
     return () => {
-      if (!showScrollBar) {
-        document.removeEventListener("wheel", sectionWheelHandler);
-        document.removeEventListener("touchstart", touchstartHandler);
-        document.removeEventListener("touchmove", touchMoveHandler);
-        document.removeEventListener("touchend", touchEndHandler);
-        document.removeEventListener("keydown", sectionKeyDownHandler);
-        document.removeEventListener("keyup", sectionKeyUpHandler);
-        setSectionNav(false);
-        document.body.classList.remove("scrollbar-hide");
-      }
+      document.removeEventListener("wheel", sectionWheelHandler);
+      document.removeEventListener("touchstart", touchstartHandler);
+      document.removeEventListener("touchmove", touchMoveHandler);
+      document.removeEventListener("touchend", touchEndHandler);
+      document.removeEventListener("keydown", sectionKeyDownHandler);
+      document.removeEventListener("keyup", sectionKeyUpHandler);
+      setSectionNav(false);
     };
   }, [
     isLargeScreen,
