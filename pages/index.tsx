@@ -133,7 +133,9 @@ export default function Home() {
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isFirefox = userAgent.indexOf("Firefox") > -1;
-    if (isLargeScreen && !isFirefox) {
+    const isSafari = userAgent.indexOf("Safari") > -1;
+    const showScrollBar = isSafari || isFirefox;
+    if (isLargeScreen && !showScrollBar) {
       document.addEventListener("wheel", sectionWheelHandler, {
         passive: false,
       });
@@ -149,7 +151,7 @@ export default function Home() {
     }
 
     return () => {
-      if (!isFirefox) {
+      if (!showScrollBar) {
         document.removeEventListener("wheel", sectionWheelHandler);
         document.removeEventListener("touchstart", touchstartHandler);
         document.removeEventListener("touchmove", touchMoveHandler);
