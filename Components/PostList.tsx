@@ -2,7 +2,6 @@ import PostPreview from "./uiComponents/PostPreview";
 import Navigation from "./uiComponents/Navigation";
 import Pagination from "./uiComponents/Pagination";
 import Footer from "./Footer";
-import { v4 as uuidv4 } from "uuid";
 
 interface postListProps {
   link: string;
@@ -20,7 +19,7 @@ interface postListProps {
 const PostList = (props: postListProps) => {
   const postPreviewList = props.postPreviewData.map((post) => (
     <PostPreview
-      key={uuidv4()}
+      key={post.id}
       id={post.id}
       date={post.date}
       title={post.title}

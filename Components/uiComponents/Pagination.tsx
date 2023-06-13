@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
 
 interface paginationProps {
   currentPage: number;
@@ -14,7 +13,7 @@ const Pagination = (props: paginationProps) => {
   const currentPageButton = (page: number) => {
     return (
       <Link
-        key={uuidv4()}
+        key={page}
         href={`${link}${page}`}
         className={`w-10 h-10 rounded-lg ${
           props.currentPage === page && "bg-purple-300"

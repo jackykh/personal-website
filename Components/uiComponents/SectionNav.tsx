@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 const SectionNav: React.FC<{
   sectionNumber: number;
@@ -19,7 +18,7 @@ const SectionNav: React.FC<{
       : "rounded-full bg-purple-900";
     for (let i = 0; i < props.sectionNumber; i++) {
       navButtonsList.push(
-        <li key={uuidv4()}>
+        <li key={i}>
           <button
             type="button"
             className={`w-3 h-3 transition-all ${

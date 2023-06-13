@@ -8,7 +8,6 @@ import classes from "../../../styles/Post.module.css";
 import Link from "next/link";
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
 import client from "../../../lib/apollo-client";
-import { v4 as uuidv4 } from "uuid";
 import Navigation from "../../../Components/uiComponents/Navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -167,8 +166,8 @@ const Post = (props: postProps) => {
         </div>
       )}
       {comments.length > 0 ? (
-        comments.map((comment) => (
-          <div key={uuidv4()} className="p-4 min-h-[5rem] border-b">
+        comments.map((comment, index) => (
+          <div key={index} className="p-4 min-h-[5rem] border-b">
             <span>{comment.content}</span>
           </div>
         ))
@@ -200,7 +199,7 @@ const Post = (props: postProps) => {
               tag:{" "}
               {props.tags.map((tag) => (
                 <Link
-                  key={uuidv4()}
+                  key={tag.id}
                   href={`/blog/category/${tag.id}/page/1`}
                   className="text-purple-900 font-semibold mr-2"
                 >
