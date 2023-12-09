@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import Footer from "../../../Components/Footer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import "github-markdown-css/github-markdown-light.css";
 import classes from "../../../styles/Post.module.css";
 import Link from "next/link";
@@ -212,6 +213,7 @@ const Post = (props: postProps) => {
             <h1 className="text-3xl font-semibold mb-4">{props.title}</h1>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw as any]}
               className={`markdown-body ${classes.list_disc} !bg-transparent`}
             >
               {props.content}
