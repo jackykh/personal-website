@@ -212,7 +212,7 @@ const Post = (props: postProps) => {
             <h1 className="text-3xl font-semibold mb-4">{props.title}</h1>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              className={`markdown-body ${classes.list_disc}`}
+              className={`markdown-body ${classes.list_disc} !bg-transparent`}
             >
               {props.content}
             </ReactMarkdown>
