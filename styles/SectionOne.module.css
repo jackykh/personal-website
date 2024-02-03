@@ -9,7 +9,7 @@
   );
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 639px) {
   .sectionOneBg {
     background-image: linear-gradient(
       to bottom,
