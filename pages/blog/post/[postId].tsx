@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import LoadingSpinner from "../../../Components/uiComponents/LoadingSpinner";
 import Editor from "../../../Components/uiComponents/Editor";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 interface postProps {
   id: string;
@@ -215,6 +217,25 @@ const Post = (props: postProps) => {
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw as any]}
               className={`markdown-body ${classes.list_disc} !bg-transparent`}
+              components={{
+                code({ node, inline, className, children, ...props }: any) {
+                  const match = /language-(\w+)/.exec(className || "");
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={nightOwl}
+                      PreTag="div"
+                      language={match[1]}
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
             >
               {props.content}
             </ReactMarkdown>
