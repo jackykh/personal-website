@@ -2,11 +2,14 @@ import { useState, useRef, MouseEventHandler } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import classes from "@/styles/Navigation.module.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import useCloseDropdownWhenClickedOutside from "@/hooks/useCloseDropdownWhenClickedOutside";
 
 const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
   const [showNav, setShowNav] = useState(false);
   const navRef = useRef(null);
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
 
   const closeNav = () => setShowNav(false);
   const toggleNav: MouseEventHandler = (e) => {
@@ -47,8 +50,8 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
             exit={{ opacity: 0 }}
           >
             <ul className="[&>*]:mb-6 text-green-800 text-xl ">
-              <li>
-                <Link href="/">Home</Link>
+              <li className="cursor-pointer">
+                {isHomepage ? "Home" : <Link href="/">Home</Link>}
               </li>
               <li>
                 <Link href="/blog/page/1">My Blog</Link>
