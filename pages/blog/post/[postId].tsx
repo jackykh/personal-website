@@ -1,4 +1,4 @@
-import { useState, ChangeEventHandler } from "react";
+import { useState, ChangeEventHandler, useEffect } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Footer from "@/Components/Footer";
 import ReactMarkdown from "react-markdown";
@@ -34,7 +34,7 @@ interface postProps {
   isPageValid: boolean;
 }
 
-const commentsLoadPerClick = 1;
+const commentsLoadPerClick = 3;
 
 const Post = (props: postProps) => {
   const [comments, setComments] = useState<
@@ -46,13 +46,36 @@ const Post = (props: postProps) => {
   const [pageOfComments, setPageOfComments] = useState(1);
   const [showEditor, setShowEditor] = useState(false);
   const [newComment, setNewComment] = useState("");
+  const [totalComments, setTotalComments] = useState(props.totalComments);
 
-  const LOAD_COMMENTS = gql`
-    query LoadComments($id: ID!, $page: Int!, $pageSize: Int!) {
+  interface reloadedCommentsData {
+    comments: {
+      meta: {
+        pagination: {
+          total: number;
+        };
+      };
+      data: Array<{
+        attributes: {
+          content: string;
+          createdAt: string;
+        };
+      }>;
+    };
+  }
+
+  const RELOAD_COMMENTS = gql`
+    query GetComments($id: ID!, $page: Int!, $pageSize: Int!) {
       comments(
         filters: { post: { id: { eq: $id } } }
         pagination: { pageSize: $pageSize, page: $page }
+        sort: "createdAt:desc"
       ) {
+        meta {
+          pagination {
+            total
+          }
+        }
         data {
           attributes {
             content
@@ -62,17 +85,36 @@ const Post = (props: postProps) => {
       }
     }
   `;
+  const [reloadComments, { loading: reloading }] = useLazyQuery(
+    RELOAD_COMMENTS,
+    {
+      variables: {
+        id: props.id,
+        pageSize: commentsLoadPerClick * pageOfComments,
+        page: 1,
+      },
+    }
+  );
 
-  interface commentsData {
-    comments: {
-      data: Array<{
-        attributes: {
-          content: string;
-          createdAt: string;
+  const reloadCommentsHandler = async () => {
+    const result = await reloadComments();
+    const reloadedCommentsData = result.data as reloadedCommentsData;
+    const reloadedComments = reloadedCommentsData.comments.data.map(
+      (comment) => {
+        return {
+          content: comment.attributes.content,
+          date: comment.attributes.createdAt,
         };
-      }>;
-    };
-  }
+      }
+    );
+    const totalCommentsNumber =
+      reloadedCommentsData.comments.meta.pagination.total;
+    setTotalComments(totalCommentsNumber);
+    setComments(reloadedComments);
+  };
+  useEffect(() => {
+    reloadCommentsHandler();
+  }, []);
 
   const CREATE_COMMENT = gql`
     mutation createComment($postId: ID!, $content: String!) {
@@ -98,32 +140,11 @@ const Post = (props: postProps) => {
     };
   }
 
-  const [loadComments, { loading }] = useLazyQuery(LOAD_COMMENTS, {
-    variables: {
-      id: props.id,
-      pageSize: commentsLoadPerClick,
-      page: pageOfComments + 1,
-    },
-  });
-
   const [createComments, { loading: creating }] = useMutation(CREATE_COMMENT);
-
-  const loadCommentsHandler = async () => {
-    const result = await loadComments();
-    const loadedComments = (result.data as commentsData).comments.data.map(
-      (comment) => {
-        return {
-          content: comment.attributes.content,
-          date: comment.attributes.createdAt,
-        };
-      }
-    );
-    setComments((prevState) => prevState.concat(loadedComments));
-    setPageOfComments((prevState) => prevState + 1);
-  };
 
   const createCommentHandler = async () => {
     if (newComment.trim().length === 0) return;
+
     const result = await createComments({
       variables: {
         postId: props.id,
@@ -136,6 +157,7 @@ const Post = (props: postProps) => {
       { content: loadedComments.content, date: loadedComments.createdAt },
       ...prevState,
     ]);
+    setTotalComments((prevState) => prevState + 1);
     setNewComment("");
   };
 
@@ -148,7 +170,7 @@ const Post = (props: postProps) => {
   const commentBox = props.isPageValid && (
     <div className="border w-full text-sm">
       <div className="py-2 px-6 border-b text-xl bg-slate-200 flex justify-between items-center">
-        <h3>Comments ({props.totalComments})</h3>
+        <h3>Comments ({totalComments})</h3>
         <button
           className="py-2 px-3 hover:bg-slate-400 rounded"
           onClick={() => setShowEditor((prevState) => !prevState)}
@@ -182,10 +204,13 @@ const Post = (props: postProps) => {
     </div>
   );
   const button =
-    comments.length < props.totalComments && !loading ? (
+    comments.length < totalComments && !reloading ? (
       <button
         className="btn max-w-[15rem] text-base mt-4"
-        onClick={loadCommentsHandler}
+        onClick={() => {
+          reloadCommentsHandler();
+          setPageOfComments((prevState) => prevState + 1);
+        }}
       >
         Click Here to load more.
       </button>
@@ -243,7 +268,7 @@ const Post = (props: postProps) => {
           <div className="flex flex-col items-center">
             {commentBox}
             {button}
-            {loading && <LoadingSpinner className="mt-4" />}
+            {reloading && <LoadingSpinner className="mt-4" />}
           </div>
         </div>
       </main>
@@ -304,6 +329,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       comments(
         filters: { post: { id: { eq: $id } } }
         pagination: { pageSize: $pageSize, page: $page }
+        sort: "createdAt:desc"
       ) {
         meta {
           pagination {
