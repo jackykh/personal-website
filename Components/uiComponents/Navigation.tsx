@@ -1,8 +1,8 @@
 import { useState, useRef, MouseEventHandler } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import classes from "../../styles/Navigation.module.css";
+import classes from "@/styles/Navigation.module.css";
 import Link from "next/link";
-import useCloseDropdownWhenClickedOutside from "../../hooks/useCloseDropdownWhenClickedOutside";
+import useCloseDropdownWhenClickedOutside from "@/hooks/useCloseDropdownWhenClickedOutside";
 
 const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
   const [showNav, setShowNav] = useState(false);

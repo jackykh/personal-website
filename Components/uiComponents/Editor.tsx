@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from "react";
-import useEnterToFetch from "../../hooks/useEnterToFetch";
+import useEnterToFetch from "@/hooks/useEnterToFetch";
 
 interface editorProps {
   placeholder?: string;

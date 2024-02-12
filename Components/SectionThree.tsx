@@ -2,7 +2,7 @@ import { forwardRef, useRef } from "react";
 import ImageBox from "./uiComponents/ImageBox";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import classes from "../styles/SectionThree.module.css";
+import classes from "@/styles/SectionThree.module.css";
 
 const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
   const workListRef = useRef(null);

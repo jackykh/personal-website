@@ -1,19 +1,19 @@
 import { useState, ChangeEventHandler } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Footer from "../../../Components/Footer";
+import Footer from "@/Components/Footer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import "github-markdown-css/github-markdown-light.css";
-import classes from "../../../styles/Post.module.css";
+import classes from "@/styles/Post.module.css";
 import Link from "next/link";
 import { gql, useLazyQuery, useMutation } from "@apollo/client";
-import client from "../../../lib/apollo-client";
-import Navigation from "../../../Components/uiComponents/Navigation";
+import client from "@/lib/apollo-client";
+import Navigation from "@/Components/uiComponents/Navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import LoadingSpinner from "../../../Components/uiComponents/LoadingSpinner";
-import Editor from "../../../Components/uiComponents/Editor";
+import LoadingSpinner from "@/Components/uiComponents/LoadingSpinner";
+import Editor from "@/Components/uiComponents/Editor";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 

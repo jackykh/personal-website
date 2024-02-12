@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact, faNode, faCss3 } from "@fortawesome/free-brands-svg-icons";
-import classes from "../styles/SectionTwo.module.css";
+import classes from "@/styles/SectionTwo.module.css";
 
 const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
   return (

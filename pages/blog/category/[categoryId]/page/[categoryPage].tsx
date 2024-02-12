@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
-import client from "../../../../../lib/apollo-client";
-import PostList from "../../../../../Components/PostList";
+import client from "@/lib/apollo-client";
+import PostList from "@/Components/PostList";
 
 interface listProps {
   categoryName: string;

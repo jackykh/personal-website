@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import classes from "../../styles/ErrorMessage.module.css";
+import classes from "@/styles/ErrorMessage.module.css";
 
 const ErrorMessage = (props: { content: string }) => {
   return createPortal(

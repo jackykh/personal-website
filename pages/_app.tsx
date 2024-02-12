@@ -5,8 +5,8 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/client";
-import client from "../lib/apollo-client";
-import useMediaQuery from "../hooks/useMediaQuery";
+import client from "@/lib/apollo-client";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import { useEffect } from "react";
 
 config.autoAddCss = false;

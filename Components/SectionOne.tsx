@@ -1,4 +1,4 @@
-import classes from "../styles/SectionOne.module.css";
+import classes from "@/styles/SectionOne.module.css";
 import Image from "next/image";
 import { forwardRef } from "react";
 
