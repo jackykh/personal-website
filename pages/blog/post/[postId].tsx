@@ -16,6 +16,7 @@ import LoadingSpinner from "@/Components/uiComponents/LoadingSpinner";
 import Editor from "@/Components/uiComponents/Editor";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import Head from "next/head";
 
 interface postProps {
   id: string;
@@ -219,6 +220,9 @@ const Post = (props: postProps) => {
   return (
     <>
       <Navigation />
+      <Head>
+        <title>{`${props.title} - Jacky's Blog`}</title>
+      </Head>
       <main className="py-28 px-12 flex justify-center">
         <div className="flex flex-col w-[60rem] max-w-full">
           <div className="flex [&>*]:mr-4 border-b border-black py-2 text-base font-light">
