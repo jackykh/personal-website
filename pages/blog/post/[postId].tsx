@@ -224,7 +224,7 @@ const Post = (props: postProps) => {
         <meta
           name="description"
           content={
-            props.content.match(/^.+(\n|$)/)?.[0] ||
+            props.content.match(/^[^\n]+/)?.[0] ||
             `${props.title} - Jacky's Blog`
           }
         />
