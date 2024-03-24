@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
+import Head from "next/head";
 
 interface listProps {
   categoryName: string;
@@ -20,13 +21,19 @@ const postsPerPage = 5;
 
 const PostListOfCategory = (props: listProps) => {
   return (
-    <PostList
-      link={`/blog/category/${props.categoryId}/page/`}
-      listTitle={props.categoryName}
-      totalPage={props.totalPage}
-      currentPage={props.currentPage}
-      postPreviewData={props.postPreviewData}
-    />
+    <>
+      <Head>
+        <title>{`${props.categoryName} - Jacky's Blog`}</title>
+        <meta name="description" content="Welcome to My Blog" />
+      </Head>
+      <PostList
+        link={`/blog/category/${props.categoryId}/page/`}
+        listTitle={props.categoryName}
+        totalPage={props.totalPage}
+        currentPage={props.currentPage}
+        postPreviewData={props.postPreviewData}
+      />
+    </>
   );
 };
 
@@ -179,7 +186,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             return {
               id: post.id,
               title,
-              content: content.match(/^.+(\n|$)/),
+              content: content.match(/^.+(\n|$)/)?.[0] || title,
               date: new Date(createdAt).toLocaleDateString("en-us", options),
             };
           }

@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
+import Head from "next/head";
 
 interface indexListProps {
   totalPage: number;
@@ -17,13 +18,19 @@ const postsPerPage = 5;
 
 const indexList = (props: indexListProps) => {
   return (
-    <PostList
-      link="/blog/page/"
-      listTitle="My Blog"
-      totalPage={props.totalPage}
-      currentPage={props.currentPage}
-      postPreviewData={props.postPreviewData}
-    />
+    <>
+      <Head>
+        <title>Home Page - Jacky's Blog</title>
+        <meta name="description" content="Welcome to My Blog" />
+      </Head>
+      <PostList
+        link="/blog/page/"
+        listTitle="My Blog"
+        totalPage={props.totalPage}
+        currentPage={props.currentPage}
+        postPreviewData={props.postPreviewData}
+      />
+    </>
   );
 };
 
@@ -130,7 +137,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         return {
           id: post.id,
           title,
-          content: content.match(/^.+(\n|$)/),
+          content: content.match(/^.+(\n|$)/)?.[0] || title,
           date: new Date(createdAt).toLocaleDateString("en-us", options),
         };
       }),
