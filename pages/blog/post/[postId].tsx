@@ -1,4 +1,4 @@
-import { useState, ChangeEventHandler, useEffect } from "react";
+import { useState, ChangeEventHandler, useEffect, useCallback } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Footer from "@/Components/Footer";
 import ReactMarkdown from "react-markdown";
@@ -97,7 +97,7 @@ const Post = (props: postProps) => {
     }
   );
 
-  const reloadCommentsHandler = async () => {
+  const reloadCommentsHandler = useCallback(async () => {
     const result = await reloadComments();
     const reloadedCommentsData = result.data as reloadedCommentsData;
     const reloadedComments = reloadedCommentsData.comments.data.map(
@@ -112,10 +112,11 @@ const Post = (props: postProps) => {
       reloadedCommentsData.comments.meta.pagination.total;
     setTotalComments(totalCommentsNumber);
     setComments(reloadedComments);
-  };
+  }, [reloadComments]);
+
   useEffect(() => {
     reloadCommentsHandler();
-  }, []);
+  }, [reloadCommentsHandler]);
 
   const CREATE_COMMENT = gql`
     mutation createComment($postId: ID!, $content: String!) {

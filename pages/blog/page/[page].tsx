@@ -20,7 +20,7 @@ const indexList = (props: indexListProps) => {
   return (
     <>
       <Head>
-        <title>Home Page - Jacky's Blog</title>
+        <title>Home Page - Jacky&apos;s Blog</title>
         <meta name="description" content="Welcome to My Blog" />
       </Head>
       <PostList
