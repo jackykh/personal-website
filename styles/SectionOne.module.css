@@ -1,6 +1,6 @@
 .sectionOneBg {
   /*** 10rem paddingtop is for making space for navBar **/
-  @apply w-full py-[5rem] sm:flex-row flex flex-col items-center;
+  @apply w-full py-[5rem] sm:flex-row flex flex-col items-center relative;
   background-image: linear-gradient(
     to right,
     #219f94 0%,

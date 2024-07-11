@@ -22,6 +22,11 @@ body {
   display: none;
 }
 
+/* Fix: Elements disappear when virtual scroll happening */
+.scroll-container > section, .scroll-container > footer {
+  perspective: 1px;
+}
+
 a {
   color: inherit;
   text-decoration: none;

@@ -5,6 +5,9 @@ import { forwardRef } from "react";
 const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
   return (
     <section className={classes.sectionOneBg} ref={ref}>
+      <div className="w-full text-center text-sm text-white bg-black py-2 absolute top-0 border-b-[3px] [border-image:linear-gradient(to_right,#EE2A35_0%,#EE2A35_25%,black_25%,black_50%,white_50%,white_75%,#009736_75%,#009736_100%)_30]">
+        <p>Stand With Palestine</p>
+      </div>
       <div className="w-full sm:w-[70%] flex flex-col p-20 items-center">
         <div className="w-full flex justify-center mb-8">
           <div className="w-[50rem] ">

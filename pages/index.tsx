@@ -192,16 +192,13 @@ export default function Home() {
   return (
     <>
       <div id="portal"></div>
-      <main className="w-full">
+      <main className="w-full scroll-container">
         <Navigation
           fixed={isLargeScreen}
           isBgDark={
             !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
           }
         />
-        <div className="w-full text-center text-sm text-white bg-black py-2 absolute border-b-[3px] [border-image:linear-gradient(to_right,#EE2A35_0%,#EE2A35_25%,black_25%,black_50%,white_50%,white_75%,#009736_75%,#009736_100%)_30]">
-          <p>Stand With Palestine</p>
-        </div>
         <SectionOne ref={sectionOneRef} />
         <SectionTwo ref={sectionTwoRef} />
         <SectionThree ref={sectionThreeRef} />
