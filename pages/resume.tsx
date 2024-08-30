@@ -51,11 +51,11 @@ const Resume = () => {
                 <li className="flex items-center">
                   <FontAwesomeIcon icon={faGithub} className="mr-2" />
                   <Link
-                    href="https://github.com/jackiecheunq"
+                    href="https://github.com/jackykh"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    github.com/jackiecheunq
+                    github.com/jackykh
                   </Link>
                 </li>
               </ul>
@@ -122,7 +122,7 @@ const Resume = () => {
               <ul className="grid  grid-cols-autofit-20  auto-rows-min list-disc list-inside ">
                 <li>
                   <Link
-                    href="https://jackiecheunq.github.io/Bookstore/"
+                    href="https://bookstore-demo.pages.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

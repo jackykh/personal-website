@@ -35,7 +35,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
         <ImageBox
           img="/bookstore.png"
           caption="A responsive Book Store website DEMO"
-          link="https://jackiecheunq.github.io/Bookstore/"
+          link="https://bookstore-demo.pages.dev/"
         />
         <ImageBox
           img="/milktea_store.png"
@@ -50,7 +50,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
       </motion.div>
 
       <div className="flex p-10 justify-center items-center sticky bottom-[2rem] z-10">
-        <Link href="https://github.com/jackiecheunq">
+        <Link href="https://github.com/jackykh">
           <motion.button
             className="btn text-base shadow-md shadow-zinc-400 overflow-hidden"
             initial={{ opacity: 0 }}

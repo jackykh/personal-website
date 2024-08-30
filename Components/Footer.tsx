@@ -57,7 +57,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/jackiecheunq"
+              href="https://github.com/jackykh"
             >
               <FontAwesomeIcon icon={faGithub} />
             </Link>
