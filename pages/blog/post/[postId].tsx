@@ -435,7 +435,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       totalComments: comments.meta.pagination.total,
       isPageValid: !!postData.post.data,
     },
-    revalidate: 10,
+    revalidate: 60,
   };
 };
 
