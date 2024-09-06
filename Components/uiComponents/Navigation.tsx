@@ -28,9 +28,7 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
     <div
       className={`${
         props.fixed ? "fixed" : "absolute"
-      } right-5 top-5 md:right-14 md:top-14 z-[80] ${
-        isHomepage && "top-10 md:top-8"
-      }`}
+      } right-5 top-5 md:right-14 md:top-14 z-[80]`}
       ref={navRef}
       onTouchStart={(e) => e.stopPropagation()}
       onTouchMove={(e) => e.stopPropagation()}
