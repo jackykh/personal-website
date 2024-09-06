@@ -50,7 +50,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
         </div>
         <div className="p-8 flex">
           <div className="[&>*]:mr-8 flex flex-wrap">
-            <span>@Jacky Cheung 2022</span>
+            <span>© Jacky Cheung 2024</span>
             <span>Made With TailwindCSS</span>
           </div>
           <div className="[&>*]:mr-8">
