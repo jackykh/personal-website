@@ -1,7 +1,7 @@
-import { FormEventHandler, forwardRef, useRef } from "react";
+import { FormEventHandler, forwardRef, useEffect, useRef } from "react";
 import { gql, useMutation } from "@apollo/client";
 import LoadingSpinner from "./uiComponents/LoadingSpinner";
-import ErrorMessage from "./uiComponents/ErrorMessage";
+import { toast } from "react-toastify";
 
 const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
   const CREATE_MESSAGE = gql`
@@ -44,9 +44,14 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
     }
   };
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error.message || "Unknown Error");
+    }
+  }, [error]);
+
   return (
     <>
-      {error && <ErrorMessage content={error.message} />}
       <section
         ref={ref}
         className="bg-purple-50 w-full min-h-screen  flex flex-col items-center justify-center "

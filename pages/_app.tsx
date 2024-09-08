@@ -8,6 +8,8 @@ import { ApolloProvider } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 config.autoAddCss = false;
 
@@ -34,6 +36,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <ApolloProvider client={client}>
         <Component {...pageProps} />
       </ApolloProvider>
+      <ToastContainer />
       <Analytics />
     </>
   );

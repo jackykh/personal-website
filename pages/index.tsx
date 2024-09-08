@@ -191,7 +191,6 @@ export default function Home() {
 
   return (
     <>
-      <div id="portal"></div>
       <main className="w-full scroll-container">
         <Navigation
           fixed={isLargeScreen}

@@ -17,6 +17,7 @@ import Editor from "@/Components/uiComponents/Editor";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
+import { toast } from "react-toastify";
 
 interface postProps {
   id: string;
@@ -86,32 +87,32 @@ const Post = (props: postProps) => {
       }
     }
   `;
-  const [reloadComments, { loading: reloading }] = useLazyQuery(
-    RELOAD_COMMENTS,
-    {
+  const [reloadComments, { loading: reloading, error: loadCommentsError }] =
+    useLazyQuery(RELOAD_COMMENTS, {
       variables: {
         id: props.id,
         pageSize: commentsLoadPerClick * pageOfComments,
         page: 1,
       },
-    }
-  );
+    });
 
   const reloadCommentsHandler = useCallback(async () => {
     const result = await reloadComments();
     const reloadedCommentsData = result.data as reloadedCommentsData;
-    const reloadedComments = reloadedCommentsData.comments.data.map(
-      (comment) => {
-        return {
-          content: comment.attributes.content,
-          date: comment.attributes.createdAt,
-        };
-      }
-    );
-    const totalCommentsNumber =
-      reloadedCommentsData.comments.meta.pagination.total;
-    setTotalComments(totalCommentsNumber);
-    setComments(reloadedComments);
+    if (reloadedCommentsData) {
+      const reloadedComments = reloadedCommentsData.comments.data.map(
+        (comment) => {
+          return {
+            content: comment.attributes.content,
+            date: comment.attributes.createdAt,
+          };
+        }
+      );
+      const totalCommentsNumber =
+        reloadedCommentsData.comments.meta.pagination.total;
+      setTotalComments(totalCommentsNumber);
+      setComments(reloadedComments);
+    }
   }, [reloadComments]);
 
   useEffect(() => {
@@ -142,7 +143,8 @@ const Post = (props: postProps) => {
     };
   }
 
-  const [createComments, { loading: creating }] = useMutation(CREATE_COMMENT);
+  const [createComments, { loading: creating, error: createCommentError }] =
+    useMutation(CREATE_COMMENT);
 
   const createCommentHandler = async () => {
     if (newComment.trim().length === 0) return;
@@ -217,6 +219,16 @@ const Post = (props: postProps) => {
         Click Here to load more.
       </button>
     ) : null;
+
+  useEffect(() => {
+    if (createCommentError || loadCommentsError) {
+      const errorMessage =
+        loadCommentsError?.message ||
+        createCommentError?.message ||
+        "Unknown Error";
+      toast.error(errorMessage);
+    }
+  }, [createCommentError, loadCommentsError]);
 
   return (
     <>
