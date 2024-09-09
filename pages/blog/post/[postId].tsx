@@ -36,7 +36,7 @@ interface postProps {
   isPageValid: boolean;
 }
 
-const commentsLoadPerClick = 3;
+const commentsLoadPerClick = 5;
 
 const Post = (props: postProps) => {
   const [comments, setComments] = useState<
@@ -119,7 +119,7 @@ const Post = (props: postProps) => {
     if (props.isPageValid) {
       reloadCommentsHandler();
     }
-  }, [reloadCommentsHandler]);
+  }, [reloadCommentsHandler, props.isPageValid]);
 
   const CREATE_COMMENT = gql`
     mutation createComment($postId: ID!, $content: String!) {
