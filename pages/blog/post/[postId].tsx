@@ -417,6 +417,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const postData = data as PostData;
   const id = postData.post.data?.id || "";
+
+  if (!id) {
+    return {
+      redirect: {
+        destination: "/blog/404",
+        permanent: false,
+        // statusCode: 404,
+      },
+    };
+  }
+
   const comments = postData.comments || [];
   const { title, content, createdAt, categories } = postData.post.data
     ?.attributes || {
