@@ -128,6 +128,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     day: "numeric",
   };
 
+  if (paginationData.getPostsData.data.length === 0) {
+    return {
+      redirect: {
+        destination: "/blog/page/1",
+        permanent: false,
+        // statusCode: 301
+      },
+    };
+  }
+
   return {
     props: {
       totalPage: +paginationData.getTotalPages.meta.pagination.pageCount || 1,
