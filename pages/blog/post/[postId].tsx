@@ -116,7 +116,9 @@ const Post = (props: postProps) => {
   }, [reloadComments]);
 
   useEffect(() => {
-    reloadCommentsHandler();
+    if (props.isPageValid) {
+      reloadCommentsHandler();
+    }
   }, [reloadCommentsHandler]);
 
   const CREATE_COMMENT = gql`
