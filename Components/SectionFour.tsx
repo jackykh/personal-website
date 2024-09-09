@@ -38,7 +38,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
       }
       await createMessage({ variables: { name, email, message } });
       formRef.current!.reset();
-      alert("Sent Sucessfully!");
+      toast.success("Sent Sucessfully!")
     } catch (error) {
       console.log(error);
     }
