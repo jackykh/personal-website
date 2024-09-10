@@ -15,7 +15,7 @@ const notFoundPage = () => {
           <div className="flex [&>*]:mr-4 border-b border-black py-2 text-base font-light"></div>
           <div className="py-4 mb-12">
             <h1 className="text-3xl font-semibold mb-4">Post Not found</h1>
-            <p>This post doesn&apos;t existed or has been removed.</p>
+            <p>This post doesn&apos;t exist or has been removed.</p>
           </div>
         </div>
       </main>
