@@ -18,15 +18,16 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import { toast } from "react-toastify";
+import isNumber from "@/utils/isNumber";
 
 interface postProps {
-  id: string;
+  id: number;
   date: string;
   title: string;
   content: string;
   tags: Array<{
     name: string;
-    id: string;
+    id: number;
   }>;
   initialComments: Array<{
     content: string;
@@ -375,14 +376,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   interface PostData {
     post: {
       data?: {
-        id: string;
+        id: number;
         attributes: {
           title: string;
           content: string;
           createdAt: string;
           categories: {
             data: Array<{
-              id: string;
+              id: number;
               attributes: {
                 name: string;
               };
@@ -406,6 +407,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
+  const paramsPostId = params?.postId as string;
+
+  const redirect404Object = {
+    redirect: {
+      destination: "/blog/404",
+      permanent: false,
+      // statusCode: 404,
+    },
+  };
+
+  if (!isNumber(paramsPostId)) {
+    return redirect404Object
+  }
+
   const { data } = await client.query({
     query: POST,
     variables: {
@@ -419,13 +434,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = postData.post.data?.id || "";
 
   if (!id) {
-    return {
-      redirect: {
-        destination: "/blog/404",
-        permanent: false,
-        // statusCode: 404,
-      },
-    };
+    return redirect404Object;
   }
 
   const comments = postData.comments || [];
