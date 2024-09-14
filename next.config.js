@@ -17,6 +17,14 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/resume",
+        destination: "https://cdn.jackycheung.dev",
+      }
+    ];
+  },
 };
 
 module.exports = nextConfig;
