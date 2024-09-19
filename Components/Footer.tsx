@@ -46,6 +46,15 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
                 My Resume
               </Link>
             </li>
+            <li>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://stats.uptimerobot.com/4FrqWUJRxs"
+              >
+                Status Page
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="p-8 flex">

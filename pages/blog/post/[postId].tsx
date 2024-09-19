@@ -1,4 +1,3 @@
-import { useState, ChangeEventHandler, useEffect, useCallback } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Footer from "@/Components/Footer";
 import ReactMarkdown from "react-markdown";
@@ -7,18 +6,14 @@ import rehypeRaw from "rehype-raw";
 import "github-markdown-css/github-markdown-light.css";
 import classes from "@/styles/Post.module.css";
 import Link from "next/link";
-import { gql, useLazyQuery, useMutation } from "@apollo/client";
+import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import Navigation from "@/Components/uiComponents/Navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import LoadingSpinner from "@/Components/uiComponents/LoadingSpinner";
-import Editor from "@/Components/uiComponents/Editor";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
-import { toast } from "react-toastify";
 import isNumber from "@/utils/isNumber";
+import Giscus from "@giscus/react";
 
 interface postProps {
   id: number;
@@ -29,210 +24,9 @@ interface postProps {
     name: string;
     id: number;
   }>;
-  initialComments: Array<{
-    content: string;
-    date: string;
-  }>;
-  totalComments: number;
-  isPageValid: boolean;
 }
 
-const commentsLoadPerClick = 5;
-
 const Post = (props: postProps) => {
-  const [comments, setComments] = useState<
-    Array<{
-      content: string;
-      date: string;
-    }>
-  >(props.initialComments);
-  const [pageOfComments, setPageOfComments] = useState(1);
-  const [showEditor, setShowEditor] = useState(false);
-  const [newComment, setNewComment] = useState("");
-  const [totalComments, setTotalComments] = useState(props.totalComments);
-
-  interface reloadedCommentsData {
-    comments: {
-      meta: {
-        pagination: {
-          total: number;
-        };
-      };
-      data: Array<{
-        attributes: {
-          content: string;
-          createdAt: string;
-        };
-      }>;
-    };
-  }
-
-  const RELOAD_COMMENTS = gql`
-    query GetComments($id: ID!, $page: Int!, $pageSize: Int!) {
-      comments(
-        filters: { post: { id: { eq: $id } } }
-        pagination: { pageSize: $pageSize, page: $page }
-        sort: "createdAt:desc"
-      ) {
-        meta {
-          pagination {
-            total
-          }
-        }
-        data {
-          attributes {
-            content
-            createdAt
-          }
-        }
-      }
-    }
-  `;
-  const [reloadComments, { loading: reloading, error: loadCommentsError }] =
-    useLazyQuery(RELOAD_COMMENTS, {
-      variables: {
-        id: props.id,
-        pageSize: commentsLoadPerClick * pageOfComments,
-        page: 1,
-      },
-    });
-
-  const reloadCommentsHandler = useCallback(async () => {
-    const result = await reloadComments();
-    const reloadedCommentsData = result.data as reloadedCommentsData;
-    if (reloadedCommentsData) {
-      const reloadedComments = reloadedCommentsData.comments.data.map(
-        (comment) => {
-          return {
-            content: comment.attributes.content,
-            date: comment.attributes.createdAt,
-          };
-        }
-      );
-      const totalCommentsNumber =
-        reloadedCommentsData.comments.meta.pagination.total;
-      setTotalComments(totalCommentsNumber);
-      setComments(reloadedComments);
-    }
-  }, [reloadComments]);
-
-  useEffect(() => {
-    if (props.isPageValid) {
-      reloadCommentsHandler();
-    }
-  }, [reloadCommentsHandler, props.isPageValid]);
-
-  const CREATE_COMMENT = gql`
-    mutation createComment($postId: ID!, $content: String!) {
-      createComment(data: { post: $postId, content: $content }) {
-        data {
-          attributes {
-            content
-            createdAt
-          }
-        }
-      }
-    }
-  `;
-
-  interface createCommentsResponse {
-    createComment: {
-      data: {
-        attributes: {
-          content: string;
-          createdAt: string;
-        };
-      };
-    };
-  }
-
-  const [createComments, { loading: creating, error: createCommentError }] =
-    useMutation(CREATE_COMMENT);
-
-  const createCommentHandler = async () => {
-    if (newComment.trim().length === 0) return;
-
-    const result = await createComments({
-      variables: {
-        postId: props.id,
-        content: newComment,
-      },
-    });
-    const loadedComments = (result.data as createCommentsResponse).createComment
-      .data.attributes;
-    setComments((prevState) => [
-      { content: loadedComments.content, date: loadedComments.createdAt },
-      ...prevState,
-    ]);
-    setTotalComments((prevState) => prevState + 1);
-    setNewComment("");
-  };
-
-  const editorOnChangeHandler: ChangeEventHandler<HTMLTextAreaElement> = (
-    event
-  ) => {
-    setNewComment(event.target.value);
-  };
-
-  const commentBox = props.isPageValid && (
-    <div className="border w-full text-sm">
-      <div className="py-2 px-6 border-b text-xl bg-slate-200 flex justify-between items-center">
-        <h3>Comments ({totalComments})</h3>
-        <button
-          className="py-2 px-3 hover:bg-slate-400 rounded"
-          onClick={() => setShowEditor((prevState) => !prevState)}
-        >
-          <FontAwesomeIcon icon={faPenToSquare} />
-        </button>
-      </div>
-      {showEditor && (
-        <Editor
-          onChange={editorOnChangeHandler}
-          onSubmit={createCommentHandler}
-          value={newComment}
-        />
-      )}
-      {creating && (
-        <div className="p-4 h-[5rem] border-b flex justify-center">
-          <LoadingSpinner />
-        </div>
-      )}
-      {comments.length > 0 ? (
-        comments.map((comment, index) => (
-          <div key={index} className="p-4 min-h-[5rem] border-b">
-            <span>{comment.content}</span>
-          </div>
-        ))
-      ) : (
-        <div className="h-[5rem] p-6">
-          <span className="text-lg">No comments</span>
-        </div>
-      )}
-    </div>
-  );
-  const button =
-    comments.length < totalComments && !reloading ? (
-      <button
-        className="btn max-w-[15rem] text-base mt-4"
-        onClick={() => {
-          reloadCommentsHandler();
-          setPageOfComments((prevState) => prevState + 1);
-        }}
-      >
-        Click Here to load more.
-      </button>
-    ) : null;
-
-  useEffect(() => {
-    if (createCommentError || loadCommentsError) {
-      const errorMessage =
-        loadCommentsError?.message ||
-        createCommentError?.message ||
-        "Unknown Error";
-      toast.error(errorMessage);
-    }
-  }, [createCommentError, loadCommentsError]);
-
   return (
     <>
       <Head>
@@ -292,11 +86,20 @@ const Post = (props: postProps) => {
               {props.content}
             </ReactMarkdown>
           </div>
-          <div className="flex flex-col items-center">
-            {commentBox}
-            {button}
-            {reloading && <LoadingSpinner className="mt-4" />}
-          </div>
+          <Giscus
+            id="comments"
+            repo="jackykh/blog-comments"
+            repoId="R_kgDOM0EbrQ"
+            category="Announcements"
+            categoryId="DIC_kwDOM0Ebrc4CinA8"
+            mapping="title"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme="light"
+            lang="en"
+            loading="lazy"
+          />
         </div>
       </main>
       <Footer />
@@ -334,7 +137,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const POST = gql`
-    query GetPosts($id: ID!, $page: Int!, $pageSize: Int!) {
+    query GetPosts($id: ID!) {
       post(id: $id) {
         data {
           id: id
@@ -350,23 +153,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
                 }
               }
             }
-          }
-        }
-      }
-      comments(
-        filters: { post: { id: { eq: $id } } }
-        pagination: { pageSize: $pageSize, page: $page }
-        sort: "createdAt:desc"
-      ) {
-        meta {
-          pagination {
-            total
-          }
-        }
-        data {
-          attributes {
-            content
-            createdAt
           }
         }
       }
@@ -392,19 +178,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         };
       };
     };
-    comments: {
-      meta: {
-        pagination: {
-          total: number;
-        };
-      };
-      data: Array<{
-        attributes: {
-          content: string;
-          createdAt: string;
-        };
-      }>;
-    };
   }
 
   const paramsPostId = params?.postId as string;
@@ -418,15 +191,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   if (!isNumber(paramsPostId)) {
-    return redirect404Object
+    return redirect404Object;
   }
 
   const { data } = await client.query({
     query: POST,
     variables: {
       id: params?.postId,
-      pageSize: commentsLoadPerClick,
-      page: 1,
     },
   });
 
@@ -437,7 +208,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return redirect404Object;
   }
 
-  const comments = postData.comments || [];
   const { title, content, createdAt, categories } = postData.post.data
     ?.attributes || {
     title: "Post Not found",
@@ -460,14 +230,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       tags: categories.data.map((category) => {
         return { name: category.attributes.name, id: category.id };
       }),
-      initialComments: comments.data.map((comment) => {
-        return {
-          content: comment.attributes.content,
-          date: comment.attributes.createdAt,
-        };
-      }),
-      totalComments: comments.meta.pagination.total,
-      isPageValid: !!postData.post.data,
     },
     revalidate: 60,
   };
