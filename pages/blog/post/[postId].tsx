@@ -13,6 +13,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import isNumber from "@/utils/isNumber";
+import Giscus from "@giscus/react";
 
 interface postProps {
   id: number;
@@ -85,7 +86,21 @@ const Post = (props: postProps) => {
               {props.content}
             </ReactMarkdown>
           </div>
-          <div className="giscus"></div>
+          <Giscus
+            id="comments"
+            repo="jackykh/blog-comments"
+            repoId="R_kgDOM0EbrQ"
+            category="Announcements"
+            categoryId="DIC_kwDOM0Ebrc4CinA8"
+            mapping="title"
+            term="Welcome to My Blog!"
+            reactionsEnabled="1"
+            emitMetadata="0"
+            inputPosition="top"
+            theme="light"
+            lang="en"
+            loading="lazy"
+          />
         </div>
       </main>
       <Footer />
