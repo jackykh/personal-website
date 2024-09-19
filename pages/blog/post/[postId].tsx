@@ -93,7 +93,6 @@ const Post = (props: postProps) => {
             category="Announcements"
             categoryId="DIC_kwDOM0Ebrc4CinA8"
             mapping="title"
-            term="Welcome to My Blog!"
             reactionsEnabled="1"
             emitMetadata="0"
             inputPosition="top"
