@@ -61,7 +61,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
             </li>
           </ul>
         </div>
-        <div className="p-8 flex">
+        <div className="p-8 flex flex-wrap">
           <div className="[&>*]:mr-8 flex flex-wrap">
             <span>© Jacky Cheung 2024</span>
           </div>
