@@ -1,6 +1,10 @@
 import { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faGithub,
+  faTelegram,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
 interface FooterProps {
@@ -60,7 +64,6 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
         <div className="p-8 flex">
           <div className="[&>*]:mr-8 flex flex-wrap">
             <span>© Jacky Cheung 2024</span>
-            <span>Made With TailwindCSS</span>
           </div>
           <div className="[&>*]:mr-8">
             <Link
@@ -69,6 +72,20 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               href="https://github.com/jackykh"
             >
               <FontAwesomeIcon icon={faGithub} />
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://t.me/az614538"
+            >
+              <FontAwesomeIcon icon={faTelegram} />
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.instagram.com/jacky_cheunq"
+            >
+              <FontAwesomeIcon icon={faInstagram} />
             </Link>
           </div>
         </div>

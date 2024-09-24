@@ -3,7 +3,6 @@ import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
 import Head from "next/head";
-import isNumber from "@/utils/isNumber";
 
 interface listProps {
   categoryName: string;
@@ -167,7 +166,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 
-  if (![currentPage, categoryId].every((str) => isNumber(str))) {
+  // If the number-converted value of Dynamic Path are 0, NaN or "",
+  // Redirect to 404 page.
+  if (!categoryId || !currentPage) {
     return redirect404Object;
   }
 
