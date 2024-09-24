@@ -1,8 +1,13 @@
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Custom500() {
   return (
     <>
+      <Head>
+        <title>500 Internal Server Error</title>
+        <meta name="description" content={"500 Internal Server Error"} />
+      </Head>
       <section className="bg-gray-900 h-screen">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-sm text-center">

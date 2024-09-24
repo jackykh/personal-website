@@ -1,9 +1,14 @@
+import Head from "next/head";
 import Link from "next/link";
 import Footer from "@/Components/Footer";
 
 export default function Custom404() {
   return (
     <>
+      <Head>
+        <title>404 Not Found</title>
+        <meta name="description" content={"404 Not Found"} />
+      </Head>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-base font-semibold text-purple-900">404</p>
