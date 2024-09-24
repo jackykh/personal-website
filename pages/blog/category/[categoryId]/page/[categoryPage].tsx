@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
 import Head from "next/head";
+import isNumber from "@/utils/isNumber";
 
 interface listProps {
   categoryName: string;
@@ -155,16 +156,35 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
+  const currentPage = params?.categoryPage && +params.categoryPage;
+  const categoryId = params?.categoryId && +params.categoryId;
+
+  const redirect404Object = {
+    redirect: {
+      destination: "/404",
+      permanent: false,
+      // statusCode: 404,
+    },
+  };
+
+  if (![currentPage, categoryId].every((str) => isNumber(str))) {
+    return redirect404Object;
+  }
+
   const { data } = await client.query({
     query: POSTS,
     variables: {
-      page: (params?.categoryPage && +params.categoryPage) || 1,
+      page: currentPage,
       pageSize: postsPerPage,
-      categoryId: (params?.categoryId && +params.categoryId) || 1,
+      categoryId,
     },
   });
 
   const paginationData = data as paginationData;
+
+  if (!data.getCategoryData.data) {
+    return redirect404Object;
+  }
 
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -178,7 +198,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       categoryId: paginationData.getCategoryData.data.id,
       totalPage:
         +paginationData.getCategoryTotalPages.meta.pagination.pageCount,
-      currentPage: (params?.categoryPage && +params.categoryPage) || 1,
+      currentPage: currentPage,
       postPreviewData:
         paginationData.getCategoryData.data.attributes.posts.data.map(
           (post) => {
