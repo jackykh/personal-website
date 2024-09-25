@@ -197,12 +197,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await client.query({
     query: POST,
     variables: {
-      id: params?.postId,
+      id: paramsPostId,
     },
   });
 
   const postData = data as PostData;
-  const id = postData.post.data?.id || "";
+  const id = postData.post.data?.id;
 
   if (!id) {
     return redirect404Object;
