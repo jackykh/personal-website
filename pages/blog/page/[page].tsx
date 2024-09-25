@@ -112,10 +112,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
+  const currentPage = params?.page && +params.page;
+
+  const redirectFirstPageObject = {
+    redirect: {
+      destination: "/blog/page/1",
+      permanent: false,
+      // statusCode: 301
+    },
+  };
+
+  if (!currentPage) {
+    return redirectFirstPageObject;
+  }
+
   const { data } = await client.query({
     query: POSTS,
     variables: {
-      page: (params?.page && +params.page) || 1,
+      page: currentPage,
       pageSize: postsPerPage,
     },
   });
@@ -129,13 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   if (paginationData.getPostsData.data.length === 0) {
-    return {
-      redirect: {
-        destination: "/blog/page/1",
-        permanent: false,
-        // statusCode: 301
-      },
-    };
+    return redirectFirstPageObject
   }
 
   return {
