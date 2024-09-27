@@ -92,7 +92,7 @@ const Post = (props: postProps) => {
             repoId="R_kgDOM0EbrQ"
             category="Announcements"
             categoryId="DIC_kwDOM0Ebrc4CinA8"
-            mapping="title"
+            mapping="pathname"
             reactionsEnabled="1"
             emitMetadata="0"
             inputPosition="top"
