@@ -158,18 +158,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const currentPage = params?.categoryPage && +params.categoryPage;
   const categoryId = params?.categoryId && +params.categoryId;
 
-  const redirect404Object = {
-    redirect: {
-      destination: "/404",
-      permanent: false,
-      // statusCode: 404,
-    },
-  };
-
   // If the number-converted value of Dynamic Path are 0, NaN or "",
-  // Redirect to 404 page.
+  // return 404 not found.
   if (!categoryId || !currentPage) {
-    return redirect404Object;
+    return {
+      notFound: true,
+    };
   }
 
   const { data } = await client.query({
@@ -184,7 +178,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const paginationData = data as paginationData;
 
   if (!data.getCategoryData.data) {
-    return redirect404Object;
+    return {
+      notFound: true,
+    };
   }
 
   const options: Intl.DateTimeFormatOptions = {
