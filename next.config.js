@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: "/resume",
-        destination: "https://resume.jackycheung.dev",
+        destination: "https://resume-page-dhd.pages.dev",
       }
     ];
   },

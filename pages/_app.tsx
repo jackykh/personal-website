@@ -2,7 +2,6 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Analytics } from "@vercel/analytics/react";
 import Head from "next/head";
 import { ApolloProvider } from "@apollo/client";
 import client from "@/lib/apollo-client";
@@ -37,7 +36,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <Component {...pageProps} />
       </ApolloProvider>
       <ToastContainer />
-      <Analytics />
     </>
   );
 }
