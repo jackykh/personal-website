@@ -67,7 +67,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
           ref={formRef}
         >
           <div className="flex flex-col sm:flex-row">
-            <div className="form_group">
+            <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
               <input
                 type="text"
                 className="input rounded"
@@ -79,7 +79,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
                 name
               </label>
             </div>
-            <div className="form_group">
+            <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
               <input
                 type="email"
                 className="input rounded"
@@ -92,7 +92,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
               </label>
             </div>
           </div>
-          <div className="form_group">
+          <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
             <label htmlFor="email" className="text-base p-2">
               Message
             </label>
