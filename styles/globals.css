@@ -56,3 +56,11 @@ a {
 .form_group {
   @apply w-full flex-1 mb-3 sm:mr-4 sm:last:mr-0 flex flex-col;
 }
+
+#nprogress .bar {
+  @apply !bg-purple-900;
+}
+
+#nprogress .peg {
+  @apply !bg-purple-900;
+}

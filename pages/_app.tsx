@@ -9,12 +9,28 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 config.autoAddCss = false;
 
 export default function App({ Component, pageProps, router }: AppProps) {
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
   const isHomepage = router.pathname === "/";
+
+  useEffect(() => {
+    NProgress.configure({ showSpinner: false });
+    router.events.on("routeChangeStart", () => {
+      NProgress.start();
+    });
+    router.events.on("routeChangeComplete", () => {
+      NProgress.done();
+    });
+    router.events.on("routeChangeError", () => {
+      NProgress.done();
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     document.body.className =
