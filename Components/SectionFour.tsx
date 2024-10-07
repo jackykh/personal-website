@@ -38,7 +38,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
       }
       await createMessage({ variables: { name, email, message } });
       formRef.current!.reset();
-      toast.success("Sent Sucessfully!")
+      toast.success("Sent Sucessfully!");
     } catch (error) {
       console.log(error);
     }
@@ -54,9 +54,9 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
     <>
       <section
         ref={ref}
-        className="bg-purple-50 w-full min-h-screen  flex flex-col items-center justify-center "
+        className="bg-purple-50 w-full min-h-screen flex flex-col items-center justify-center "
       >
-        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24">
+        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center my-24">
           <h1 className="text-4xl font-bold mb-4">Send me a message!</h1>
           <p className="text-xl">Want to say hello? Go ahead.</p>
         </div>
@@ -106,14 +106,14 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
             />
           </div>
           {!creating && (
-            <div className="w-full text-center mt-6">
+            <div className="w-full text-center mt-6 mb-12">
               <button type="submit" className="btn ">
                 Submit
               </button>
             </div>
           )}
           {creating && (
-            <div className="w-full flex justify-center">
+            <div className="w-full flex justify-center my-6">
               <LoadingSpinner />
             </div>
           )}
