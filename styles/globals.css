@@ -62,5 +62,5 @@ a {
 }
 
 #nprogress .peg {
-  @apply !bg-purple-900;
+  box-shadow: 0 0 10px #581c87, 0 0 5px #581c87 !important;
 }
