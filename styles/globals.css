@@ -58,7 +58,7 @@ a {
 }
 
 #nprogress .bar {
-  @apply !bg-purple-900;
+  @apply !bg-purple-900 !h-[0.2rem];
 }
 
 #nprogress .peg {
