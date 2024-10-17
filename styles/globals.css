@@ -11,15 +11,28 @@ body {
   @apply text-sm sm:text-sm  md:text-base lg:text-lg;
 }
 
-.scrollbar-hide {
+.scrollbar-hide,
+.scrollbar-disable {
   -ms-overflow-style: none;
   touch-action: none;
   scrollbar-width: none;
   overflow: hidden;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
+.scrollbar-hide::-webkit-scrollbar,
+.scrollbar-disable::-webkit-scrollbar {
   display: none;
+}
+
+.scrollbar-enable {
+  -ms-overflow-style: auto;
+  touch-action: auto;
+  scrollbar-width: auto;
+  overflow: auto;
+}
+
+.scrollbar-enable::-webkit-scrollbar {
+  display: auto;
 }
 
 /* Fix: Elements disappear when virtual scroll happening */

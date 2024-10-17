@@ -1,11 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 const ImageBox: React.FC<{
   img: string;
   caption: string;
-  link: string;
+  btnOnClick: () => void;
 }> = (props) => {
   const item = {
     hidden: { opacity: 0 },
@@ -31,14 +30,9 @@ const ImageBox: React.FC<{
       />
       <div className="text-white text-center translate-y-[20rem] font-bold group-hover:translate-y-[5rem] transition-all">
         <figcaption className="mb-5 text-lg ">{props.caption}</figcaption>
-        <Link
-          href={props.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn text-base"
-        >
-          Visit Website
-        </Link>
+        <button className="btn text-base" onClick={props.btnOnClick}>
+          See Details
+        </button>
       </div>
     </motion.div>
   );
