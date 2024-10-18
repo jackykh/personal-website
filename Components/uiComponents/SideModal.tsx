@@ -30,9 +30,10 @@ const SideModal: React.FC<{
         {props.isShown && (
           <div
             className="w-full h-full fixed top-0 z-[100] text-[16px] leading-[24px]"
-            onTouchStart={stopTouchPropagation.bind(null)}
-            onTouchMove={stopTouchPropagation.bind(null)}
-            onTouchEnd={stopTouchPropagation.bind(null)}
+            onWheel={(e) => e.stopPropagation()}
+            onTouchStart={stopTouchPropagation}
+            onTouchMove={stopTouchPropagation}
+            onTouchEnd={stopTouchPropagation}
           >
             <motion.div
               className="overlay w-full h-full bg-black bg-opacity-80 absolute"
