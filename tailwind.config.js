@@ -14,6 +14,7 @@ module.exports = {
       },
       screens: {
         print: { raw: "print" },
+        'xs': "475px"
       },
     },
   },

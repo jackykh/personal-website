@@ -33,8 +33,11 @@ export default function App({ Component, pageProps, router }: AppProps) {
   }, []);
 
   useEffect(() => {
-    document.body.className =
-      isHomepage && isLargeScreen ? "scrollbar-hide" : "";
+    if (isHomepage && isLargeScreen) {
+      document.body.classList.add("scrollbar-hide");
+    } else {
+      document.body.classList.remove("scrollbar-hide");
+    }
   }, [isLargeScreen, isHomepage]);
 
   return (
