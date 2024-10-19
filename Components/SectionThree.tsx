@@ -47,7 +47,7 @@ const personalWebsiteDetails: projectDetailsType = {
   img: "/mywebsite.png",
   website: "https://jackycheung.dev/",
   github: "https://github.com/jackykh/personal-website",
-  techs: ["Next.js", "Strapi", "GraphQL"],
+  techs: ["Next.js", "Framer Motion", "Strapi", "GraphQL"],
 };
 
 const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
