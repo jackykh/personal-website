@@ -49,7 +49,7 @@ const SideModal: React.FC<{
               exit={{ right: -544 }}
             >
               <div className="flex justify-between items-center border-b border-b-[#eaeaea] pb-[13px]">
-                <button className="translate-y-[2px]">
+                <button className="pt-[2px]">
                   <FontAwesomeIcon
                     icon={faArrowAltCircleLeft}
                     onClick={closeModal}

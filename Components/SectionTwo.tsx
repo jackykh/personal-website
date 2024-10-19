@@ -30,9 +30,9 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
             <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
               <li>TypeScript React</li>
               <li>React Hooks</li>
-              <li>React Router</li>
-              <li>Redux Toolkit</li>
+              <li>Framer Motion</li>
               <li>Next.js</li>
+              <li>Vite</li>
             </ul>
           </div>
           <div className={classes.skill_card_item_middle}>
@@ -43,7 +43,7 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
 
             <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
               <li>Express.js</li>
-              <li>Mongoose</li>
+              <li>MongoDB</li>
               <li>GraphQL</li>
               <li>REST APIs</li>
             </ul>
