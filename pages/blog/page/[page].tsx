@@ -25,7 +25,7 @@ const indexList = (props: indexListProps) => {
       </Head>
       <PostList
         link="/blog/page/"
-        listTitle="My Blog"
+        listTitle="Jacky's Blog"
         totalPage={props.totalPage}
         currentPage={props.currentPage}
         postPreviewData={props.postPreviewData}
@@ -143,7 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
   if (paginationData.getPostsData.data.length === 0) {
-    return redirectFirstPageObject
+    return redirectFirstPageObject;
   }
 
   return {
