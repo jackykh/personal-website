@@ -1,6 +1,7 @@
 import classes from "@/styles/SectionOne.module.css";
 import Image from "next/image";
 import { forwardRef } from "react";
+import memoji from "@/public/memoji_Icon.png";
 
 const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
   return (
@@ -32,13 +33,7 @@ const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
       </div>
       <div className="sm:w-[30%]">
         <div className="sm:ml-[-25%] w-[15rem] h-[15rem] bg-purple-100 rounded-full overflow-hidden ">
-          <Image
-            className=" w-full"
-            src="/memoji_Icon.png"
-            alt="Icon"
-            width={420}
-            height={420}
-          />
+          <Image className="w-full" src={memoji} alt="Icon" />
         </div>
       </div>
     </section>

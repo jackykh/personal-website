@@ -1,14 +1,14 @@
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 
 interface projectDetailsType {
   name: string;
   desc: string;
   about: string[];
-  img: string;
+  img: StaticImageData;
   techs: string[];
   website: string;
   github: string;
@@ -22,13 +22,12 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
         <h3 className="mb-[8px] font-bold text-[20px]">{name}</h3>
         <p>{desc}</p>
       </div>
-      <div className="w-full h-[180px] xs:h-[230px] overflow-hidden rounded">
+      <div className="w-full h-[180px] xs:h-[236px] overflow-hidden rounded">
         <Image
           src={img}
           alt="project preview"
           className="object-cover object-center"
-          width={544}
-          height={230}
+          placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89R8AAtkB6zy+wn8AAAAASUVORK5CYII="
         />
       </div>
       <div>

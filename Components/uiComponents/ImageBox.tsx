@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
 
 const ImageBox: React.FC<{
-  img: string;
+  img: StaticImageData;
   caption: string;
   btnOnClick: () => void;
 }> = (props) => {
@@ -25,8 +25,7 @@ const ImageBox: React.FC<{
         src={props.img}
         alt="image"
         className="w-full h-full group-hover:blur-sm group-hover:brightness-50 transition-all object-cover object-center absolute"
-        width={512}
-        height={512}
+        placeholder="blur"
       />
       <div className="text-white text-center translate-y-[20rem] font-bold group-hover:translate-y-[5rem] transition-all">
         <figcaption className="mb-5 text-lg ">{props.caption}</figcaption>
