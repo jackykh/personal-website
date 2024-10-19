@@ -7,6 +7,11 @@ import Link from "next/link";
 import ProjectDetailsEl, {
   projectDetailsType,
 } from "./uiComponents/ProjectDetailsEl";
+import bookstoreGif from "@/public/bookstore.gif";
+import milkTeaStoreGif from "@/public/milktea.gif";
+import myWebsiteImage from "@/public/mywebsite.png";
+import milkTeaStoreImage from "@/public/milktea_store.png";
+import bookstoreImage from "@/public/bookstore.png";
 
 const bookstoreDetails: projectDetailsType = {
   name: "A Reponsive Bookstore Website DEMO",
@@ -15,7 +20,7 @@ const bookstoreDetails: projectDetailsType = {
     "Responsive Design: Ensuring a seamless browsing experience across all devices, from desktops to mobile phones using modern CSS practices.",
     "Custom Styling with SCSS: Leveraging SCSS for styling provided an enhanced level of control over the design, allowing for dynamic variables and mixins that simplify complex styles.",
   ],
-  img: "/bookstore.gif",
+  img: bookstoreGif,
   website: "https://bookstore-demo.pages.dev",
   github: "https://github.com/jackykh/bookstore-demo",
   techs: ["React", "SCSS", "Firebase Realtime Database"],
@@ -30,7 +35,7 @@ const milkTeaStoretoreDetails: projectDetailsType = {
     "E-commerce Functionality: Product purchase, shopping cart management, order tracking, and product/image uploads with previews.",
     "Order Management: User-friendly order history review.",
   ],
-  img: "/milktea.gif",
+  img: milkTeaStoreGif,
   website: "https://milk-tea-8ddb5.web.app/home",
   github: "https://github.com/jackykh/Milk-Tea-Store",
   techs: ["MongoDB", "Express.js", "React", "Node.js", "JWT"],
@@ -44,7 +49,7 @@ const personalWebsiteDetails: projectDetailsType = {
     "Blog Section: User-friendly blogging platform with SSG and ISR for fast page generation and real-time updates.",
     "Content Management: Admin panel for managing blog posts, pages, and media using Strapi.",
   ],
-  img: "/mywebsite.png",
+  img: myWebsiteImage,
   website: "https://jackycheung.dev/",
   github: "https://github.com/jackykh/personal-website",
   techs: ["Next.js", "Strapi", "GraphQL"],
@@ -86,7 +91,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
           animate={isInView ? "visible" : "hidden"}
         >
           <ImageBox
-            img="/bookstore.png"
+            img={bookstoreImage}
             caption="A responsive Book Store website DEMO"
             btnOnClick={setSideModalContent.bind(
               null,
@@ -94,7 +99,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
             )}
           />
           <ImageBox
-            img="/milktea_store.png"
+            img={milkTeaStoreImage}
             caption="A full stack e-commerce Website Project"
             btnOnClick={setSideModalContent.bind(
               null,
@@ -102,7 +107,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
             )}
           />
           <ImageBox
-            img="/personalwebsite.png"
+            img={myWebsiteImage}
             caption="A Portfolio Website (this website)"
             btnOnClick={setSideModalContent.bind(
               null,
