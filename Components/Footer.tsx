@@ -51,6 +51,11 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               </Link>
             </li>
             <li>
+              <Link href="/blog/page/1">
+                My Blog
+              </Link>
+            </li>
+            <li>
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
