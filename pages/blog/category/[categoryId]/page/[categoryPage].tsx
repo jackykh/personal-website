@@ -2,6 +2,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
 import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
+import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 
 interface listProps {
@@ -203,7 +204,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             return {
               id: post.id,
               title,
-              content: content.match(/^[^\n]+/)?.[0] || title,
+              content: getPreview(content) || title,
               date: new Date(createdAt).toLocaleDateString("en-us", options),
             };
           }

@@ -13,6 +13,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import Head from "next/head";
 import isNumber from "@/utils/isNumber";
+import getPreview from "@/utils/getPreview";
 import Giscus from "@giscus/react";
 
 interface postProps {
@@ -33,10 +34,7 @@ const Post = (props: postProps) => {
         <title>{`${props.title} - Jacky's Blog`}</title>
         <meta
           name="description"
-          content={
-            props.content.match(/^[^\n]+/)?.[0] ||
-            `${props.title} - Jacky's Blog`
-          }
+          content={getPreview(props.content) || `${props.title} - Jacky's Blog`}
         />
       </Head>
       <Navigation />
