@@ -5,6 +5,11 @@ const client = new ApolloClient({
     uri: STRAPI_URI,
   }),
   cache: new InMemoryCache(),
+  defaultOptions: {
+    query: {
+      fetchPolicy: "no-cache",
+    },
+  },
 });
 
 export default client;
