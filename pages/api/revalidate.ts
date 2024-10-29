@@ -13,7 +13,7 @@ export default async function handler(
   const postEventChangePage = [
     "entry.delete",
     "entry.publish",
-    "entry.unpulish",
+    "entry.unpublish",
   ];
 
   try {
@@ -23,7 +23,6 @@ export default async function handler(
         return res.json({ revalidated: true, type: "post" });
       } else if (postEventChangePage.includes(req.body.event)) {
         const postsPerPage = 5;
-        const itemsRevalidated: Array<string> = [];
 
         const pagesCountQuery = gql`
           query getPageCount($pageSize: Int!) {
@@ -67,24 +66,26 @@ export default async function handler(
           }
         `;
 
-        req.body.entry.categories.forEach(async (category: { id: string }) => {
-          const { data: catPageData } = await client.query({
-            query: catPageCountQuery,
-            variables: {
-              pageSize: postsPerPage,
-              categoryId: category.id,
-            },
-          });
-          const catPagesCount =
-            +catPageData.getCategoryTotalPages.meta.pagination.pageCount;
-          if (catPagesCount) {
-            for (let page = 1; page <= catPagesCount; page++) {
-              await res.revalidate(
-                `/blog/category/${category.id}/page/${page}`
-              );
+        await Promise.all(
+          req.body.entry.categories.map(async (category: { id: string }) => {
+            const { data: catPageData } = await client.query({
+              query: catPageCountQuery,
+              variables: {
+                pageSize: postsPerPage,
+                categoryId: category.id,
+              },
+            });
+            const catPagesCount =
+              +catPageData.getCategoryTotalPages.meta.pagination.pageCount;
+            if (catPagesCount) {
+              for (let page = 1; page <= catPagesCount; page++) {
+                await res.revalidate(
+                  `/blog/category/${category.id}/page/${page}`
+                );
+              }
             }
-          }
-        });
+          })
+        );
 
         return res.json({
           revalidated: true,
