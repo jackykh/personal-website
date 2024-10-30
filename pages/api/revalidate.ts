@@ -2,6 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import client from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 
+// This function can run for a maximum of 60 seconds
+export const config = {
+  maxDuration: 60,
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
