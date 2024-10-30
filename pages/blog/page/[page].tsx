@@ -161,7 +161,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         };
       }),
     },
-    revalidate: 60,
+    revalidate: 43200,
+    // 12小時的revalidate，因為通過 Webhook 手動控制
   };
 };
 
