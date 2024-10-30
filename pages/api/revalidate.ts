@@ -98,6 +98,6 @@ export default async function handler(
     // to show the last successfully generated page
     return res
       .status(500)
-      .json({ message: "Error revalidating", id: req.query.postid });
+      .json({ message: "Error revalidating", id: req.body.entry.id });
   }
 }
