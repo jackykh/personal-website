@@ -25,7 +25,7 @@ const nextConfig = {
       },
       {
         source: "/sitemap.xml",
-        destination: "https://blog-cms.fly.dev/api/sitemap/index.xml",
+        destination: "https://api.jackycheung.dev/api/sitemap/index.xml",
       }
     ];
   },
