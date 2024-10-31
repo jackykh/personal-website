@@ -22,6 +22,10 @@ const nextConfig = {
       {
         source: "/resume",
         destination: "https://resume-page-dhd.pages.dev",
+      },
+      {
+        source: "/sitemap.xml",
+        destination: "https://blog-cms.fly.dev/api/sitemap/index.xml",
       }
     ];
   },
