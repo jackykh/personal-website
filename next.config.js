@@ -22,6 +22,10 @@ const nextConfig = {
       {
         source: "/resume",
         destination: "https://resume-page-dhd.pages.dev",
+      },
+      {
+        source: "/sitemap.xml",
+        destination: "https://api.jackycheung.dev/api/sitemap/index.xml",
       }
     ];
   },
