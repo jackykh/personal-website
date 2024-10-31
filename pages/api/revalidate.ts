@@ -2,6 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import client from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 
+// This function can run for a maximum of 60 seconds
+export const config = {
+  maxDuration: 60,
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -98,6 +103,6 @@ export default async function handler(
     // to show the last successfully generated page
     return res
       .status(500)
-      .json({ message: "Error revalidating", id: req.query.postid });
+      .json({ message: "Error revalidating", id: req.body.entry.id });
   }
 }
