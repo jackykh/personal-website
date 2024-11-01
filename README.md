@@ -73,7 +73,7 @@ The `revalidate.ts` API listens for specific events from Strapi (e.g., entry upd
 ### Prerequisites
 
 - **Node.js** and **npm** installed
-- A **Strapi CMS** backend with a connected GraphQL plugin
+- A **Strapi CMS** backend with a connected GraphQL plugin.
 
 ### Installation
 
@@ -95,7 +95,7 @@ The `revalidate.ts` API listens for specific events from Strapi (e.g., entry upd
    - Create a `.env.local` file in the root directory.
    - Define your Strapi URL and secret token:
      ```plaintext
-     NEXT_PUBLIC_API_URL=https://your-strapi-instance.com
+     NEXT_PUBLIC_STRAPI_URL=https://your-strapi-instance.com/graphql
      MY_SECRET_TOKEN=your-secret-token
      ```
 

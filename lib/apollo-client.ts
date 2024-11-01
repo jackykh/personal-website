@@ -1,5 +1,5 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
-const STRAPI_URI = process.env.NEXT_PUBLIC_STRAPI_URI;
+const STRAPI_URI = process.env.NEXT_PUBLIC_STRAPI_URL;
 const client = new ApolloClient({
   link: createHttpLink({
     uri: STRAPI_URI,
