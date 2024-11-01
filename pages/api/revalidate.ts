@@ -97,6 +97,11 @@ export default async function handler(
           type: "page",
         });
       }
+    } else {
+      return res.json({
+        revalidated: false,
+        type: req.body.model || "Unknown",
+      });
     }
   } catch (err) {
     // If there was an error, Next.js will continue
