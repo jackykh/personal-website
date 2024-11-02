@@ -15,18 +15,24 @@ export default async function handler(
   if (req.query.secret !== process.env.MY_SECRET_TOKEN) {
     return res.status(401).json({ message: "Invalid token" });
   }
-  const postEventChangePage = [
+  const eventChangeEntryNumber = [
     "entry.delete",
     "entry.publish",
     "entry.unpublish",
   ];
 
   try {
+    if (req.body.model === "category") {
+      if (eventChangeEntryNumber.includes(req.body.event)) {
+        await res.revalidate(`/blog/categories`);
+        return res.json({ revalidated: true, type: "category" });
+      }
+    }
     if (req.body.model === "post") {
       if (req.body.event === "entry.update") {
         await res.revalidate(`/blog/post/${req.body.entry.id}`);
         return res.json({ revalidated: true, type: "post" });
-      } else if (postEventChangePage.includes(req.body.event)) {
+      } else if (eventChangeEntryNumber.includes(req.body.event)) {
         const postsPerPage = 5;
 
         const pagesCountQuery = gql`
@@ -97,12 +103,12 @@ export default async function handler(
           type: "page",
         });
       }
-    } else {
-      return res.json({
-        revalidated: false,
-        type: req.body.model || "Unknown",
-      });
     }
+
+    return res.json({
+      revalidated: false,
+      type: req.body.model || "Unknown",
+    });
   } catch (err) {
     // If there was an error, Next.js will continue
     // to show the last successfully generated page

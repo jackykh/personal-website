@@ -10,6 +10,8 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
   const navRef = useRef(null);
   const pathname = usePathname();
   const isHomepage = pathname === "/";
+  const isBlog =
+    pathname.startsWith("/blog") && pathname !== "/blog/categories";
 
   const closeNav = () => setShowNav(false);
   const toggleNav: MouseEventHandler = (e) => {
@@ -56,6 +58,11 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
               <li>
                 <Link href="/blog/page/1">My Blog</Link>
               </li>
+              {isBlog && (
+                <li>
+                  <Link href="/blog/categories">Categories</Link>
+                </li>
+              )}
               <li>
                 <Link target="_blank" rel="noopener noreferrer" href="/resume">
                   My Resume
