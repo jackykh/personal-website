@@ -49,7 +49,6 @@ const categoriesList = (props: {
               inputPosition="top"
               theme="light"
               lang="en"
-              loading="lazy"
             />
           </div>
         </div>
