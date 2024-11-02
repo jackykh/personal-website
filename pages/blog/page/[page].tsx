@@ -4,6 +4,7 @@ import client from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
+import Navigation from "@/Components/uiComponents/Navigation";
 
 interface indexListProps {
   totalPage: number;
@@ -24,6 +25,7 @@ const indexList = (props: indexListProps) => {
         <title>Home Page - Jacky&apos;s Blog</title>
         <meta name="description" content="Welcome to My Blog" />
       </Head>
+      <Navigation />
       <PostList
         link="/blog/page/"
         listTitle="Jacky's Blog"

@@ -1,5 +1,4 @@
 import PostPreview from "./uiComponents/PostPreview";
-import Navigation from "./uiComponents/Navigation";
 import Pagination from "./uiComponents/Pagination";
 import Footer from "./Footer";
 
@@ -29,7 +28,6 @@ const PostList = (props: postListProps) => {
 
   return (
     <>
-      <Navigation />
       <main className="py-24  px-8 flex flex-col items-center">
         <h1 className="text-4xl mb-4">{props.listTitle}</h1>
         <div className="mb-12 w-full flex flex-col items-center">
