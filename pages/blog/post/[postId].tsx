@@ -41,7 +41,7 @@ const Post = (props: postProps) => {
       <main className="py-28 px-12 flex justify-center">
         <div className="flex flex-col w-[60rem] max-w-full">
           <div className="flex flex-wrap gap-x-4 gap-y-1 border-b border-black py-2 text-base font-light">
-            <span className="text-gray-600">{props.date}</span>
+            <span>{props.date}</span>
             <span>
               {props.tags.map((tag) => (
                 <Link
