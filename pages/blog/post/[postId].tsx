@@ -229,8 +229,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         return { name: category.attributes.name, id: category.id };
       }),
     },
-    revalidate: 43200,
-    // 12小時的revalidate，因為通過 Webhook 手動控制
+    revalidate: 86400,
+    // 24小時的revalidate，因為通過 Webhook 手動控制
   };
 };
 
