@@ -13,8 +13,7 @@ module.exports = {
         "autofit-20": "repeat(auto-fit, minmax(20rem, 1fr))",
       },
       screens: {
-        print: { raw: "print" },
-        'xs': "475px"
+        print: { raw: "print" }
       },
     },
   },

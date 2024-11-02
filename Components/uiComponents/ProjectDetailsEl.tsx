@@ -22,11 +22,11 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
         <h3 className="mb-[8px] font-bold text-[20px]">{name}</h3>
         <p>{desc}</p>
       </div>
-      <div className="w-full h-[180px] xs:h-[236px] overflow-hidden rounded">
+      <div>
         <Image
           src={img}
           alt="project preview"
-          className="object-cover object-center"
+          className="rounded overflow-hidden"
           placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89R8AAtkB6zy+wn8AAAAASUVORK5CYII="
         />
       </div>

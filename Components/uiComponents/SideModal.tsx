@@ -43,7 +43,7 @@ const SideModal: React.FC<{
               onClick={closeModal}
             ></motion.div>
             <motion.div
-              className="w-[544px] max-w-full h-full p-[32px] z-[120] absolute bg-white right-0 overflow-y-scroll"
+              className="w-full sm:w-[544px] h-full p-[32px] z-[120] absolute bg-white right-0 overflow-y-scroll"
               initial={{ right: -544 }}
               animate={{ right: 0 }}
               exit={{ right: -544 }}
