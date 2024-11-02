@@ -43,7 +43,7 @@ const Post = (props: postProps) => {
           <div className="flex [&>*]:mr-4 border-b border-black py-2 text-base font-light">
             <span>{props.date}</span>
             <span>
-              tag:{" "}
+              {props.tags.length > 1 ? "Categories: " : "Category: "}
               {props.tags.map((tag) => (
                 <Link
                   key={tag.id}
