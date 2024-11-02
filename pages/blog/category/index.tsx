@@ -6,6 +6,7 @@ import Link from "next/link";
 import client from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import Giscus from "@giscus/react";
+import BlinkText from "@/Components/uiComponents/BlinkText";
 
 const categoriesList = (props: {
   categories: Array<{
@@ -30,9 +31,10 @@ const categoriesList = (props: {
                 href={`/blog/category/${category.id}/page/1`}
                 key={category.name}
               >
-                <span className="border-b border-solid border-b-black text-xl">
-                  {category.name}
-                </span>
+                <BlinkText
+                  text={category.name}
+                  extraClassName="text-xl border-b border-b-black"
+                />
               </Link>
             ))}
           </div>

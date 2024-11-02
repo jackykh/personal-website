@@ -1,0 +1,30 @@
+.blinkText {
+  position: relative;
+  display: flex;
+  span {
+    position: relative;
+    overflow: hidden;
+    transition: 0.6s;
+  }
+  .out {
+    display: inline-flex;
+  }
+
+  .in {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  &:hover {
+    .out {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+
+    .in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
