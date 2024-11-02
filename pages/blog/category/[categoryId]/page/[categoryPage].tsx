@@ -26,7 +26,10 @@ const PostListOfCategory = (props: listProps) => {
     <>
       <Head>
         <title>{`${props.categoryName} - Jacky's Blog`}</title>
-        <meta name="description" content="Welcome to My Blog" />
+        <meta
+          name="description"
+          content={`Jacky's blog sharing experiences on ${props.categoryName}`}
+        />
       </Head>
       <Navigation />
       <PostList
