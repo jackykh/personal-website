@@ -7,6 +7,7 @@ import client from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import Giscus from "@giscus/react";
 import BlinkText from "@/Components/uiComponents/BlinkText";
+import classes from "@/styles/Category.module.css";
 
 const categoriesList = (props: {
   categories: Array<{
@@ -22,7 +23,9 @@ const categoriesList = (props: {
         <meta name="description" content="Categories - Jacky's Blog" />
       </Head>
       <Navigation />
-      <main className="py-24 px-8 flex flex-col items-center">
+      <main
+        className={`py-24 px-8 flex flex-col items-center ${classes.bgGrid}`}
+      >
         <h1 className="text-4xl pb-4">Categories</h1>
         <div className="flex flex-col w-[60rem] max-w-full items-center">
           <div className="pt-8 pb-32 max-w-[40rem] flex gap-y-2 gap-x-4 flex-wrap">
@@ -49,7 +52,7 @@ const categoriesList = (props: {
               reactionsEnabled="1"
               emitMetadata="0"
               inputPosition="top"
-              theme="light"
+              theme="light_high_contrast"
               lang="en"
             />
           </div>
