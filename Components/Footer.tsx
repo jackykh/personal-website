@@ -16,8 +16,8 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
     <footer
       ref={ref}
       className={`w-full ${
-        props.fullScreen && "lg:min-h-screen"
-      }  py-[8rem] bg-purple-900 flex justify-center items-center`}
+        props.fullScreen ? "lg:min-h-screen" : ""
+      } py-[8rem] bg-purple-900 flex justify-center items-center`}
     >
       <div className="h-full w-[90%] md:w-[80%] flex flex-col items-center text-[#F9F9C5] font-light text-xl leading-10 tracking-wider">
         <div className="flex flex-col md:flex-row w-full justify-around p-8 border-b border-solid border-[#F9F9C5]">
@@ -51,9 +51,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               </Link>
             </li>
             <li>
-              <Link href="/blog/page/1">
-                My Blog
-              </Link>
+              <Link href="/blog/page/1">My Blog</Link>
             </li>
             <li>
               <Link
