@@ -24,7 +24,7 @@ export default async function handler(
   try {
     if (req.body.model === "category") {
       if (eventChangeEntryNumber.includes(req.body.event)) {
-        await res.revalidate(`/blog/categories`);
+        await res.revalidate(`/blog/category`);
         return res.json({ revalidated: true, type: "category" });
       }
     }
