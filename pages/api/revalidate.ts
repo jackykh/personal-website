@@ -42,7 +42,7 @@ export default async function handler(
       }
     `;
 
-    return await Promise.all(
+    return Promise.all(
       categories.map(async (category: { id: string }) => {
         const { data: catPageData } = await client.query({
           query: catPageCountQuery,
