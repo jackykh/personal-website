@@ -21,20 +21,61 @@ export default async function handler(
     "entry.unpublish",
   ];
 
+  const postsPerPage = 5;
+
+  const updateCatPages = async (
+    categories: Array<{ id: string }>,
+    postsPerPage: number
+  ) => {
+    const catPageCountQuery = gql`
+      query getPageCount($pageSize: Int!, $categoryId: ID!) {
+        getCategoryTotalPages: posts(
+          filters: { categories: { id: { eq: $categoryId } } }
+          pagination: { pageSize: $pageSize }
+        ) {
+          meta {
+            pagination {
+              pageCount
+            }
+          }
+        }
+      }
+    `;
+
+    return await Promise.all(
+      categories.map(async (category: { id: string }) => {
+        const { data: catPageData } = await client.query({
+          query: catPageCountQuery,
+          variables: {
+            pageSize: postsPerPage,
+            categoryId: category.id,
+          },
+        });
+        const catPagesCount =
+          +catPageData.getCategoryTotalPages.meta.pagination.pageCount;
+        if (catPagesCount) {
+          for (let page = 1; page <= catPagesCount; page++) {
+            await res.revalidate(`/blog/category/${category.id}/page/${page}`);
+          }
+        }
+      })
+    );
+  };
+
   try {
     if (req.body.model === "category") {
       if (eventChangeEntryNumber.includes(req.body.event)) {
         await res.revalidate(`/blog/category`);
-        return res.json({ revalidated: true, type: "category" });
+      } else if (req.body.event === "entry.update") {
+        await updateCatPages([{ id: req.body.entry.id }], postsPerPage);
       }
+      return res.json({ revalidated: true, type: "category" });
     }
     if (req.body.model === "post") {
       if (req.body.event === "entry.update") {
         await res.revalidate(`/blog/post/${req.body.entry.id}`);
         return res.json({ revalidated: true, type: "post" });
       } else if (eventChangeEntryNumber.includes(req.body.event)) {
-        const postsPerPage = 5;
-
         const pagesCountQuery = gql`
           query getPageCount($pageSize: Int!) {
             getTotalPages: posts(pagination: { pageSize: $pageSize }) {
@@ -62,41 +103,7 @@ export default async function handler(
           }
         }
 
-        const catPageCountQuery = gql`
-          query getPageCount($pageSize: Int!, $categoryId: ID!) {
-            getCategoryTotalPages: posts(
-              filters: { categories: { id: { eq: $categoryId } } }
-              pagination: { pageSize: $pageSize }
-            ) {
-              meta {
-                pagination {
-                  pageCount
-                }
-              }
-            }
-          }
-        `;
-
-        await Promise.all(
-          req.body.entry.categories.map(async (category: { id: string }) => {
-            const { data: catPageData } = await client.query({
-              query: catPageCountQuery,
-              variables: {
-                pageSize: postsPerPage,
-                categoryId: category.id,
-              },
-            });
-            const catPagesCount =
-              +catPageData.getCategoryTotalPages.meta.pagination.pageCount;
-            if (catPagesCount) {
-              for (let page = 1; page <= catPagesCount; page++) {
-                await res.revalidate(
-                  `/blog/category/${category.id}/page/${page}`
-                );
-              }
-            }
-          })
-        );
+        await updateCatPages(req.body.entry.categories, postsPerPage);
 
         return res.json({
           revalidated: true,
