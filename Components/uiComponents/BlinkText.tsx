@@ -3,7 +3,7 @@ import classes from "@/styles/BlinkText.module.css";
 const BlinkText = (props: { text: string; className?: string }) => {
   const className = props.className
     ? classes.blinkText + " " + props.className
-    : "";
+    : classes.blinkText;
   const letters = props.text.split("");
   const blinkLetters = letters.map((t, i) => {
     i += 1;
