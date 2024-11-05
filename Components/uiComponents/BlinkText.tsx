@@ -1,8 +1,8 @@
 import classes from "@/styles/BlinkText.module.css";
 
-const BlinkText = (props: { text: string; extraClassName?: string }) => {
-  const className = props.extraClassName
-    ? classes.blinkText + " " + props.extraClassName
+const BlinkText = (props: { text: string; className?: string }) => {
+  const className = props.className
+    ? classes.blinkText + " " + props.className
     : "";
   const letters = props.text.split("");
   const blinkLetters = letters.map((t, i) => {
