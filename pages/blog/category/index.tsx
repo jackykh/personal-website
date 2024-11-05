@@ -36,7 +36,7 @@ const categoriesList = (props: {
               >
                 <BlinkText
                   text={category.name}
-                  extraClassName="text-xl rounded px-2 py-1 bg-[#1A1E23] text-white"
+                  className="text-xl rounded px-2 py-1 bg-[#1A1E23] text-white"
                 />
               </Link>
             ))}
