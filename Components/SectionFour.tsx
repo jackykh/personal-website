@@ -34,7 +34,9 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
         email.trim().length === 0 ||
         message.trim().length === 0
       ) {
-        return alert("Please enter all field.");
+        return toast.error("Please fill up all fields.", {
+          position: "top-center",
+        });
       }
       await createMessage({ variables: { name, email, message } });
       formRef.current!.reset();
