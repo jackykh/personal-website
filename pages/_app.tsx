@@ -48,7 +48,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
           name="description"
           content="I am Jacky Cheung, A self-taught Frontend Web Developer. "
         />
-        <link rel="icon" href="/memoji_Icon.png" />
+        <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <ApolloProvider client={client}>
