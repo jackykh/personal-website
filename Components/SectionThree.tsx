@@ -69,6 +69,16 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
     },
   };
 
+  const imageBoxOnClickHandler = (projectDetails: projectDetailsType) => {
+    return () => {
+      const { name } = projectDetails;
+      setSideModalContent(<ProjectDetailsEl detail={projectDetails} />);
+      if (umami) {
+        umami.track("Check My Project", { projectName: name });
+      }
+    };
+  };
+
   return (
     <>
       <SideModal
@@ -93,26 +103,17 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
           <ImageBox
             img={bookstoreImage}
             caption="A responsive Book Store website DEMO"
-            btnOnClick={setSideModalContent.bind(
-              null,
-              <ProjectDetailsEl detail={bookstoreDetails} />
-            )}
+            btnOnClick={imageBoxOnClickHandler(bookstoreDetails)}
           />
           <ImageBox
             img={milkTeaStoreImage}
             caption="A full stack e-commerce Website Project"
-            btnOnClick={setSideModalContent.bind(
-              null,
-              <ProjectDetailsEl detail={milkTeaStoretoreDetails} />
-            )}
+            btnOnClick={imageBoxOnClickHandler(milkTeaStoretoreDetails)}
           />
           <ImageBox
             img={myWebsiteImage}
             caption="A Portfolio Website (this website)"
-            btnOnClick={setSideModalContent.bind(
-              null,
-              <ProjectDetailsEl detail={personalWebsiteDetails} />
-            )}
+            btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
           />
         </motion.div>
 
