@@ -19,7 +19,7 @@ const PostPreview = (props: PostPreviewProps) => {
       <div className="flex justify-between">
         <span className="text-base font-light">{props.date}</span>
         {props.isPinned && (
-          <span className="text-gray-400">
+          <span className="text-gray-400 text-base font-light">
             PINNED&nbsp;&nbsp;
             <FontAwesomeIcon
               icon={faThumbtack}
