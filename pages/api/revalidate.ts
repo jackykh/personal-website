@@ -97,12 +97,11 @@ export default async function handler(
       return res.json({ revalidated: true, type: "category" });
     }
     if (req.body.model === "post") {
-      // if sticky > 0 or sticky !== null, stickyValue return true, otherwise return false
-      const isPinnedPost = !!+req.body.entry.sticky;
+      const hasStickyUpdate = req.body.entry?.hasStickyUpdate;
 
       if (req.body.event === "entry.update") {
         await res.revalidate(`/blog/post/${req.body.entry.id}`);
-        if (!isPinnedPost) {
+        if (!hasStickyUpdate) {
           return res.json({ revalidated: true, type: "post" });
         }
       }
@@ -115,7 +114,7 @@ export default async function handler(
           revalidated: true,
           type: "page",
         });
-      } else if (isPinnedPost) {
+      } else if (hasStickyUpdate) {
         // Pinning post is only available on Main Page.
         await updateMainPages();
         return res.json({

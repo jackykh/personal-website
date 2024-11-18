@@ -5,6 +5,7 @@ import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 import Navigation from "@/Components/uiComponents/Navigation";
+import isNumber from "@/utils/isNumber";
 
 interface indexListProps {
   totalPage: number;
@@ -108,7 +109,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           title: string;
           content: string;
           createdAt: string;
-          sticky: number | null;
+          sticky: string;
         };
       }>;
     };
@@ -167,8 +168,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           title,
           content: getPreview(content) || title,
           date: new Date(createdAt).toLocaleDateString("en-us", options),
-          // Not Pinned if sticky value is 0 or null
-          isPinned: sticky ? true : false,
+          // Not Pinned if sticky value is not Number
+          isPinned: isNumber(sticky),
         };
       }),
     },
