@@ -5,18 +5,14 @@ import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 import Navigation from "@/Components/uiComponents/Navigation";
+import { PostPreviewProps } from "@/Components/uiComponents/PostPreview";
 
 interface listProps {
   categoryName: string;
   categoryId: string;
   totalPage: number;
   currentPage: number;
-  postPreviewData: Array<{
-    id: string;
-    date: string;
-    title: string;
-    content: string;
-  }>;
+  postPreviewData: Array<PostPreviewProps>;
 }
 
 const postsPerPage = 5;
@@ -211,6 +207,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
               title,
               content: getPreview(content) || title,
               date: new Date(createdAt).toLocaleDateString("en-us", options),
+              isPinned: false,
             };
           }
         ),
