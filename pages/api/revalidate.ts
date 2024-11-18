@@ -23,10 +23,35 @@ export default async function handler(
 
   const postsPerPage = 5;
 
-  const updateCatPages = async (
-    categories: Array<{ id: string }>,
-    postsPerPage: number
-  ) => {
+  const updateMainPages = async () => {
+    const pagesCountQuery = gql`
+      query getPageCount($pageSize: Int!) {
+        getTotalPages: posts(pagination: { pageSize: $pageSize }) {
+          meta {
+            pagination {
+              pageCount
+            }
+          }
+        }
+      }
+    `;
+
+    const { data: mainCatPageData } = await client.query({
+      query: pagesCountQuery,
+      variables: {
+        pageSize: postsPerPage,
+      },
+    });
+    const pagesCount = +mainCatPageData.getTotalPages.meta.pagination.pageCount;
+
+    if (pagesCount) {
+      for (let page = 1; page <= pagesCount; page++) {
+        await res.revalidate(`/blog/page/${page}`);
+      }
+    }
+  };
+
+  const updateCatPages = async (categories: Array<{ id: string }>) => {
     const catPageCountQuery = gql`
       query getPageCount($pageSize: Int!, $categoryId: ID!) {
         getCategoryTotalPages: posts(
@@ -67,47 +92,35 @@ export default async function handler(
       if (eventChangeEntryNumber.includes(req.body.event)) {
         await res.revalidate(`/blog/category`);
       } else if (req.body.event === "entry.update") {
-        await updateCatPages([{ id: req.body.entry.id }], postsPerPage);
+        await updateCatPages([{ id: req.body.entry.id }]);
       }
       return res.json({ revalidated: true, type: "category" });
     }
     if (req.body.model === "post") {
+      // if sticky > 0 or sticky !== null, stickyValue return true, otherwise return false
+      const isPinnedPost = !!+req.body.entry.sticky;
+
       if (req.body.event === "entry.update") {
         await res.revalidate(`/blog/post/${req.body.entry.id}`);
-        return res.json({ revalidated: true, type: "post" });
-      } else if (eventChangeEntryNumber.includes(req.body.event)) {
-        const pagesCountQuery = gql`
-          query getPageCount($pageSize: Int!) {
-            getTotalPages: posts(pagination: { pageSize: $pageSize }) {
-              meta {
-                pagination {
-                  pageCount
-                }
-              }
-            }
-          }
-        `;
-
-        const { data: mainCatPageData } = await client.query({
-          query: pagesCountQuery,
-          variables: {
-            pageSize: postsPerPage,
-          },
-        });
-        const pagesCount =
-          +mainCatPageData.getTotalPages.meta.pagination.pageCount;
-
-        if (pagesCount) {
-          for (let page = 1; page <= pagesCount; page++) {
-            await res.revalidate(`/blog/page/${page}`);
-          }
+        if (!isPinnedPost) {
+          return res.json({ revalidated: true, type: "post" });
         }
+      }
 
-        await updateCatPages(req.body.entry.categories, postsPerPage);
+      if (eventChangeEntryNumber.includes(req.body.event)) {
+        await updateMainPages();
+        await updateCatPages(req.body.entry.categories);
 
         return res.json({
           revalidated: true,
           type: "page",
+        });
+      } else if (isPinnedPost) {
+        // Pinning post is only available on Main Page.
+        await updateMainPages();
+        return res.json({
+          revalidated: true,
+          type: ["post", "page"],
         });
       }
     }
