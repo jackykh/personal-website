@@ -5,6 +5,7 @@ import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 import Navigation from "@/Components/uiComponents/Navigation";
+import isNumber from "@/utils/isNumber";
 
 interface indexListProps {
   totalPage: number;
@@ -14,6 +15,7 @@ interface indexListProps {
     date: string;
     title: string;
     content: string;
+    isPinned: boolean;
   }>;
 }
 const postsPerPage = 5;
@@ -78,7 +80,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     query GetPosts($page: Int!, $pageSize: Int!) {
       getPostsData: posts(
         pagination: { page: $page, pageSize: $pageSize }
-        sort: "createdAt:desc"
+        sort: ["sticky:asc", "createdAt:desc"]
       ) {
         data {
           id: id
@@ -86,6 +88,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             title
             content
             createdAt
+            sticky
           }
         }
       }
@@ -106,6 +109,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
           title: string;
           content: string;
           createdAt: string;
+          sticky: string;
         };
       }>;
     };
@@ -157,12 +161,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       totalPage: +paginationData.getTotalPages.meta.pagination.pageCount || 1,
       currentPage: (params?.page && +params.page) || 1,
       postPreviewData: paginationData.getPostsData.data.map((post) => {
-        const { title, content, createdAt } = post.attributes;
+        const { title, content, createdAt, sticky } = post.attributes;
+
         return {
           id: post.id,
           title,
           content: getPreview(content) || title,
           date: new Date(createdAt).toLocaleDateString("en-us", options),
+          // Not Pinned if sticky value is not Number
+          isPinned: isNumber(sticky),
         };
       }),
     },

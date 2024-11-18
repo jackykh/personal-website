@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 
-type PostPreviewProps = {
+export type PostPreviewProps = {
   id: string;
   date: string;
   title: string;
   content: string;
+  isPinned: boolean;
 };
 
 const PostPreview = (props: PostPreviewProps) => {
@@ -13,7 +16,18 @@ const PostPreview = (props: PostPreviewProps) => {
       href={`/blog/post/${props.id}`}
       className="w-full max-w-[50rem] p-4 flex flex-col border-b [&>*]:mb-4 "
     >
-      <span className="text-base font-light">{props.date}</span>
+      <div className="flex justify-between">
+        <span className="text-base font-light">{props.date}</span>
+        {props.isPinned && (
+          <span className="text-gray-400">
+            PINNED&nbsp;&nbsp;
+            <FontAwesomeIcon
+              icon={faThumbtack}
+              className="rotate-45 text-red-600"
+            />
+          </span>
+        )}
+      </div>
       <h1 className="text-3xl font-semibold">{props.title}</h1>
       <p className="text-lg font-light">{props.content}</p>
     </Link>
