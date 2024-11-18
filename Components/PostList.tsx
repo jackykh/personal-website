@@ -1,18 +1,14 @@
 import PostPreview from "./uiComponents/PostPreview";
 import Pagination from "./uiComponents/Pagination";
 import Footer from "./Footer";
+import { PostPreviewProps } from "./uiComponents/PostPreview";
 
 interface postListProps {
   link: string;
   listTitle: string;
   totalPage: number;
   currentPage: number;
-  postPreviewData: Array<{
-    id: string;
-    date: string;
-    title: string;
-    content: string;
-  }>;
+  postPreviewData: Array<PostPreviewProps>;
 }
 
 const PostList = (props: postListProps) => {
@@ -23,6 +19,7 @@ const PostList = (props: postListProps) => {
       date={post.date}
       title={post.title}
       content={post.content}
+      isPinned={post.isPinned}
     />
   ));
 
