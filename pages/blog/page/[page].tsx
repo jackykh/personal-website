@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     query GetPosts($page: Int!, $pageSize: Int!) {
       getPostsData: posts(
         pagination: { page: $page, pageSize: $pageSize }
-        sort: ["sticky:desc", "createdAt:desc"]
+        sort: ["sticky:asc", "createdAt:desc"]
       ) {
         data {
           id: id
