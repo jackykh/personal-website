@@ -28,7 +28,7 @@ const PostPreview = (props: PostPreviewProps) => {
           </span>
         )}
       </div>
-      <h1 className="text-3xl font-semibold">{props.title}</h1>
+      <h2 className="text-3xl font-semibold">{props.title}</h2>
       <p className="text-lg font-light">{props.content}</p>
     </Link>
   );
