@@ -10,9 +10,9 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
       ref={ref}
     >
       <div className={classes.intro}>
-        <h1 className="text-4xl font-bold mb-4">
+        <h2 className="text-4xl font-bold mb-4">
           Hi, I’m Jacky. Nice to meet you.
-        </h1>
+        </h2>
         <p className="text-2xl">
           I am a 2021 graduate with a history degree in Hong Kong. After
           graduation, I find my real passion for frontend deveploment and throw

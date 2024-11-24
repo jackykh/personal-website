@@ -59,7 +59,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
         className="bg-purple-50 w-full min-h-screen flex flex-col items-center justify-center "
       >
         <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center my-24">
-          <h1 className="text-4xl font-bold mb-4">Send me a message!</h1>
+          <h2 className="text-4xl font-bold mb-4">Send me a message!</h2>
           <p className="text-xl">Want to say hello? Go ahead.</p>
         </div>
         <form
@@ -100,8 +100,7 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
             </label>
             <textarea
               className="input rounded"
-              placeholder="Hello, I want to build a website for my products!
-          "
+              placeholder="Hello, I want to build a website for my products!"
               rows={3}
               name="message"
               required
