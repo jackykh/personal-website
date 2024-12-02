@@ -45,15 +45,13 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
       }
       toast.success("Sent Sucessfully!");
     } catch (error) {
-      console.log(error);
+      if (error instanceof Error) {
+        toast.error(error.message || "Unknown Error");
+      } else {
+        console.log(error);
+      }
     }
   };
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error.message || "Unknown Error");
-    }
-  }, [error]);
 
   return (
     <>
