@@ -24,7 +24,7 @@ const indexList = (props: indexListProps) => {
   return (
     <>
       <Head>
-        <title>Home Page - Jacky&apos;s Blog</title>
+        <title>Jacky&apos;s Blog</title>
         <meta
           name="description"
           content="Jacky's blog sharing insights on web development and personal experiences."
