@@ -57,7 +57,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               <Link
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://jackycheung.instatus.com"
+                href="https://stats.uptimerobot.com/4FrqWUJRxs"
                 data-umami-event="Check Website Status"
               >
                 Status Page
