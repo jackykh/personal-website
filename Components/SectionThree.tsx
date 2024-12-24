@@ -96,6 +96,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
         <motion.div
           className="px-6 lg:px-16 md:px-10 w-full grid grid-cols-autofit-20 grid-rows-1 gap-6 "
           initial={false}
+          transition={{ duration: 0.4 }}
           ref={workListRef}
           variants={container}
           animate={isInView ? "visible" : "hidden"}

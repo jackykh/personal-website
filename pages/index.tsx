@@ -8,25 +8,28 @@ import Navigation from "@/Components/uiComponents/Navigation";
 import SectionNav from "@/Components/uiComponents/SectionNav";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useEffectDebugger from "@/hooks/useEffectDebugger";
+import Creativity from "@/Components/Creativity";
 
 export default function Home() {
   const sectionOneRef = useRef(null);
   const sectionTwoRef = useRef(null);
   const sectionThreeRef = useRef(null);
   const sectionFourRef = useRef(null);
+  const creativityRef = useRef(null);
   const footerRef = useRef(null);
 
   const sectionRefList = useMemo(
     () => [
       sectionOneRef,
       sectionTwoRef,
+      creativityRef,
       sectionThreeRef,
       sectionFourRef,
       footerRef,
     ],
     []
   );
-  const sectionBgWithDarkColor = [4];
+  const sectionBgWithDarkColor = [5];
 
   const [currentSection, setCurrentSection] = useState(0);
 
@@ -200,6 +203,7 @@ export default function Home() {
         />
         <SectionOne ref={sectionOneRef} />
         <SectionTwo ref={sectionTwoRef} />
+        <Creativity ref={creativityRef} />
         <SectionThree ref={sectionThreeRef} />
         <SectionFour ref={sectionFourRef} />
         <Footer ref={footerRef} fullScreen={true} />
