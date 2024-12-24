@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SparklesCore } from "@/Components/uiComponents/Sparkles";
 import { AnimatePresence, motion } from "framer-motion";
 import cn from "@/utils/cn";
-import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
 
