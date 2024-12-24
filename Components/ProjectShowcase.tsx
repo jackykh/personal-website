@@ -1,7 +1,7 @@
 import { forwardRef, useRef, useState, ReactNode } from "react";
 import ImageBox from "./uiComponents/ImageBox";
 import { motion, useInView } from "framer-motion";
-import classes from "@/styles/SectionThree.module.css";
+import classes from "@/styles/ProjectShowcase.module.css";
 import SideModal from "./uiComponents/SideModal";
 import Link from "next/link";
 import ProjectDetailsEl, {
@@ -55,7 +55,7 @@ const personalWebsiteDetails: projectDetailsType = {
   techs: ["Next.js", "Framer Motion", "Strapi", "GraphQL"],
 };
 
-const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
+const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
   const workListRef = useRef(null);
   const isInView = useInView(workListRef, { once: true });
   const [sideModalContent, setSideModalContent] = useState<ReactNode>(null);
@@ -86,7 +86,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
         content={sideModalContent}
         setContent={setSideModalContent}
       />
-      <section ref={ref} className={classes.sectionThreeBg}>
+      <section ref={ref} className={classes.ProjectShowcaseBg}>
         <div className="w-[60rem] max-w-full px-10 pt-[2rem] flex flex-col justify-center items-center text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">My Side Project</h2>
           <p className="text-xl">
@@ -96,6 +96,7 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
         <motion.div
           className="px-6 lg:px-16 md:px-10 w-full grid grid-cols-autofit-20 grid-rows-1 gap-6 "
           initial={false}
+          transition={{ duration: 0.4 }}
           ref={workListRef}
           variants={container}
           animate={isInView ? "visible" : "hidden"}
@@ -143,6 +144,6 @@ const SectionThree = forwardRef<HTMLElement>((_props, ref) => {
   );
 });
 
-SectionThree.displayName = "SectionThree";
+ProjectShowcase.displayName = "ProjectShowcase";
 
-export default SectionThree;
+export default ProjectShowcase;

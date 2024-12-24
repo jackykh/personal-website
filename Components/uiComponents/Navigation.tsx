@@ -48,6 +48,7 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
             className="min-w-[20rem] bg-white p-12 pt-20 shadow-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
             exit={{ opacity: 0 }}
           >
             <ul className="[&>*]:mb-6 text-green-800 text-xl ">

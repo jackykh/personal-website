@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact, faNode, faCss3 } from "@fortawesome/free-brands-svg-icons";
-import classes from "@/styles/SectionTwo.module.css";
+import classes from "@/styles/Intro.module.css";
 
-const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
+const Intro = forwardRef<HTMLElement>((_props, ref) => {
   return (
     <section
       className="w-full min-h-screen pt-[7rem] bg-green-100 flex flex-col items-center "
@@ -67,6 +67,6 @@ const SectionTwo = forwardRef<HTMLElement>((_props, ref) => {
   );
 });
 
-SectionTwo.displayName = "SectionTwo";
+Intro.displayName = "Intro";
 
-export default SectionTwo;
+export default Intro;

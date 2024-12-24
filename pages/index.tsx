@@ -1,32 +1,35 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import SectionOne from "@/Components/SectionOne";
-import SectionTwo from "@/Components/SectionTwo";
-import SectionThree from "@/Components/SectionThree";
-import SectionFour from "@/Components/SectionFour";
+import Hero from "@/Components/Hero";
+import Intro from "@/Components/Intro";
+import ProjectShowcase from "@/Components/ProjectShowcase";
+import ContactSection from "@/Components/ContactSection";
 import Footer from "@/Components/Footer";
 import Navigation from "@/Components/uiComponents/Navigation";
 import SectionNav from "@/Components/uiComponents/SectionNav";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useEffectDebugger from "@/hooks/useEffectDebugger";
+import Creativity from "@/Components/Creativity";
 
 export default function Home() {
-  const sectionOneRef = useRef(null);
-  const sectionTwoRef = useRef(null);
-  const sectionThreeRef = useRef(null);
-  const sectionFourRef = useRef(null);
+  const HeroRef = useRef(null);
+  const IntroRef = useRef(null);
+  const ProjectShowcaseRef = useRef(null);
+  const ContactSectionRef = useRef(null);
+  const creativityRef = useRef(null);
   const footerRef = useRef(null);
 
   const sectionRefList = useMemo(
     () => [
-      sectionOneRef,
-      sectionTwoRef,
-      sectionThreeRef,
-      sectionFourRef,
+      HeroRef,
+      IntroRef,
+      creativityRef,
+      ProjectShowcaseRef,
+      ContactSectionRef,
       footerRef,
     ],
     []
   );
-  const sectionBgWithDarkColor = [4];
+  const sectionBgWithDarkColor = [5];
 
   const [currentSection, setCurrentSection] = useState(0);
 
@@ -198,10 +201,11 @@ export default function Home() {
             !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
           }
         />
-        <SectionOne ref={sectionOneRef} />
-        <SectionTwo ref={sectionTwoRef} />
-        <SectionThree ref={sectionThreeRef} />
-        <SectionFour ref={sectionFourRef} />
+        <Hero ref={HeroRef} />
+        <Intro ref={IntroRef} />
+        <Creativity ref={creativityRef} />
+        <ProjectShowcase ref={ProjectShowcaseRef} />
+        <ContactSection ref={ContactSectionRef} />
         <Footer ref={footerRef} fullScreen={true} />
         {showSectionNav && (
           <SectionNav

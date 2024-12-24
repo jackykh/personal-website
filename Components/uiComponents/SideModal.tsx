@@ -39,6 +39,7 @@ const SideModal: React.FC<{
               className="overlay w-full h-full bg-black bg-opacity-80 absolute"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
               exit={{ opacity: 0 }}
               onClick={closeModal}
             ></motion.div>
@@ -46,6 +47,7 @@ const SideModal: React.FC<{
               className="w-full sm:w-[544px] h-full p-[32px] z-[120] absolute bg-white right-0 overflow-y-scroll"
               initial={{ right: -544 }}
               animate={{ right: 0 }}
+              transition={{ duration: 0.3 }}
               exit={{ right: -544 }}
             >
               <div className="flex justify-between items-center border-b border-b-[#eaeaea] pb-[13px]">
