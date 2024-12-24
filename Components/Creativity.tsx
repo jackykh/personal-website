@@ -1,6 +1,5 @@
 import React, { forwardRef } from "react";
 import { Compare } from "@/Components/uiComponents/Compare";
-import classes from "@/styles/SectionTwo.module.css";
 
 export const Creativity = forwardRef<HTMLElement>((_props, ref) => {
   return (
@@ -20,7 +19,7 @@ export const Creativity = forwardRef<HTMLElement>((_props, ref) => {
       <div className="p-4 border rounded-3xl dark:bg-neutral-900 bg-neutral-100  border-neutral-200 dark:border-neutral-800 px-4">
         <Compare
           firstImage="/code.png"
-          secondImage="/sectionOne.png"
+          secondImage="/Hero.png"
           firstImageClassName="object-cover object-left-top"
           secondImageClassname="object-cover object-left-top"
           className="h-[24rem] w-[24rem] md:h-[28rem] md:w-[28rem]"

@@ -1,11 +1,11 @@
-import classes from "@/styles/SectionOne.module.css";
+import classes from "@/styles/Hero.module.css";
 import Image from "next/image";
 import { forwardRef } from "react";
 import memoji from "@/public/memoji_Icon.png";
 
-const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
+const Hero = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <section className={classes.sectionOneBg} ref={ref}>
+    <section className={classes.HeroBg} ref={ref}>
       <div className="w-full sm:w-[70%] flex flex-col p-20 items-center">
         <div className="w-full flex justify-center mb-8">
           <div className="w-[50rem] ">
@@ -40,6 +40,6 @@ const SectionOne = forwardRef<HTMLElement>((_props, ref) => {
   );
 });
 
-SectionOne.displayName = "SectionOne";
+Hero.displayName = "Hero";
 
-export default SectionOne;
+export default Hero;

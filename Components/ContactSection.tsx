@@ -3,7 +3,7 @@ import { gql, useMutation } from "@apollo/client";
 import LoadingSpinner from "./uiComponents/LoadingSpinner";
 import { toast } from "react-toastify";
 
-const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
+const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
   const CREATE_MESSAGE = gql`
     mutation createMessage($name: String!, $email: String!, $message: String!) {
       createMessage(data: { name: $name, email: $email, message: $message }) {
@@ -125,6 +125,6 @@ const SectionFour = forwardRef<HTMLElement>((_props, ref) => {
   );
 });
 
-SectionFour.displayName = "SectionFour";
+ContactSection.displayName = "ContactSection";
 
-export default SectionFour;
+export default ContactSection;
