@@ -14,6 +14,15 @@
     @apply flex flex-col flex-1 items-center py-12 lg:py-12 sm:py-12 px-16 border-solid lg:border-l lg:border-t-0 border-t sm:border-t;
   }
   &_logo {
-    @apply h-16 w-16 rounded-full p-2 bg-purple-300 flex justify-center items-center text-4xl mb-2;
+    @apply h-16 w-16 rounded-full p-2 flex justify-center items-center text-4xl mb-2 border border-solid text-[var(--text-color)] border-[var(--text-color)] hover:bg-[var(--text-color)] hover:text-white transition-[background-color];
+    &_react {
+      --text-color: #0a7ea3;
+    }
+    &_node {
+      --text-color: #519741;
+    }
+    &_css {
+      --text-color: #304cdc;
+    }
   }
 }

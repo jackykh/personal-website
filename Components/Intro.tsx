@@ -22,7 +22,9 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
       <div className="flex-1 w-full bg-[#219f94] flex justify-center pb-[10rem]">
         <div className={classes.skill_card}>
           <div className={classes.skill_card_item_left}>
-            <div className={classes.skill_card_logo}>
+            <div
+              className={`${classes.skill_card_logo} ${classes.skill_card_logo_react}`}
+            >
               <FontAwesomeIcon icon={faReact} />
             </div>
             <h3 className="mb-2 text-xl font-bold">React</h3>
@@ -36,7 +38,9 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
             </ul>
           </div>
           <div className={classes.skill_card_item_middle}>
-            <div className={classes.skill_card_logo}>
+            <div
+              className={`${classes.skill_card_logo} ${classes.skill_card_logo_node}`}
+            >
               <FontAwesomeIcon icon={faNode} />
             </div>
             <h3 className="mb-2 text-xl font-bold">Node.js</h3>
@@ -49,7 +53,9 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
             </ul>
           </div>
           <div className={classes.skill_card_item_right}>
-            <div className={classes.skill_card_logo}>
+            <div
+              className={`${classes.skill_card_logo} ${classes.skill_card_logo_css}`}
+            >
               <FontAwesomeIcon icon={faCss3} />
             </div>
             <h3 className="mb-2 text-xl font-bold text-center">CSS</h3>
