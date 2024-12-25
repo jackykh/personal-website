@@ -9,7 +9,7 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
       className="w-full min-h-screen pt-[7rem] bg-green-100 flex flex-col items-center "
       ref={ref}
     >
-      <div className={classes.intro}>
+      <div className={classes.background}>
         <h2 className="text-4xl font-bold mb-4">
           Hi, I’m Jacky. Nice to meet you.
         </h2>

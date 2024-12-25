@@ -86,7 +86,7 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
         content={sideModalContent}
         setContent={setSideModalContent}
       />
-      <section ref={ref} className={classes.ProjectShowcaseBg}>
+      <section ref={ref} className={classes.background}>
         <div className="w-[60rem] max-w-full px-10 pt-[2rem] flex flex-col justify-center items-center text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">My Side Project</h2>
           <p className="text-xl">

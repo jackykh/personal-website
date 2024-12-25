@@ -1,6 +1,0 @@
-.gridBg {
-  /* @apply bg-green-100; */
-  background-image: linear-gradient(90deg, #eaeaea 1%, rgba(0, 0, 0, 0) 1%),
-    linear-gradient(#eaeaea 1%, rgba(0, 0, 0, 0) 1%);
-  background-size: 6rem 6rem;
-}

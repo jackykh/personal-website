@@ -5,7 +5,7 @@ import memoji from "@/public/memoji_Icon.png";
 
 const Hero = forwardRef<HTMLElement>((_props, ref) => {
   return (
-    <section className={classes.HeroBg} ref={ref}>
+    <section className={classes.background} ref={ref}>
       <div className="w-full sm:w-[70%] flex flex-col p-20 items-center">
         <div className="w-full flex justify-center mb-8">
           <div className="w-[50rem] ">

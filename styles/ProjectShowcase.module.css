@@ -1,4 +1,4 @@
-.ProjectShowcaseBg {
+.background {
   /*** 10rem paddingtop is for making space for navBar **/
   @apply w-full pt-[3rem] pb-[5rem] flex flex-col items-center justify-center min-h-screen relative text-green-900;
   background-image: linear-gradient(
@@ -7,17 +7,3 @@
     rgb(227, 199, 255)
   );
 }
-
-/* .ProjectShowcaseBg::after {
-  background-color: transparent;
-  background-image: linear-gradient(90deg, #eaeaea 1%, rgba(0, 0, 0, 0) 1%),
-    linear-gradient(#eaeaea 1%, rgba(0, 0, 0, 0) 1%);
-  background-size: 6rem 6rem;
-  position: fixed;
-  content: "";
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  transform: translateZ(0px);
-} */

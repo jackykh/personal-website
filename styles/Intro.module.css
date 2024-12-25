@@ -1,4 +1,4 @@
-.intro {
+.background {
   @apply w-[60rem] max-w-full px-10 pb-[16rem] flex flex-col justify-center items-center text-green-900 text-center;
 }
 
