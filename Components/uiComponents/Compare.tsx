@@ -1,14 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { SparklesCore } from "@/Components/uiComponents/Sparkles";
 import { AnimatePresence, motion } from "framer-motion";
 import cn from "@/utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReact } from "@fortawesome/free-brands-svg-icons";
+import Image from "next/image";
+import { StaticImageData } from "next/image";
 
 interface CompareProps {
-  firstImage?: string;
-  secondImage?: string;
+  firstImage: StaticImageData;
+  secondImage: StaticImageData;
   className?: string;
   firstImageClassName?: string;
   secondImageClassname?: string;
@@ -19,8 +20,8 @@ interface CompareProps {
   autoplayDuration?: number;
 }
 export const Compare = ({
-  firstImage = "",
-  secondImage = "",
+  firstImage,
+  secondImage,
   className,
   firstImageClassName,
   secondImageClassname,
@@ -167,7 +168,7 @@ export const Compare = ({
     >
       <AnimatePresence initial={false}>
         <motion.div
-          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-transparent from-[5%] to-[95%] via-indigo-500 to-transparent"
+          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-[5%] via-indigo-500 to-transparent"
           style={{
             left: `${sliderXPercent}%`,
             top: "0",
@@ -207,13 +208,14 @@ export const Compare = ({
               }}
               transition={{ duration: 0 }}
             >
-              <img
+              <Image
                 alt="first image"
                 src={firstImage}
                 className={cn(
                   "absolute inset-0  z-20 rounded-2xl flex-shrink-0 w-full h-full select-none",
                   firstImageClassName
                 )}
+                placeholder="blur"
                 draggable={false}
               />
             </motion.div>
@@ -223,15 +225,23 @@ export const Compare = ({
 
       <AnimatePresence initial={false}>
         {secondImage ? (
-          <motion.img
+          <motion.div
             className={cn(
-              "absolute top-0 left-0 z-[19]  rounded-2xl w-full h-full select-none",
+              "absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none overflow-hidden",
               secondImageClassname
             )}
-            alt="second image"
-            src={secondImage}
-            draggable={false}
-          />
+          >
+            <Image
+              className={cn(
+                "absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none",
+                secondImageClassname
+              )}
+              alt="second image"
+              src={secondImage}
+              placeholder="blur"
+              draggable={false}
+            />
+          </motion.div>
         ) : null}
       </AnimatePresence>
     </div>
