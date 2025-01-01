@@ -14,6 +14,79 @@ export const config = {
   maxDuration: 60,
 };
 
+const getPostData = async (id: string) => {
+  const GET_CONTENT = gql`
+    query GetPostContent($id: ID!) {
+      post(id: $id) {
+        data {
+          attributes {
+            content
+            summary
+          }
+        }
+      }
+    }
+  `;
+
+  interface PostContent {
+    post: {
+      data?: {
+        attributes: {
+          content: string;
+          summary: string;
+        };
+      };
+    };
+  }
+
+  const { data } = await blogUpdatingClient.query({
+    query: GET_CONTENT,
+    variables: {
+      id,
+    },
+  });
+
+  const postData = data as PostContent;
+  const content = postData.post.data?.attributes.content;
+  const summary = postData.post.data?.attributes.summary;
+  return { content, summary };
+};
+
+const updatePostSummary = async (id: string, summary: string) => {
+  const CREATE_SUMMARY = gql`
+    mutation createSummary($id: ID!, $summary: String!) {
+      updatePost(id: $id, data: { summary: $summary }) {
+        data {
+          id
+          attributes {
+            summary
+          }
+        }
+      }
+    }
+  `;
+
+  const { data } = await blogUpdatingClient.mutate({
+    mutation: CREATE_SUMMARY,
+    variables: {
+      id,
+      summary,
+    },
+  });
+  interface PostSummary {
+    updatePost: {
+      data?: {
+        id: string;
+        attributes: {
+          summary: string;
+        };
+      };
+    };
+  }
+  const summaryData = data as PostSummary;
+  return summaryData.updatePost.data?.attributes.summary;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -25,43 +98,6 @@ export default async function handler(
       return res.status(404).json({ message: "Post Not found." });
     }
 
-    const getPostData = async (id: string) => {
-      const GET_CONTENT = gql`
-        query GetPostContent($id: ID!) {
-          post(id: $id) {
-            data {
-              attributes {
-                content
-                summary
-              }
-            }
-          }
-        }
-      `;
-
-      interface PostContent {
-        post: {
-          data?: {
-            attributes: {
-              content: string;
-              summary: string;
-            };
-          };
-        };
-      }
-
-      const { data } = await blogUpdatingClient.query({
-        query: GET_CONTENT,
-        variables: {
-          id,
-        },
-      });
-
-      const postData = data as PostContent;
-      const content = postData.post.data?.attributes.content;
-      const summary = postData.post.data?.attributes.summary;
-      return { content, summary };
-    };
     const postData = await getPostData(postId);
     if (!postData.content) {
       return res.status(404).json({ message: "Post Not found." });
@@ -83,46 +119,16 @@ export default async function handler(
         model: "deepseek-chat",
       });
       const AIsummary = completion.choices[0].message.content;
-      const CREATE_SUMMARY = gql`
-        mutation createSummary($id: ID!, $summary: String!) {
-          updatePost(id: $id, data: { summary: $summary }) {
-            data {
-              id
-              attributes {
-                summary
-              }
-            }
-          }
-        }
-      `;
-
-      const { data } = await blogUpdatingClient.mutate({
-        mutation: CREATE_SUMMARY,
-        variables: {
-          id: postId,
-          summary: AIsummary,
-        },
-      });
-      interface PostSummary {
-        updatePost: {
-          data?: {
-            id: string;
-            attributes: {
-              summary: string;
-            };
-          };
-        };
+      if (AIsummary) {
+        summary = await updatePostSummary(postId, AIsummary);
+      } else {
+        throw Error("AI Summary can not be provided now.");
       }
-      const summaryData = data as PostSummary;
-      summary = summaryData.updatePost.data?.attributes.summary;
     }
 
-    if (summary) {
-      return res.json({
-        summary,
-      });
-    }
-    return res.status(404).json({ message: "Post Data Not found." });
+    return res.json({
+      summary,
+    });
   } catch (err) {
     if (err instanceof Error) {
       return res.status(500).json({ message: err.message });
