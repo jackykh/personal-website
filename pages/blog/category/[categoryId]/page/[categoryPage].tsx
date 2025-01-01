@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
-import client from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   `;
 
-  const { data: categoriesData } = await client.query({
+  const { data: categoriesData } = await authClient.query({
     query: CATEGORY_ID,
   });
   const categoriesIdArray = categoriesData.categories.data;
@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = [];
 
   for (const category of categoriesIdArray) {
-    const { data } = await client.query({
+    const { data } = await authClient.query({
       query: TOTAL_PAGE,
       variables: {
         pageSize: postsPerPage,
@@ -168,7 +168,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
   }
 
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: POSTS,
     variables: {
       page: currentPage,

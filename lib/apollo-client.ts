@@ -27,7 +27,7 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-const blogUpdatingClient = new ApolloClient({
+const authClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
   defaultOptions: {
@@ -37,5 +37,5 @@ const blogUpdatingClient = new ApolloClient({
   },
 });
 
-export { blogUpdatingClient };
+export { authClient };
 export default client;

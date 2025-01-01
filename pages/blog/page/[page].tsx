@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { gql } from "@apollo/client";
-import client from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import PostList from "@/Components/PostList";
 import getPreview from "@/utils/getPreview";
 import Head from "next/head";
@@ -56,7 +56,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   `;
 
   const paths = [];
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: TOTAL_PAGE,
     variables: {
       pageSize: postsPerPage,
@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return redirectFirstPageObject;
   }
 
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: POSTS,
     variables: {
       page: currentPage,

@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import Navigation from "@/Components/uiComponents/Navigation";
 import Footer from "@/Components/Footer";
 import Link from "next/link";
-import client from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import Giscus from "@giscus/react";
 import BlinkText from "@/Components/uiComponents/BlinkText";
@@ -76,7 +76,7 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     }
   `;
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: CATEGORIES,
     variables: {
       start: 0,

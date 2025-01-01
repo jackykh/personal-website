@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import client from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 
 // This function can run for a maximum of 60 seconds
@@ -36,7 +36,7 @@ export default async function handler(
       }
     `;
 
-    const { data: mainCatPageData } = await client.query({
+    const { data: mainCatPageData } = await authClient.query({
       query: pagesCountQuery,
       variables: {
         pageSize: postsPerPage,
@@ -69,7 +69,7 @@ export default async function handler(
 
     return Promise.all(
       categories.map(async (category: { id: string }) => {
-        const { data: catPageData } = await client.query({
+        const { data: catPageData } = await authClient.query({
           query: catPageCountQuery,
           variables: {
             pageSize: postsPerPage,

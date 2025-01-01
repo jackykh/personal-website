@@ -7,7 +7,7 @@ import "github-markdown-css/github-markdown-light.css";
 import classes from "@/styles/Post.module.css";
 import Link from "next/link";
 import { gql } from "@apollo/client";
-import client from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import Navigation from "@/Components/uiComponents/Navigation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { nightOwl } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -186,7 +186,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   `;
 
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: ALL_POSTS_ID,
   });
 
@@ -264,7 +264,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return redirect404Object;
   }
 
-  const { data } = await client.query({
+  const { data } = await authClient.query({
     query: POST,
     variables: {
       id: paramsPostId,
