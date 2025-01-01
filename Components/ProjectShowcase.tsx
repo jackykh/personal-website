@@ -47,6 +47,7 @@ const personalWebsiteDetails: projectDetailsType = {
   about: [
     "Responsive Design: Modern and responsive layout optimized for various devices.",
     "Blog Section: User-friendly blogging platform with SSG and ISR for fast page generation and real-time updates.",
+    "AI-Powered Summaries: Integrated Deepseek Chat AI's API to automatically generate concise and informative summaries for blog posts, enhancing reader engagement and content accessibility.",
     "Content Management: Admin panel for managing blog posts, pages, and media using Strapi.",
   ],
   img: myWebsiteImage,
