@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { blogUpdatingClient } from "@/lib/apollo-client";
+import { authClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import isNumber from "@/utils/isNumber";
 import OpenAI from "openai";
@@ -39,7 +39,7 @@ const getPostData = async (id: string) => {
     };
   }
 
-  const { data } = await blogUpdatingClient.query({
+  const { data } = await authClient.query({
     query: GET_CONTENT,
     variables: {
       id,
@@ -66,7 +66,7 @@ const updatePostSummary = async (id: string, summary: string) => {
     }
   `;
 
-  const { data } = await blogUpdatingClient.mutate({
+  const { data } = await authClient.mutate({
     mutation: CREATE_SUMMARY,
     variables: {
       id,
