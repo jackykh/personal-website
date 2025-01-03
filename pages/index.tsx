@@ -9,6 +9,7 @@ import SectionNav from "@/Components/uiComponents/SectionNav";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import useEffectDebugger from "@/hooks/useEffectDebugger";
 import Creativity from "@/Components/Creativity";
+import Head from "next/head";
 
 export default function Home() {
   const HeroRef = useRef(null);
@@ -192,8 +193,21 @@ export default function Home() {
     ["isLargeScreen", "currentSection", "sectionRefList"]
   );
 
+  const JsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Jacky Cheung | Web Developer",
+    url: "https://jackycheung.dev",
+  };
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JsonLd) }}
+          key="jsonld"
+        />
+      </Head>
       <main className="w-full scroll-container">
         <Navigation
           fixed={isLargeScreen}
