@@ -197,6 +197,10 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Jacky Cheung | Web Developer",
+    alternateName: [
+      "Jacky Portfolio | Blog | Resume",
+      "JC's Website | Web Developer",
+    ],
     url: "https://jackycheung.dev",
   };
   return (
