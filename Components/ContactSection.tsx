@@ -96,7 +96,7 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
             </div>
           </div>
           <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
-            <label htmlFor="email" className="text-base p-2">
+            <label htmlFor="message" className="text-base p-2">
               Message
             </label>
             <textarea
