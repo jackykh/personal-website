@@ -6,6 +6,7 @@ import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 import Navigation from "@/Components/uiComponents/Navigation";
 import { PostPreviewProps } from "@/Components/uiComponents/PostPreview";
+import { postsPerPage } from "@/utils/constants";
 
 interface listProps {
   categoryName: string;
@@ -14,8 +15,6 @@ interface listProps {
   currentPage: number;
   postPreviewData: Array<PostPreviewProps>;
 }
-
-const postsPerPage = 5;
 
 const PostListOfCategory = (props: listProps) => {
   return (

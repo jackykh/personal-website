@@ -6,6 +6,7 @@ import getPreview from "@/utils/getPreview";
 import Head from "next/head";
 import Navigation from "@/Components/uiComponents/Navigation";
 import isNumber from "@/utils/isNumber";
+import { postsPerPage } from "@/utils/constants";
 
 interface indexListProps {
   totalPage: number;
@@ -18,7 +19,6 @@ interface indexListProps {
     isPinned: boolean;
   }>;
 }
-const postsPerPage = 5;
 
 const indexList = (props: indexListProps) => {
   return (
