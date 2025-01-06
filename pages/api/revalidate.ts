@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { authClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
+import { postsPerPage } from "@/utils/constants";
 
 // This function can run for a maximum of 60 seconds
 export const config = {
@@ -20,8 +21,6 @@ export default async function handler(
     "entry.publish",
     "entry.unpublish",
   ];
-
-  const postsPerPage = 5;
 
   const updateMainPages = async () => {
     const pagesCountQuery = gql`
