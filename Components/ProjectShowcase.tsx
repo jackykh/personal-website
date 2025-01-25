@@ -61,14 +61,14 @@ const puzzleLocationGameDetails: projectDetailsType = {
   name: "Quest Card",
   desc: "Developed a mobile game using React Native and Firebase Realtime Database, where players solve location-based puzzles.",
   about: [
-    "Single Player Mode: Players solve puzzles by guessing locations on Google Maps or physically reaching the spot, with puzzles fetched from the database.",
-    "Multiplayer Mode: Players can create game rooms, set their own puzzles, and compete in real-time with others.",
-    "Real-Time Interaction: Utilized Firebase Realtime Database for seamless multiplayer interactions and game state management.",
-    "Custom Puzzles: Players can create and share their own puzzles, enhancing replayability and community engagement.",
-    "Google Maps Integration: Leveraged Google Maps API for location-based gameplay and interactive map features.",
+    "Single Player: Solve location puzzles by guessing on Google Maps or visiting the actual spot.",
+    "Multiplayer: Create rooms, set custom puzzles, and compete with others in real-time.",
+    "Real-Time Sync: Firebase Realtime Database enables seamless multiplayer interactions.",
+    "Custom Puzzles: Players can design and share their own puzzles.",
+    "Google Maps API: Integrated for interactive location-based gameplay.",
   ],
   img: puzzleLocationGameImage,
-  website: "https://apps.apple.com/us/app/quest-card/id6740688552",
+  website: "https://apps.apple.com/hk/app/quest-card/id6740688552",
   techs: ["React Native", "Firebase Realtime Database", "Google Maps API"],
 };
 
