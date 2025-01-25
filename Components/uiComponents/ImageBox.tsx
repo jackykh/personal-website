@@ -25,7 +25,7 @@ const ImageBox: React.FC<{
       <Image
         src={props.img}
         alt="image"
-        className="w-full h-full group-hover:blur-sm group-hover:brightness-50 transition-all object-cover object-center absolute"
+        className="w-full h-full group-hover:blur-sm group-hover:brightness-50 transition-all object-cover object-top absolute"
         placeholder="blur"
       />
       <div className="text-white text-center translate-y-[20rem] font-bold group-hover:translate-y-[5rem] transition-all">

@@ -8,10 +8,10 @@ interface projectDetailsType {
   name: string;
   desc: string;
   about: string[];
-  img: StaticImageData;
+  img?: StaticImageData;
   techs: string[];
   website: string;
-  github: string;
+  github?: string;
 }
 
 const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
@@ -23,12 +23,14 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
         <p>{desc}</p>
       </div>
       <div>
-        <Image
-          src={img}
-          alt="project preview"
-          className="rounded overflow-hidden"
-          placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89R8AAtkB6zy+wn8AAAAASUVORK5CYII="
-        />
+        {img && (
+          <Image
+            src={img}
+            alt="project preview"
+            className="rounded overflow-hidden"
+            placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mN89R8AAtkB6zy+wn8AAAAASUVORK5CYII="
+          />
+        )}
       </div>
       <div>
         <h4 className="mb-[13px] font-bold text-[18px]">About</h4>
@@ -66,20 +68,22 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
           {website}
         </Link>
       </div>
-      <div>
-        <h4 className="mb-[8px] font-bold text-[18px]">
-          <FontAwesomeIcon icon={faGithub} className="mr-[8px]" />
-          GitHub
-        </h4>
-        <Link
-          href={github}
-          className="hover:underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {github}
-        </Link>
-      </div>
+      {github && (
+        <div>
+          <h4 className="mb-[8px] font-bold text-[18px]">
+            <FontAwesomeIcon icon={faGithub} className="mr-[8px]" />
+            GitHub
+          </h4>
+          <Link
+            href={github}
+            className="hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {github}
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
