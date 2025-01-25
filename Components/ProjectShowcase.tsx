@@ -7,24 +7,25 @@ import Link from "next/link";
 import ProjectDetailsEl, {
   projectDetailsType,
 } from "./uiComponents/ProjectDetailsEl";
-import bookstoreGif from "@/public/bookstore.gif";
+// import bookstoreGif from "@/public/bookstore.gif";
+// import bookstoreImage from "@/public/bookstore.png";
 import milkTeaStoreGif from "@/public/milktea.gif";
 import myWebsiteImage from "@/public/mywebsite.png";
 import milkTeaStoreImage from "@/public/milktea_store.png";
-import bookstoreImage from "@/public/bookstore.png";
+import puzzleLocationGameImage from "@/public/questcard.jpg";
 
-const bookstoreDetails: projectDetailsType = {
-  name: "A Reponsive Bookstore Website DEMO",
-  desc: "Developed a bookstore website using React.js for the frontend.",
-  about: [
-    "Responsive Design: Ensuring a seamless browsing experience across all devices, from desktops to mobile phones using modern CSS practices.",
-    "Custom Styling with SCSS: Leveraging SCSS for styling provided an enhanced level of control over the design, allowing for dynamic variables and mixins that simplify complex styles.",
-  ],
-  img: bookstoreGif,
-  website: "https://bookstore-demo.pages.dev",
-  github: "https://github.com/jackykh/bookstore-demo",
-  techs: ["React", "SCSS", "Firebase Realtime Database"],
-};
+// const bookstoreDetails: projectDetailsType = {
+//   name: "A Reponsive Bookstore Website DEMO",
+//   desc: "Developed a bookstore website using React.js for the frontend.",
+//   about: [
+//     "Responsive Design: Ensuring a seamless browsing experience across all devices, from desktops to mobile phones using modern CSS practices.",
+//     "Custom Styling with SCSS: Leveraging SCSS for styling provided an enhanced level of control over the design, allowing for dynamic variables and mixins that simplify complex styles.",
+//   ],
+//   img: bookstoreGif,
+//   website: "https://bookstore-demo.pages.dev",
+//   github: "https://github.com/jackykh/bookstore-demo",
+//   techs: ["React", "SCSS", "Firebase Realtime Database"],
+// };
 
 const milkTeaStoretoreDetails: projectDetailsType = {
   name: "A Full Stack e-commerce Website Project",
@@ -54,6 +55,21 @@ const personalWebsiteDetails: projectDetailsType = {
   website: "https://jackycheung.dev/",
   github: "https://github.com/jackykh/personal-website",
   techs: ["Next.js", "Framer Motion", "Strapi", "GraphQL"],
+};
+
+const puzzleLocationGameDetails: projectDetailsType = {
+  name: "Quest Card",
+  desc: "Developed a mobile game using React Native and Firebase Realtime Database, where players solve location-based puzzles.",
+  about: [
+    "Single Player Mode: Players solve puzzles by guessing locations on Google Maps or physically reaching the spot, with puzzles fetched from the database.",
+    "Multiplayer Mode: Players can create game rooms, set their own puzzles, and compete in real-time with others.",
+    "Real-Time Interaction: Utilized Firebase Realtime Database for seamless multiplayer interactions and game state management.",
+    "Custom Puzzles: Players can create and share their own puzzles, enhancing replayability and community engagement.",
+    "Google Maps Integration: Leveraged Google Maps API for location-based gameplay and interactive map features.",
+  ],
+  img: puzzleLocationGameImage,
+  website: "https://apps.apple.com/us/app/quest-card/id6740688552",
+  techs: ["React Native", "Firebase Realtime Database", "Google Maps API"],
 };
 
 const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
@@ -103,11 +119,6 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
           animate={isInView ? "visible" : "hidden"}
         >
           <ImageBox
-            img={bookstoreImage}
-            caption="A responsive Book Store website DEMO"
-            btnOnClick={imageBoxOnClickHandler(bookstoreDetails)}
-          />
-          <ImageBox
             img={milkTeaStoreImage}
             caption="A full stack e-commerce Website Project"
             btnOnClick={imageBoxOnClickHandler(milkTeaStoretoreDetails)}
@@ -116,6 +127,11 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
             img={myWebsiteImage}
             caption="A Portfolio Website (this website)"
             btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
+          />
+          <ImageBox
+            img={puzzleLocationGameImage}
+            caption="Quest Card - An App Game"
+            btnOnClick={imageBoxOnClickHandler(puzzleLocationGameDetails)}
           />
         </motion.div>
 
