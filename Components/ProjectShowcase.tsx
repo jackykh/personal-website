@@ -82,9 +82,10 @@ const replyTrackDetails: projectDetailsType = {
   name: "ReplyTrack",
   desc: "Developed a privacy-first iOS reminder app using React Native, solving 'read-but-forgot-to-reply' scenarios through Share Extension integration and localized data processing.",
   about: [
-    "Share Extension Workflow: Allow users to save messages from any app via iOS Share Extension without data upload",
+    "Share Extension Workflow: Allow users to save messages from IM app via iOS Share Extension without data upload",
     "Cross-Language Support: Implemented i18n for Chinese(Trad/Simp)/Japanese/English",
     "Privacy by Design: All message metadata processed locally using MMKV, zero cloud synchronization",
+    "Reminders: Notification system considering message urgency and time patterns",
   ],
   img: replytTrackImage,
   website: "https://apps.apple.com/hk/app/replytrack/id6741432172",
