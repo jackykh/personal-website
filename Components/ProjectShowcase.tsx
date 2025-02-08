@@ -13,6 +13,7 @@ import milkTeaStoreGif from "@/public/milktea.gif";
 import myWebsiteImage from "@/public/mywebsite.png";
 import milkTeaStoreImage from "@/public/milktea_store.png";
 import puzzleLocationGameImage from "@/public/questcard.jpg";
+import replytTrackImage from "@/public/replytrack.jpg";
 
 // const bookstoreDetails: projectDetailsType = {
 //   name: "A Reponsive Bookstore Website DEMO",
@@ -69,9 +70,33 @@ const puzzleLocationGameDetails: projectDetailsType = {
   ],
   img: puzzleLocationGameImage,
   website: "https://apps.apple.com/hk/app/quest-card/id6740688552",
-  techs: ["React Native", "Firebase Realtime Database", "Google Maps API"],
+  techs: [
+    "React Native",
+    "Firebase Realtime Database",
+    "Google Maps API",
+    "App Store Deployment",
+  ],
 };
 
+const replyTrackDetails: projectDetailsType = {
+  name: "ReplyTrack",
+  desc: "Developed a privacy-first iOS reminder app using React Native, solving 'read-but-forgot-to-reply' scenarios through Share Extension integration and localized data processing.",
+  about: [
+    "Share Extension Workflow: Allow users to save messages from any app via iOS Share Extension without data upload",
+    "Cross-Language Support: Implemented i18n for Chinese(Trad/Simp)/Japanese/English",
+    "Privacy by Design: All message metadata processed locally using MMKV, zero cloud synchronization",
+  ],
+  img: replytTrackImage,
+  website: "https://apps.apple.com/hk/app/replytrack/id6741432172",
+  techs: [
+    "React Native",
+    "iOS Share Extension",
+    "i18n-js Localization",
+    "MMKV",
+    "iOS Notifications",
+    "App Store Deployment",
+  ],
+};
 const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
   const workListRef = useRef(null);
   const isInView = useInView(workListRef, { once: true });
@@ -132,6 +157,11 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
             img={puzzleLocationGameImage}
             caption="Quest Card - An App Game"
             btnOnClick={imageBoxOnClickHandler(puzzleLocationGameDetails)}
+          />
+          <ImageBox
+            img={replytTrackImage}
+            caption="ReplyTrack"
+            btnOnClick={imageBoxOnClickHandler(replyTrackDetails)}
           />
         </motion.div>
 
