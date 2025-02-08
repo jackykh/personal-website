@@ -61,7 +61,7 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
 
         <Link
           href={website}
-          className="hover:underline"
+          className="hover:underline break-words"
           target="_blank"
           rel="noopener noreferrer"
         >
