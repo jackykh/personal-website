@@ -31,10 +31,9 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
 
             <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
               <li>TypeScript React</li>
-              <li>React Hooks</li>
               <li>Framer Motion</li>
               <li>Next.js</li>
-              <li>Vite</li>
+              <li>React Native</li>
             </ul>
           </div>
           <div className={classes.skill_card_item_middle}>
