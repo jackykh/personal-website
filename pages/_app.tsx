@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 config.autoAddCss = false;
 
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
         <Component {...pageProps} />
       </ApolloProvider>
       <ToastContainer />
+      <SpeedInsights />
       <Script
         src="https://cloud.umami.is/script.js"
         data-website-id={`${process.env.NEXT_PUBLIC_UMAMI_ID}`}
