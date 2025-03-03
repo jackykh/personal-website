@@ -19,7 +19,7 @@ export const Typewriter = ({ text, ...rest }: any) => (
     animate="visible"
     {...rest}
   >
-    {text.split("").map((char: string, i: number) => (
+    {text.match(/.{1,10}/g).map((char: string, i: number) => (
       <motion.span key={`${char}-${i}`} variants={letterVariants}>
         {char}
       </motion.span>
