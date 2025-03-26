@@ -4,6 +4,7 @@ import {
   faGithub,
   faTelegram,
   faInstagram,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 
@@ -90,6 +91,13 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
               href="https://www.instagram.com/jacky_cheunq"
             >
               <FontAwesomeIcon icon={faInstagram} />
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.youtube.com/@CiTaiShi"
+            >
+              <FontAwesomeIcon icon={faYoutube} />
             </Link>
           </div>
         </div>
