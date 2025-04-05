@@ -48,7 +48,6 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
               <li>Express.js</li>
               <li>MongoDB</li>
               <li>GraphQL</li>
-              <li>REST APIs</li>
             </ul>
           </div>
           <div className={classes.skill_card_item_right}>
