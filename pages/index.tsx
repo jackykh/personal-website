@@ -10,6 +10,11 @@ import useMediaQuery from "@/hooks/useMediaQuery";
 import useEffectDebugger from "@/hooks/useEffectDebugger";
 import Creativity from "@/Components/Creativity";
 import Head from "next/head";
+import type { IntRange } from "@/utils/types";
+
+// Enum of Section Number Range.
+// It should be updated when total section number is changed.
+type sectionRange = IntRange<0, 6>;
 
 export default function Home() {
   const HeroRef = useRef(null);
@@ -30,7 +35,7 @@ export default function Home() {
     ],
     []
   );
-  const sectionBgWithDarkColor = [5];
+  const sectionBgWithDarkColor: Array<sectionRange> = [5];
 
   const [currentSection, setCurrentSection] = useState(0);
 
@@ -216,7 +221,8 @@ export default function Home() {
         <Navigation
           fixed={isLargeScreen}
           isBgDark={
-            !isSmallScreen || sectionBgWithDarkColor.includes(currentSection)
+            !isSmallScreen ||
+            sectionBgWithDarkColor.includes(currentSection as sectionRange)
           }
         />
         <Hero ref={HeroRef} />
