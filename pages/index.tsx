@@ -17,7 +17,7 @@ import type { IntRange } from "@/utils/types";
 type sectionRange = IntRange<0, 6>;
 
 export default function Home() {
-  const sectionsListRef = useRef<HTMLElement[] | null>([]);
+  const sectionsListRef = useRef<HTMLElement[] | null>(null);
 
   const getSectionList = () => {
     if (!sectionsListRef.current) {
@@ -95,7 +95,6 @@ export default function Home() {
     (event: KeyboardEvent) => {
       if (!(event.key === "ArrowUp" || event.key === "ArrowDown")) return;
       event.preventDefault();
-      /// The Length of sectionRefList
       if (!isKeyHandled.current) {
         if (event.key === "ArrowUp") {
           // up arrow
