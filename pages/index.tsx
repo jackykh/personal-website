@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Hero from "@/Components/Hero";
 import Intro from "@/Components/Intro";
 import ProjectShowcase from "@/Components/ProjectShowcase";
@@ -17,24 +17,23 @@ import type { IntRange } from "@/utils/types";
 type sectionRange = IntRange<0, 6>;
 
 export default function Home() {
-  const HeroRef = useRef(null);
-  const IntroRef = useRef(null);
-  const ProjectShowcaseRef = useRef(null);
-  const ContactSectionRef = useRef(null);
-  const creativityRef = useRef(null);
-  const footerRef = useRef(null);
+  const sectionsListRef = useRef<HTMLElement[] | null>([]);
 
-  const sectionRefList = useMemo(
-    () => [
-      HeroRef,
-      IntroRef,
-      creativityRef,
-      ProjectShowcaseRef,
-      ContactSectionRef,
-      footerRef,
-    ],
-    []
-  );
+  const getSectionList = () => {
+    if (!sectionsListRef.current) {
+      // Initialize the Array on first usage.
+      sectionsListRef.current = [];
+    }
+    return sectionsListRef.current;
+  };
+
+  const attachNodeToRef = (node: HTMLElement) => {
+    const sectionList = getSectionList();
+    if (node && !sectionList.includes(node)) {
+      sectionList.push(node);
+    }
+  };
+
   const sectionBgWithDarkColor: Array<sectionRange> = [5];
 
   const [currentSection, setCurrentSection] = useState(0);
@@ -49,15 +48,15 @@ export default function Home() {
 
   const goToNextSection = useCallback(() => {
     /// The Length of sectionRefList
-    const sectionRefNumber = sectionRefList.length;
+    const lengthOfSections = getSectionList().length;
     setCurrentSection((prevState) => {
-      if (prevState < sectionRefNumber - 1) {
+      if (prevState < lengthOfSections - 1) {
         return prevState + 1;
       } else {
         return prevState;
       }
     });
-  }, [sectionRefList]);
+  }, []);
 
   const goToPrevSection = useCallback(() => {
     setCurrentSection((prevState) => {
@@ -181,21 +180,16 @@ export default function Home() {
       };
     }) => {
       const isScreenChange = changedDeps.isLargeScreen;
+      const currentSectionRef = getSectionList()[currentSection];
       const scrollOption: ScrollIntoViewOptions = isScreenChange
         ? { behavior: "auto" }
         : { behavior: "smooth" };
-      if (isLargeScreen && sectionRefList[currentSection].current) {
-        setTimeout(
-          () =>
-            (
-              sectionRefList[currentSection].current! as HTMLElement
-            ).scrollIntoView(scrollOption),
-          100
-        );
+      if (isLargeScreen && currentSectionRef) {
+        setTimeout(() => currentSectionRef.scrollIntoView(scrollOption), 100);
       }
     },
-    [isLargeScreen, currentSection, sectionRefList],
-    ["isLargeScreen", "currentSection", "sectionRefList"]
+    [isLargeScreen, currentSection],
+    ["isLargeScreen", "currentSection"]
   );
 
   const JsonLd = {
@@ -225,16 +219,16 @@ export default function Home() {
             sectionBgWithDarkColor.includes(currentSection as sectionRange)
           }
         />
-        <Hero ref={HeroRef} />
-        <Intro ref={IntroRef} />
-        <Creativity ref={creativityRef} />
-        <ProjectShowcase ref={ProjectShowcaseRef} />
-        <ContactSection ref={ContactSectionRef} />
-        <Footer ref={footerRef} fullScreen={true} />
+        <Hero ref={attachNodeToRef} />
+        <Intro ref={attachNodeToRef} />
+        <Creativity ref={attachNodeToRef} />
+        <ProjectShowcase ref={attachNodeToRef} />
+        <ContactSection ref={attachNodeToRef} />
+        <Footer ref={attachNodeToRef} fullScreen={true} />
         {showSectionNav && (
           <SectionNav
             currentSection={currentSection}
-            sectionNumber={sectionRefList.length}
+            sectionNumber={getSectionList().length}
             setCurrentSection={setCurrentSection}
             sectionBgWithDarkColor={sectionBgWithDarkColor}
           />
