@@ -3,16 +3,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-
-interface projectDetailsType {
-  name: string;
-  desc: string;
-  about: string[];
-  img?: StaticImageData;
-  techs: string[];
-  website: string;
-  github?: string;
-}
+import { projectDetailsType } from "@/utils/projects";
 
 const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
   const { name, desc, about, img, techs, website, github } = props.detail;
@@ -89,4 +80,3 @@ const ProjectDetailsEl: React.FC<{ detail: projectDetailsType }> = (props) => {
 };
 
 export default ProjectDetailsEl;
-export type { projectDetailsType };

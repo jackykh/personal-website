@@ -64,6 +64,11 @@ const Navigation = (props: { fixed?: boolean; isBgDark?: boolean }) => {
                 </li>
               )}
               <li>
+                <Link rel="noopener noreferrer" href="/projects">
+                  Side Projects
+                </Link>
+              </li>
+              <li>
                 <Link target="_blank" rel="noopener noreferrer" href="/resume">
                   My Resume
                 </Link>
