@@ -48,7 +48,7 @@ const ProjectList = () => {
       <main
         className={`py-24 px-8 flex flex-col items-center ${classes.bgGrid}`}
       >
-        <h1 className="text-4xl pb-4 mb-8 font-bold">Projects.</h1>
+        <h1 className="text-4xl pb-4 mb-8 font-bold">Side Projects.</h1>
         <div className="p-4 w-full max-w-4xl grid grid-cols-autofit-20 grid-rows-1 gap-6 ">
           <ImageBox
             img={personalWebsiteDetails.img}
