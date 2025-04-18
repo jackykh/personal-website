@@ -4,8 +4,8 @@ import {
   faGithub,
   faTelegram,
   faInstagram,
-  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { faXHS } from "./uiComponents/CustomIcon";
 import Link from "next/link";
 
 interface FooterProps {
@@ -95,9 +95,9 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.youtube.com/@CiTaiShi"
+              href="https://www.xiaohongshu.com/user/profile/63ef005b000000000f0110ec?xsec_token=YBaFpphOqrRIcg8ii-vaJnXfhPHAuigjeOfHyB7QDbc4k="
             >
-              <FontAwesomeIcon icon={faYoutube} />
+              <FontAwesomeIcon icon={faXHS} />
             </Link>
           </div>
         </div>
