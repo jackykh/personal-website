@@ -26,7 +26,7 @@ const categoriesList = (props: {
       <main
         className={`py-24 px-8 flex flex-col items-center ${classes.bgGrid}`}
       >
-        <h1 className="text-4xl pb-4">Categories</h1>
+        <h1 className="text-4xl pb-4 font-bold">Categories</h1>
         <div className="flex flex-col w-[60rem] max-w-full items-center">
           <div className="pt-8 pb-32 max-w-[40rem] flex gap-y-2 gap-x-4 flex-wrap">
             {categories.map((category) => (
