@@ -107,7 +107,7 @@ export const resignationCalculatorDetails: projectDetailsType = {
   about: [
     "Public Holiday Integration: Real-time sync with Hong Kong government's official holiday API",
     "Smart Date Recommendation: Scoring system prioritizing dates with minimal working days and consecutive holidays",
-    "Custom Workweek Configuration: Flexible working day settings with holiday override capabilities",
+    "Custom Workweek Configuration: Flexible working day settings",
     "Probation & Notice Period Engine: Automatic calculations based on HK employment ordinances and company policies",
   ],
   img: resignationCalculatorImage,
