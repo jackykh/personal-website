@@ -22,7 +22,7 @@ const SectionNav: React.FC<{
         <li key={i}>
           <button
             type="button"
-            className={`w-3 h-3 transition-all ${
+            className={`w-3 h-3 ${
               props.currentSection === i ? activeSectionClass : sectionClass
             }`}
             onClick={props.setCurrentSection.bind(null, i)}
