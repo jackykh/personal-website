@@ -70,7 +70,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
           <div className="[&>*]:mr-8 flex flex-wrap">
             <span>© Jacky Cheung 2024</span>
           </div>
-          <div className="[&>*]:mr-8">
+          <div className="[&>*:not(:last-child)]:mr-8">
             <Link
               target="_blank"
               rel="noopener noreferrer"
