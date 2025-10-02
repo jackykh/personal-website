@@ -8,7 +8,7 @@ export const Creativity = forwardRef<HTMLElement>((_props, ref) => {
   return (
     <section
       ref={ref}
-      className={`w-full px-10 py-6 sm:p-24 min-h-screen  flex gap-10 justify-center items-center flex-col lg:flex-row ${classes.bgGrid}`}
+      className={`w-full px-10 py-4 sm:p-24 min-h-screen  flex gap-10 justify-center items-center flex-col lg:flex-row ${classes.bgGrid}`}
     >
       <div className="w-full text-center lg:text-left lg:w-96 text-green-900">
         <h2 className="text-4xl font-bold mb-4">

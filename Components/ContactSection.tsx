@@ -59,7 +59,7 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
         ref={ref}
         className="bg-purple-50 w-full min-h-screen flex flex-col items-center justify-center "
       >
-        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center my-24">
+        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24 mt-4 lg:mt-0">
           <h2 className="text-4xl font-bold mb-4">Send me a message!</h2>
           <p className="text-xl">Want to say hello? Go ahead.</p>
         </div>
