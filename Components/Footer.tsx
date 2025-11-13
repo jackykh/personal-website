@@ -95,7 +95,7 @@ const Footer = forwardRef<HTMLElement, FooterProps>((props, ref) => {
             <Link
               target="_blank"
               rel="noopener noreferrer"
-              href="https://www.xiaohongshu.com/user/profile/63ef005b000000000f0110ec?xsec_token=YBaFpphOqrRIcg8ii-vaJnXfhPHAuigjeOfHyB7QDbc4k="
+              href="https://xhslink.com/m/1Khg9gwEsBD"
             >
               <FontAwesomeIcon icon={faXHS} />
             </Link>
