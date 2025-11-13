@@ -9,7 +9,7 @@ import {
   projectDetailsType,
   personalWebsiteDetails,
   puzzleLocationGameDetails,
-  replyTrackDetails,
+  doraSearchDetails,
 } from "@/utils/projects";
 
 const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
@@ -64,14 +64,14 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
             btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
           />
           <ImageBox
+            img={doraSearchDetails.img}
+            caption="DoraSearch - Doraemon Manga Full-Text Search"
+            btnOnClick={imageBoxOnClickHandler(doraSearchDetails)}
+          />
+          <ImageBox
             img={puzzleLocationGameDetails.img}
             caption="Quest Card - An App Game"
             btnOnClick={imageBoxOnClickHandler(puzzleLocationGameDetails)}
-          />
-          <ImageBox
-            img={replyTrackDetails.img}
-            caption="ReplyTrack"
-            btnOnClick={imageBoxOnClickHandler(replyTrackDetails)}
           />
         </motion.div>
 

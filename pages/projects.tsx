@@ -18,6 +18,7 @@ import {
   replyTrackDetails,
   bookstoreDetails,
   resignationCalculatorDetails,
+  doraSearchDetails,
 } from "@/utils/projects";
 
 const ProjectList = () => {
@@ -54,6 +55,11 @@ const ProjectList = () => {
             img={personalWebsiteDetails.img}
             caption="A Portfolio Website (this website)"
             btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
+          />
+          <ImageBox
+            img={doraSearchDetails.img}
+            caption="DoraSearch - Doraemon Manga Full-Text Search"
+            btnOnClick={imageBoxOnClickHandler(doraSearchDetails)}
           />
           <ImageBox
             img={resignationCalculatorImage}

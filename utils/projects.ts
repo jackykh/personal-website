@@ -4,6 +4,7 @@ import myWebsiteImage from "@/public/mywebsite.png";
 import puzzleLocationGameImage from "@/public/questcard.jpg";
 import replytTrackImage from "@/public/replytrack.jpg";
 import resignationCalculatorImage from "@/public/resign.gif";
+import doraSearchImage from "@/public/dorasearch.png";
 
 import { StaticImageData } from "next/image";
 
@@ -114,4 +115,28 @@ export const resignationCalculatorDetails: projectDetailsType = {
   website: "https://fhr.shashin.cc",
   github: "https://github.com/jackykh/interview-records",
   techs: ["React", "Hong Kong Open Data API", "React Query"],
+};
+
+export const doraSearchDetails: projectDetailsType = {
+  name: "DoraSearch — Doraemon Manga Full-Text Search",
+  desc: "A Doraemon manga full-text search engine that went semi-viral on Social Media (7,000+ likes & saves), built with a React SPA frontend and a cost-optimized Cloudflare Workers + D1 backend.",
+  about: [
+    "Community-Validated Side Project: Launched as a personal learning project and shared on Xiaohongshu, where it received 7,000+ likes and saves plus 300+ positive comments from users and developers.",
+    "AI OCR Pipeline at Scale: Processed ~8,000 manga pages (2GB+) with Qwen3-VL, extracting structured text with high OCR accuracy.",
+    "Serverless Search Backend: Built lightweight, low-latency search APIs on Cloudflare Workers, using D1 (SQLite) as a relational store for page-level text and search metadata.",
+    "Cost-Aware Query Design: Designed a hybrid pagination strategy (cursor-based for prev/next, offset for jump-to-page) plus Cloudflare Cache to minimize scanned rows.",
+    "React Search Experience: Implemented a single-page React app with TanStack Router and TanStack Query for URL-driven search state, client-side caching, and smooth navigation across result pages.",
+  ],
+  img: doraSearchImage,
+  website: "https://dorasearch.cc/",
+  techs: [
+    "React",
+    "TanStack Query",
+    "TanStack Router",
+    "Cloudflare Workers",
+    "Cloudflare D1",
+    "SQLite FTS",
+    "Python",
+    "Qwen3-VL",
+  ],
 };
