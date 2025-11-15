@@ -121,7 +121,7 @@ export const doraSearchDetails: projectDetailsType = {
   name: "DoraSearch — Doraemon Manga Full-Text Search",
   desc: "A Doraemon manga full-text search engine that went semi-viral on Social Media (7,000+ likes & saves), built with a React SPA frontend and a cost-optimized Cloudflare Workers + D1 backend.",
   about: [
-    "Community-Validated Side Project: Launched as a personal learning project and shared on Xiaohongshu, where it received 7,000+ likes and saves plus 300+ positive comments from users and developers.",
+    "Community-Validated Side Project: Launched as a personal learning project and shared on Xiaohongshu (小紅書), where it received 7,000+ likes and saves plus 300+ positive comments from users and developers.",
     "AI OCR Pipeline at Scale: Processed ~8,000 manga pages (2GB+) with Qwen3-VL, extracting structured text with high OCR accuracy.",
     "Serverless Search Backend: Built lightweight, low-latency search APIs on Cloudflare Workers, using D1 (SQLite) as a relational store for page-level text and search metadata.",
     "Cost-Aware Query Design: Designed a hybrid pagination strategy (cursor-based for prev/next, offset for jump-to-page) plus Cloudflare Cache to minimize scanned rows.",
