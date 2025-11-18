@@ -176,135 +176,153 @@ const Post = (props: postProps) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const ALL_POSTS_ID = gql`
-    query GetAllPostsID {
-      posts {
-        data {
-          id: id
+  try {
+    const ALL_POSTS_ID = gql`
+      query GetAllPostsID {
+        posts {
+          data {
+            id: id
+          }
         }
       }
-    }
-  `;
+    `;
 
-  const { data } = await authClient.query({
-    query: ALL_POSTS_ID,
-  });
+    const { data } = await authClient.query({
+      query: ALL_POSTS_ID,
+    });
 
-  type allPostsIdData = Array<{
-    id: string;
-  }>;
-  const paths = (data.posts.data as allPostsIdData).map((postId) => {
-    return { params: { postId: postId.id } };
-  });
+    type allPostsIdData = Array<{
+      id: string;
+    }>;
+    const paths = (data.posts.data as allPostsIdData).map((postId) => {
+      return { params: { postId: postId.id } };
+    });
 
-  return {
-    paths,
-    fallback: "blocking",
-  };
+    return {
+      paths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const POST = gql`
-    query GetPosts($id: ID!) {
-      post(id: $id) {
-        data {
-          id: id
-          attributes {
-            title
-            content
-            createdAt
-            summary
-            categories {
-              data {
-                id: id
-                attributes {
-                  name
+  try {
+    const POST = gql`
+      query GetPosts($id: ID!) {
+        post(id: $id) {
+          data {
+            id: id
+            attributes {
+              title
+              content
+              createdAt
+              summary
+              categories {
+                data {
+                  id: id
+                  attributes {
+                    name
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  `;
+    `;
 
-  interface PostData {
-    post: {
-      data?: {
-        id: number;
-        attributes: {
-          title: string;
-          content: string;
-          createdAt: string;
-          summary: string;
-          categories: {
-            data: Array<{
-              id: number;
-              attributes: {
-                name: string;
-              };
-            }>;
+    interface PostData {
+      post: {
+        data?: {
+          id: number;
+          attributes: {
+            title: string;
+            content: string;
+            createdAt: string;
+            summary: string;
+            categories: {
+              data: Array<{
+                id: number;
+                attributes: {
+                  name: string;
+                };
+              }>;
+            };
           };
         };
       };
+    }
+
+    const paramsPostId = params?.postId as string;
+
+    const redirect404Object = {
+      redirect: {
+        destination: "/blog/404",
+        permanent: false,
+        // statusCode: 404,
+      },
+    };
+
+    if (!isNumber(paramsPostId)) {
+      return redirect404Object;
+    }
+
+    const { data } = await authClient.query({
+      query: POST,
+      variables: {
+        id: paramsPostId,
+      },
+    });
+
+    const postData = data as PostData;
+    const id = postData.post.data?.id;
+
+    if (!id) {
+      return redirect404Object;
+    }
+
+    const { title, content, createdAt, categories, summary } = postData.post
+      .data?.attributes || {
+      title: "Post Not found",
+      content: "This post doesn't existed or has been removed.",
+      createdAt: Date.now(),
+      categories: { data: [] },
+    };
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    return {
+      props: {
+        id,
+        title,
+        date: new Date(createdAt).toLocaleDateString("en-us", options),
+        content,
+        summary,
+        tags: categories.data.map((category) => {
+          return { name: category.attributes.name, id: category.id };
+        }),
+      },
+      revalidate: 86400,
+      // 24小時的revalidate，因為通過 Webhook 手動控制
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      redirect: {
+        destination: "/500",
+        permanent: false,
+      },
     };
   }
-
-  const paramsPostId = params?.postId as string;
-
-  const redirect404Object = {
-    redirect: {
-      destination: "/blog/404",
-      permanent: false,
-      // statusCode: 404,
-    },
-  };
-
-  if (!isNumber(paramsPostId)) {
-    return redirect404Object;
-  }
-
-  const { data } = await authClient.query({
-    query: POST,
-    variables: {
-      id: paramsPostId,
-    },
-  });
-
-  const postData = data as PostData;
-  const id = postData.post.data?.id;
-
-  if (!id) {
-    return redirect404Object;
-  }
-
-  const { title, content, createdAt, categories, summary } = postData.post.data
-    ?.attributes || {
-    title: "Post Not found",
-    content: "This post doesn't existed or has been removed.",
-    createdAt: Date.now(),
-    categories: { data: [] },
-  };
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-
-  return {
-    props: {
-      id,
-      title,
-      date: new Date(createdAt).toLocaleDateString("en-us", options),
-      content,
-      summary,
-      tags: categories.data.map((category) => {
-        return { name: category.attributes.name, id: category.id };
-      }),
-    },
-    revalidate: 86400,
-    // 24小時的revalidate，因為通過 Webhook 手動控制
-  };
 };
 
 export default Post;

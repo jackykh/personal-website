@@ -64,45 +64,54 @@ const categoriesList = (props: {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const CATEGORIES = gql`
-    query GetCategories($start: Int!, $limit: Int!) {
-      categories(pagination: { start: $start, limit: $limit }) {
-        data {
-          id: id
-          attributes {
-            name
+  try {
+    const CATEGORIES = gql`
+      query GetCategories($start: Int!, $limit: Int!) {
+        categories(pagination: { start: $start, limit: $limit }) {
+          data {
+            id: id
+            attributes {
+              name
+            }
           }
         }
       }
-    }
-  `;
-  const { data } = await authClient.query({
-    query: CATEGORIES,
-    variables: {
-      start: 0,
-      limit: 50,
-    },
-  });
+    `;
+    const { data } = await authClient.query({
+      query: CATEGORIES,
+      variables: {
+        start: 0,
+        limit: 50,
+      },
+    });
 
-  interface categoriesData {
-    categories: {
-      data: Array<{
-        id: string;
-        attributes: {
-          name: string;
-        };
-      }>;
+    interface categoriesData {
+      categories: {
+        data: Array<{
+          id: string;
+          attributes: {
+            name: string;
+          };
+        }>;
+      };
+    }
+    const categoriesData = data as categoriesData;
+
+    return {
+      props: {
+        categories: categoriesData.categories.data.map((data) => {
+          return { id: data.id, name: data.attributes.name };
+        }),
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        categories: [],
+      },
     };
   }
-  const categoriesData = data as categoriesData;
-
-  return {
-    props: {
-      categories: categoriesData.categories.data.map((data) => {
-        return { id: data.id, name: data.attributes.name };
-      }),
-    },
-  };
 };
 
 export default categoriesList;
