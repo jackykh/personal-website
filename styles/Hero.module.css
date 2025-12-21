@@ -3,9 +3,9 @@
   @apply w-full py-[5rem] sm:flex-row flex flex-col items-center relative;
   background-image: linear-gradient(
     to right,
-    #219f94 0%,
-    #219f94 70%,
-    #c1deae 30%
+    #1a6840 0%,
+    #1a6840 70%,
+    #d6e9ca 30%
   );
 }
 
@@ -13,9 +13,9 @@
   .background {
     background-image: linear-gradient(
       to bottom,
-      #219f94 0%,
-      #219f94 70%,
-      #c1deae 30%
+      #1a6840 0%,
+      #1a6840 70%,
+      #d6e9ca 30%
     );
   }
 }
