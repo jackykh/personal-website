@@ -46,6 +46,7 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
 
             <ul className="text-sm text-center leading-relaxed font-light tracking-wider">
               <li>Express.js</li>
+              <li>SQL</li>
               <li>MongoDB</li>
               <li>GraphQL</li>
             </ul>
