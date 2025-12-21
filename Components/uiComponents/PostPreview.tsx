@@ -14,7 +14,7 @@ const PostPreview = (props: PostPreviewProps) => {
   return (
     <Link
       href={`/blog/post/${props.id}`}
-      className="w-full max-w-[50rem] p-4 flex flex-col border-b [&>*]:mb-4 "
+      className="w-full max-w-[50rem] p-4 flex flex-col border-b [&>*]:mb-4 overflow-hidden"
     >
       <div className="flex justify-between">
         <span className="text-base font-light">{props.date}</span>
