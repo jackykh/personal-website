@@ -19,7 +19,7 @@ const Intro = forwardRef<HTMLElement>((_props, ref) => {
           all my energies into pursuing related knowledge.
         </p>
       </div>
-      <div className="flex-1 w-full bg-[#2c9678] flex justify-center pb-[10rem]">
+      <div className="flex-1 w-full bg-[#00666A] flex justify-center pb-[10rem]">
         <div className={classes.skill_card}>
           <div className={classes.skill_card_item_left}>
             <div
