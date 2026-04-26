@@ -19,6 +19,7 @@ import {
   bookstoreDetails,
   resignationCalculatorDetails,
   doraSearchDetails,
+  PastScanDetails
 } from "@/utils/projects";
 
 const ProjectList = () => {
@@ -55,6 +56,11 @@ const ProjectList = () => {
             img={personalWebsiteDetails.img}
             caption="A Portfolio Website (this website)"
             btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
+          />
+          <ImageBox
+            img={PastScanDetails.img}
+            caption="PastScan - Document OCR & Search Platform for Researchers"
+            btnOnClick={imageBoxOnClickHandler(PastScanDetails)}
           />
           <ImageBox
             img={doraSearchDetails.img}

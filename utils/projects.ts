@@ -5,6 +5,7 @@ import puzzleLocationGameImage from "@/public/questcard.jpg";
 import replytTrackImage from "@/public/replytrack.jpg";
 import resignationCalculatorImage from "@/public/resign.gif";
 import doraSearchImage from "@/public/dorasearch.png";
+import PastScanImage from "@/public/pastscan.png";
 
 import { StaticImageData } from "next/image";
 
@@ -138,5 +139,25 @@ export const doraSearchDetails: projectDetailsType = {
     "SQLite FTS",
     "Python",
     "Qwen3-VL",
+  ],
+};
+
+export const PastScanDetails: projectDetailsType = {
+  name: "PastScan — Document OCR & Search Platform for Researchers",
+  desc: "A high-performance SaaS platform for historical researchers to upload, automatically OCR, and semantically search scanned PDF documents.",
+  about: [
+    "AI OCR Pipeline: Advanced text recognition powered by Gemini 3.1",
+    "Metadata Extraction: Automated extraction of structured metadata (Table of Contents, title, author, date) for research citation generation",
+    "Semantic Search: Vectorization of OCR results using pgvector to enable highly accurate semantic search",
+  ],
+  img: PastScanImage, 
+  website: "https://histori-ai.pastscan.workers.dev", 
+  techs: [
+    "Next.js", 
+    "PyMuPDF", 
+    "Supabase", 
+    "Cloudflare Workers", 
+    "Gemini 3.1", 
+    "pgvector", 
   ],
 };

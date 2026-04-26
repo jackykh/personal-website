@@ -8,8 +8,8 @@ import ProjectDetailsEl from "./uiComponents/ProjectDetailsEl";
 import {
   projectDetailsType,
   personalWebsiteDetails,
-  puzzleLocationGameDetails,
   doraSearchDetails,
+  PastScanDetails
 } from "@/utils/projects";
 
 const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
@@ -69,9 +69,9 @@ const ProjectShowcase = forwardRef<HTMLElement>((_props, ref) => {
             btnOnClick={imageBoxOnClickHandler(doraSearchDetails)}
           />
           <ImageBox
-            img={puzzleLocationGameDetails.img}
-            caption="Quest Card - An App Game"
-            btnOnClick={imageBoxOnClickHandler(puzzleLocationGameDetails)}
+            img={PastScanDetails.img}
+            caption="PastScan - Document OCR & Search Platform for Researchers"
+            btnOnClick={imageBoxOnClickHandler(PastScanDetails)}
           />
         </motion.div>
 
