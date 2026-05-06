@@ -151,7 +151,7 @@ export const PastScanDetails: projectDetailsType = {
     "Semantic Search: Vectorization of OCR results using pgvector to enable highly accurate semantic search",
   ],
   img: PastScanImage, 
-  website: "https://histori-ai.pastscan.workers.dev", 
+  website: "https://pastscan.com/", 
   techs: [
     "Next.js", 
     "PyMuPDF", 
