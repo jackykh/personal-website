@@ -7,16 +7,12 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import ProjectDetailsEl from "@/Components/uiComponents/ProjectDetailsEl";
 import ImageBox from "@/Components/uiComponents/ImageBox";
-import milkTeaStoreImage from "@/public/milktea_store.png";
-import bookStoreImage from "@/public/bookstore.png";
 import resignationCalculatorImage from "@/public/resigncal.png";
 import {
   projectDetailsType,
-  milkTeaStoretoreDetails,
   personalWebsiteDetails,
   puzzleLocationGameDetails,
   replyTrackDetails,
-  bookstoreDetails,
   resignationCalculatorDetails,
   doraSearchDetails,
   PastScanDetails
@@ -81,16 +77,6 @@ const ProjectList = () => {
             img={replyTrackDetails.img}
             caption="ReplyTrack"
             btnOnClick={imageBoxOnClickHandler(replyTrackDetails)}
-          />
-          <ImageBox
-            img={milkTeaStoreImage}
-            caption="A full stack e-commerce Website Project"
-            btnOnClick={imageBoxOnClickHandler(milkTeaStoretoreDetails)}
-          />
-          <ImageBox
-            img={bookStoreImage}
-            caption="A Reponsive Bookstore Website DEMO"
-            btnOnClick={imageBoxOnClickHandler(bookstoreDetails)}
           />
         </div>
       </main>
