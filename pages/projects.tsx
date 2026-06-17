@@ -11,8 +11,6 @@ import resignationCalculatorImage from "@/public/resigncal.png";
 import {
   projectDetailsType,
   personalWebsiteDetails,
-  puzzleLocationGameDetails,
-  replyTrackDetails,
   resignationCalculatorDetails,
   doraSearchDetails,
   PastScanDetails
@@ -67,16 +65,6 @@ const ProjectList = () => {
             img={resignationCalculatorImage}
             caption="Resignation Date Calculator"
             btnOnClick={imageBoxOnClickHandler(resignationCalculatorDetails)}
-          />
-          <ImageBox
-            img={puzzleLocationGameDetails.img}
-            caption="Quest Card - An App Game"
-            btnOnClick={imageBoxOnClickHandler(puzzleLocationGameDetails)}
-          />
-          <ImageBox
-            img={replyTrackDetails.img}
-            caption="ReplyTrack"
-            btnOnClick={imageBoxOnClickHandler(replyTrackDetails)}
           />
         </div>
       </main>
