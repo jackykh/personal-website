@@ -1,5 +1,6 @@
 # Allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /resume
 
 Sitemap: https://jackycheung.dev/sitemap.xml
