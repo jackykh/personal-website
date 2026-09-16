@@ -4,6 +4,7 @@ import Footer from "@/Components/Footer";
 import SideModal from "@/Components/uiComponents/SideModal";
 import { useState } from "react";
 import type { ReactNode } from "react";
+import type { StaticImageData } from "next/image";
 import ProjectDetailsEl from "@/Components/uiComponents/ProjectDetailsEl";
 import ImageBox from "@/Components/uiComponents/ImageBox";
 import resignationCalculatorImage from "@/public/resigncal.png";
@@ -16,6 +17,25 @@ import {
   foodMapDetails,
   webVseDetails
 } from "@/utils/projects";
+
+const projects: {
+  details: projectDetailsType;
+  caption?: string;
+  img?: StaticImageData;
+}[] = [
+  {
+    details: personalWebsiteDetails,
+    caption: "A Portfolio Website (this website)",
+  },
+  { details: PastScanDetails },
+  { details: doraSearchDetails },
+  {
+    details: resignationCalculatorDetails,
+    img: resignationCalculatorImage,
+  },
+  { details: foodMapDetails },
+  { details: webVseDetails },
+];
 
 const ProjectList = () => {
   const [sideModalContent, setSideModalContent] = useState<ReactNode>(null);
@@ -52,48 +72,16 @@ const ProjectList = () => {
           </h1>
         </div>
         <div className="w-full max-w-5xl grid sm:grid-cols-2 gap-x-10 gap-y-16">
-          <ImageBox
-            index="01"
-            img={personalWebsiteDetails.img}
-            caption="A Portfolio Website (this website)"
-            btnOnClick={imageBoxOnClickHandler(personalWebsiteDetails)}
-          />
-          <div className="sm:mt-24">
+          {projects.map(({ details, caption, img }, i) => (
             <ImageBox
-              index="02"
-              img={PastScanDetails.img}
-              caption="PastScan - Document OCR & Search Platform for Researchers"
-              btnOnClick={imageBoxOnClickHandler(PastScanDetails)}
+              key={details.name}
+              index={String(i + 1).padStart(2, "0")}
+              img={img ?? details.img}
+              caption={caption ?? details.name}
+              btnOnClick={imageBoxOnClickHandler(details)}
+              className={i % 2 === 1 ? "sm:mt-24" : undefined}
             />
-          </div>
-          <ImageBox
-            index="03"
-            img={doraSearchDetails.img}
-            caption="DoraSearch - Doraemon Manga Full-Text Search"
-            btnOnClick={imageBoxOnClickHandler(doraSearchDetails)}
-          />
-          <div className="sm:mt-24">
-            <ImageBox
-              index="04"
-              img={resignationCalculatorImage}
-              caption="Resignation Date Calculator"
-              btnOnClick={imageBoxOnClickHandler(resignationCalculatorDetails)}
-            />
-          </div>
-          <ImageBox
-            index="05"
-            img={foodMapDetails.img}
-            caption="Hong Kong YouTube Food Review Map"
-            btnOnClick={imageBoxOnClickHandler(foodMapDetails)}
-          />
-          <div className="sm:mt-24">
-            <ImageBox
-              index="06"
-              img={webVseDetails.img}
-              caption="WebVSE - Web-based Visual Scripting Engine"
-              btnOnClick={imageBoxOnClickHandler(webVseDetails)}
-            />
-          </div>
+          ))}
         </div>
       </main>
       <Footer />

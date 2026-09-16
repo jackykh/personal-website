@@ -8,6 +8,7 @@ const ImageBox: React.FC<{
   caption: string;
   btnOnClick: () => void;
   index?: string;
+  className?: string;
 }> = (props) => {
   const item = {
     hidden: { opacity: 0, y: 16 },
@@ -19,7 +20,7 @@ const ImageBox: React.FC<{
 
   return (
     <motion.button
-      className="group w-full text-left"
+      className={`group w-full text-left ${props.className ?? ""}`}
       variants={item}
       transition={{ duration: 0.5, ease: "easeOut" }}
       onClick={props.btnOnClick}
