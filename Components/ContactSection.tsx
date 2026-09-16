@@ -53,7 +53,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="w-full border-b border-line bg-white">
+    <section className="w-full border-b border-line">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-28 sm:py-36 grid lg:grid-cols-2 gap-14 lg:gap-24">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-8">

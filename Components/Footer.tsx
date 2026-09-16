@@ -110,18 +110,16 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="overflow-hidden border-t border-paper/15 pt-10">
-          <p className="font-display font-medium uppercase leading-[0.85] tracking-[-0.03em] text-paper text-[clamp(3rem,12.5vw,12rem)] whitespace-nowrap select-none">
-            Jacky Cheung
-          </p>
-        </div>
-        <div className="pt-6 flex flex-wrap items-center justify-between gap-4">
+        <div className="border-t border-paper/15 pt-8 flex flex-wrap items-center justify-between gap-4">
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
             © Jacky Cheung {new Date().getFullYear()}
           </span>
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
-            Hong Kong — Built with Next.js
-          </span>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40 hover:text-paper transition-colors"
+          >
+            Back to top ↑
+          </button>
         </div>
       </div>
     </footer>

@@ -8,7 +8,7 @@ const useCloseDropdownWhenClickedOutside = (
     /**
      * close the dropdown if clicked on outside of element
      */
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       const clickedItem = event.target as Node;
       if (ref.current && !ref.current.contains(clickedItem)) {
         onClose(clickedItem);
@@ -16,9 +16,11 @@ const useCloseDropdownWhenClickedOutside = (
     };
     // Bind the event listener
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
     return () => {
       // Unbind the event listener on clean up
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
     };
   }, [ref, onClose]);
 };
