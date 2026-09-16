@@ -10,9 +10,50 @@ const lineAnim = (delay: number) => ({
 const Hero = () => {
   return (
     <>
-      <section className="w-full min-h-screen flex flex-col justify-between px-6 sm:px-10 pt-24 sm:pt-28 pb-8">
+      <section className="relative w-full min-h-screen flex flex-col justify-between px-6 sm:px-10 pt-24 sm:pt-28 pb-8 overflow-hidden">
+        {/* Soft aurora blobs behind hero content */}
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <motion.div
+            className="absolute -top-[20%] right-[0%] w-[60vw] h-[60vw] rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(62,92,73,0.45) 0%, rgba(62,92,73,0) 65%)",
+            }}
+            animate={{ x: [0, -60, 0], y: [0, 40, 0], scale: [1, 1.1, 1] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-[25%] -left-[12%] w-[52vw] h-[52vw] rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(214,179,106,0.4) 0%, rgba(214,179,106,0) 65%)",
+            }}
+            animate={{ x: [0, 50, 0], y: [0, -45, 0], scale: [1, 1.15, 1] }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
+          />
+          <motion.div
+            className="absolute bottom-[0%] right-[20%] w-[42vw] h-[42vw] rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(224,122,95,0.3) 0%, rgba(224,122,95,0) 65%)",
+            }}
+            animate={{ x: [0, -40, 0], y: [0, -30, 0], scale: [1, 1.08, 1] }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4,
+            }}
+          />
+        </div>
+
         <motion.div
-          className="flex justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
+          className="relative z-10 flex justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-muted"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.9 }}
@@ -22,7 +63,7 @@ const Hero = () => {
           <span>Hong Kong</span>
         </motion.div>
 
-        <div>
+        <div className="relative z-10">
           <h1 className="font-display font-medium uppercase leading-[0.9] tracking-[-0.03em] text-ink">
             <span className="block overflow-hidden pb-[0.06em]">
               <motion.span
