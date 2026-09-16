@@ -1,6 +1,5 @@
-import { useRef, useState, ReactNode } from "react";
+import { useState, ReactNode } from "react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring } from "framer-motion";
 import SideModal from "./uiComponents/SideModal";
 import Link from "next/link";
 import Reveal from "./uiComponents/Reveal";
@@ -22,14 +21,6 @@ const projects = [
 
 const ProjectShowcase = () => {
   const [sideModalContent, setSideModalContent] = useState<ReactNode>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const lastActiveRef = useRef(0);
-  if (activeIndex !== null) lastActiveRef.current = activeIndex;
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 250, damping: 28, mass: 0.6 });
-  const springY = useSpring(y, { stiffness: 250, damping: 28, mass: 0.6 });
 
   const openDetails = (projectDetails: projectDetailsType) => {
     return () => {
@@ -39,11 +30,6 @@ const ProjectShowcase = () => {
         umami.track("Check My Project", { projectName: name });
       }
     };
-  };
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    x.set(e.clientX);
-    y.set(e.clientY);
   };
 
   return (
@@ -77,12 +63,11 @@ const ProjectShowcase = () => {
             </div>
           </Reveal>
 
-          <div onMouseMove={onMouseMove} onMouseLeave={() => setActiveIndex(null)}>
+          <div>
             {projects.map((project, i) => (
               <Reveal key={project.name} delay={i * 0.06}>
                 <button
                   onClick={openDetails(project)}
-                  onMouseEnter={() => setActiveIndex(i)}
                   className="group w-full text-left border-t border-line last:border-b py-7 sm:py-9 px-3 -mx-3 sm:px-5 sm:-mx-5 grid grid-cols-12 gap-3 sm:gap-4 items-baseline hover:bg-white transition-colors duration-300 cursor-pointer"
                 >
                   <span className="col-span-2 sm:col-span-1 font-mono text-xs text-muted">
@@ -112,28 +97,6 @@ const ProjectShowcase = () => {
             ))}
           </div>
         </div>
-
-        <motion.div
-          className="pointer-events-none fixed left-0 top-0 z-[60] hidden lg:block"
-          style={{ x: springX, y: springY }}
-          initial={false}
-          animate={{
-            opacity: activeIndex !== null ? 1 : 0,
-            scale: activeIndex !== null ? 1 : 0.9,
-          }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-        >
-          <div className="-translate-x-1/2 -translate-y-1/2 w-[24rem]">
-            <Image
-              src={projects[lastActiveRef.current].img}
-              alt=""
-              className="w-full aspect-[4/3] object-cover object-top border border-line bg-white shadow-[0_24px_60px_rgba(27,26,23,0.18)]"
-              {...(projects[lastActiveRef.current].img.src.endsWith(".gif")
-                ? {}
-                : { placeholder: "blur" as const })}
-            />
-          </div>
-        </motion.div>
       </section>
     </>
   );

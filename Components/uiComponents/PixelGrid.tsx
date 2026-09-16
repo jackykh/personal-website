@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
-const CELL = 84; // target cell edge in px
+const CELL_DESKTOP = 84; // target cell edge in px on wide screens
+const MIN_COLS = 8; // keep the wave readable on narrow (mobile) screens
 
 // Fixed pixel grid sitting behind all content. When `color` changes the
 // cells flip row-by-row in the direction of travel — scrolling down sweeps
@@ -13,9 +14,10 @@ const PixelGrid: React.FC<{ color: string; direction: "up" | "down" }> = ({
 
   useEffect(() => {
     const measure = () => {
+      const cell = Math.min(CELL_DESKTOP, Math.max(44, window.innerWidth / MIN_COLS));
       setGrid({
-        cols: Math.max(4, Math.round(window.innerWidth / CELL)),
-        rows: Math.max(4, Math.round(window.innerHeight / CELL)),
+        cols: Math.max(MIN_COLS, Math.round(window.innerWidth / cell)),
+        rows: Math.max(4, Math.round(window.innerHeight / cell)),
       });
     };
     measure();
@@ -29,9 +31,9 @@ const PixelGrid: React.FC<{ color: string; direction: "up" | "down" }> = ({
     return Array.from({ length: cols * rows }, (_, i) => {
       const y = Math.floor(i / cols);
       // deterministic per-cell noise (SSR-safe, no Math.random)
-      const noise = (((i * 2654435761) % 1000) / 1000) * 50;
+      const noise = (((i * 2654435761) % 1000) / 1000) * 25;
       const row = direction === "down" ? rows - 1 - y : y;
-      return row * 50 + noise;
+      return row * 40 + noise;
     });
   }, [grid, direction]);
 
@@ -47,7 +49,7 @@ const PixelGrid: React.FC<{ color: string; direction: "up" | "down" }> = ({
         {delays.map((delay, i) => (
           <div
             key={i}
-            className="transition-colors duration-[450ms]"
+            className="transition-colors duration-[400ms]"
             style={{ backgroundColor: color, transitionDelay: `${delay}ms` }}
           />
         ))}

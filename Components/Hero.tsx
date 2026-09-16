@@ -14,7 +14,7 @@ const Hero = () => {
         {/* Soft aurora blobs behind hero content */}
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <motion.div
-            className="absolute -top-[20%] right-[0%] w-[60vw] h-[60vw] rounded-full blur-3xl"
+            className="absolute -top-[15%] right-[-20%] sm:right-[0%] w-[90vw] h-[90vw] sm:w-[60vw] sm:h-[60vw] rounded-full blur-3xl"
             style={{
               background:
                 "radial-gradient(circle, rgba(62,92,73,0.45) 0%, rgba(62,92,73,0) 65%)",
@@ -23,7 +23,7 @@ const Hero = () => {
             transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute top-[25%] -left-[12%] w-[52vw] h-[52vw] rounded-full blur-3xl"
+            className="absolute top-[35%] sm:top-[25%] -left-[35%] sm:-left-[12%] w-[100vw] h-[100vw] sm:w-[52vw] sm:h-[52vw] rounded-full blur-3xl"
             style={{
               background:
                 "radial-gradient(circle, rgba(214,179,106,0.4) 0%, rgba(214,179,106,0) 65%)",
@@ -37,7 +37,7 @@ const Hero = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-[0%] right-[20%] w-[42vw] h-[42vw] rounded-full blur-3xl"
+            className="absolute bottom-[5%] sm:bottom-[0%] right-[-15%] sm:right-[20%] w-[80vw] h-[80vw] sm:w-[42vw] sm:h-[42vw] rounded-full blur-3xl"
             style={{
               background:
                 "radial-gradient(circle, rgba(224,122,95,0.3) 0%, rgba(224,122,95,0) 65%)",
