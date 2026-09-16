@@ -4,6 +4,11 @@ import SideModal from "./uiComponents/SideModal";
 import Link from "next/link";
 import Reveal from "./uiComponents/Reveal";
 import ProjectDetailsEl from "./uiComponents/ProjectDetailsEl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRight,
+  faArrowUp,
+} from "@fortawesome/free-solid-svg-icons";
 import {
   projectDetailsType,
   personalWebsiteDetails,
@@ -58,7 +63,7 @@ const ProjectShowcase = () => {
                 href="/projects"
                 className="font-mono text-xs uppercase tracking-[0.2em] text-soft border-b border-line pb-1 hover:text-ink hover:border-ink transition-colors"
               >
-                All projects →
+                All projects <FontAwesomeIcon icon={faArrowRight} />
               </Link>
             </div>
           </Reveal>
@@ -80,7 +85,7 @@ const ProjectShowcase = () => {
                     {project.techs.slice(0, 3).join(" / ")}
                   </span>
                   <span className="col-span-1 text-right text-muted group-hover:text-ink transition-colors">
-                    ↗
+                    <FontAwesomeIcon icon={faArrowUp} className="rotate-45" />
                   </span>
                   <span className="col-span-full sm:hidden block mt-4">
                     <Image

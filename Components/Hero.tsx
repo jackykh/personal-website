@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import Marquee from "./uiComponents/Marquee";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const lineAnim = (delay: number) => ({
   initial: { y: "110%" },
@@ -107,7 +109,7 @@ const Hero = () => {
                 Available for work
               </span>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted hidden sm:block">
-                Scroll ↓
+                Scroll <FontAwesomeIcon icon={faArrowDown} />
               </span>
             </motion.div>
           </div>

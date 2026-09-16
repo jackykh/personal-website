@@ -4,6 +4,7 @@ import {
   faTelegram,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faXHS } from "./uiComponents/CustomIcon";
 import Link from "next/link";
 
@@ -118,7 +119,7 @@ const Footer = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40 hover:text-paper transition-colors"
           >
-            Back to top ↑
+            Back to top <FontAwesomeIcon icon={faArrowUp} />
           </button>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Custom500() {
   return (
@@ -29,7 +31,7 @@ export default function Custom500() {
               href="mailto:hello@jackycheung.dev"
               className="text-sm text-soft underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink transition-colors"
             >
-              Contact support <span aria-hidden="true">&rarr;</span>
+              Contact support <FontAwesomeIcon icon={faArrowRight} />
             </Link>
           </div>
         </div>

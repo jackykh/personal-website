@@ -1,5 +1,7 @@
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const ImageBox: React.FC<{
   img: StaticImageData;
@@ -42,7 +44,7 @@ const ImageBox: React.FC<{
           {props.caption}
         </span>
         <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-muted group-hover:text-ink transition-colors">
-          View →
+          View <FontAwesomeIcon icon={faArrowRight} />
         </span>
       </div>
     </motion.button>
