@@ -11,6 +11,7 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { fontVariables } from "@/lib/fonts";
 
 config.autoAddCss = false;
 
@@ -30,7 +31,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   }, []);
 
   return (
-    <div className="font-sans">
+    <div className={`${fontVariables} font-sans`}>
       <Head>
         <title>Jacky Cheung | A self-taught Web Developer</title>
         <meta
