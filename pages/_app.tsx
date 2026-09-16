@@ -11,41 +11,8 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import {
-  Inter,
-  Instrument_Serif,
-  IBM_Plex_Mono,
-  Space_Grotesk,
-} from "next/font/google";
 
 config.autoAddCss = false;
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const serif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
 
 export default function App({ Component, pageProps, router }: AppProps) {
   useEffect(() => {
@@ -63,9 +30,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
   }, []);
 
   return (
-    <div
-      className={`${sans.variable} ${serif.variable} ${mono.variable} ${display.variable}`}
-    >
+    <div className="font-sans">
       <Head>
         <title>Jacky Cheung | A self-taught Web Developer</title>
         <meta

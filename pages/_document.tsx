@@ -1,9 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { fontVariables } from "@/lib/fonts";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en" className={fontVariables}>
         <Head />
         <body>
           <Main />
