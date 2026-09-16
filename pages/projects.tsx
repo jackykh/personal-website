@@ -27,14 +27,14 @@ const projects: {
     details: personalWebsiteDetails,
     caption: "A Portfolio Website (this website)",
   },
+  { details: foodMapDetails },
+  { details: webVseDetails },
   { details: PastScanDetails },
   { details: doraSearchDetails },
   {
     details: resignationCalculatorDetails,
     img: resignationCalculatorImage,
   },
-  { details: foodMapDetails },
-  { details: webVseDetails },
 ];
 
 const ProjectList = () => {
