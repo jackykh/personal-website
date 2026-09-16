@@ -1,9 +1,10 @@
-import { FormEventHandler, forwardRef, useEffect, useRef } from "react";
+import { FormEventHandler, useRef } from "react";
 import { gql, useMutation } from "@apollo/client";
+import Link from "next/link";
 import LoadingSpinner from "./uiComponents/LoadingSpinner";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
-const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
+const ContactSection = () => {
   const CREATE_MESSAGE = gql`
     mutation createMessage($name: String!, $email: String!, $message: String!) {
       createMessage(data: { name: $name, email: $email, message: $message }) {
@@ -34,9 +35,7 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
         email.trim().length === 0 ||
         message.trim().length === 0
       ) {
-        return toast.error("Please fill up all fields.", {
-          position: "top-center",
-        });
+        return toast.error("Please fill up all fields.");
       }
       await createMessage({ variables: { name, email, message } });
       formRef.current!.reset();
@@ -54,18 +53,31 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
   };
 
   return (
-    <>
-      <section
-        ref={ref}
-        className="bg-purple-50 w-full min-h-screen flex flex-col items-center justify-center "
-      >
-        <div className="w-[60rem] max-w-full px-10 flex flex-col justify-center items-center text-center mb-24 mt-4 lg:mt-0">
-          <h2 className="text-4xl font-bold mb-4">Send me a message!</h2>
-          <p className="text-xl">Want to say hello? Go ahead.</p>
+    <section className="w-full border-b border-line bg-white">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-28 sm:py-36 grid lg:grid-cols-2 gap-14 lg:gap-24">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-8">
+            03 — Contact
+          </p>
+          <h2 className="font-display font-medium uppercase leading-[0.95] tracking-[-0.02em] text-[clamp(2.6rem,6.5vw,5.5rem)] text-ink">
+            Let&apos;s{" "}
+            <span className="font-serif italic font-normal normal-case">
+              talk
+            </span>
+          </h2>
+          <p className="mt-8 max-w-md text-soft text-lg leading-relaxed">
+            Want to say hello? Go ahead.
+          </p>
+          <Link
+            href="mailto:hello@jackycheung.dev"
+            className="mt-10 inline-block font-mono text-sm tracking-[0.1em] text-ink underline decoration-line underline-offset-8 hover:decoration-ink transition-colors break-all"
+          >
+            hello@jackycheung.dev
+          </Link>
         </div>
         <form
           onSubmit={onSubmitHandler}
-          className="w-[60rem] max-w-[90%]"
+          className="w-full"
           name="messageForm"
           ref={formRef}
         >
@@ -73,7 +85,7 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
             <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
               <input
                 type="text"
-                className="input rounded"
+                className="input"
                 placeholder="name"
                 name="name"
                 required
@@ -85,7 +97,7 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
             <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
               <input
                 type="email"
-                className="input rounded"
+                className="input"
                 placeholder="email"
                 name="email"
                 required
@@ -96,11 +108,14 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
             </div>
           </div>
           <div className="form_group" onTouchEnd={(e) => e.stopPropagation()}>
-            <label htmlFor="message" className="text-base p-2">
+            <label
+              htmlFor="message"
+              className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted pb-2"
+            >
               Message
             </label>
             <textarea
-              className="input rounded"
+              className="input"
               placeholder="Hello, I want to build a website for my products!"
               rows={3}
               name="message"
@@ -108,23 +123,21 @@ const ContactSection = forwardRef<HTMLElement>((_props, ref) => {
             />
           </div>
           {!creating && (
-            <div className="w-full text-center mt-6 mb-12">
-              <button type="submit" className="btn ">
+            <div className="w-full mt-8">
+              <button type="submit" className="btn">
                 Submit
               </button>
             </div>
           )}
           {creating && (
-            <div className="w-full flex justify-center my-6">
+            <div className="w-full flex justify-start my-6">
               <LoadingSpinner />
             </div>
           )}
         </form>
-      </section>
-    </>
+      </div>
+    </section>
   );
-});
-
-ContactSection.displayName = "ContactSection";
+};
 
 export default ContactSection;

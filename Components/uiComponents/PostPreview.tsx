@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 
 export type PostPreviewProps = {
   id: string;
@@ -14,22 +12,24 @@ const PostPreview = (props: PostPreviewProps) => {
   return (
     <Link
       href={`/blog/post/${props.id}`}
-      className="w-full max-w-[50rem] p-4 flex flex-col border-b [&>*]:mb-4 overflow-hidden"
+      className="group w-full py-8 flex flex-col border-b border-line"
     >
-      <div className="flex justify-between">
-        <span className="text-base font-light">{props.date}</span>
+      <div className="flex justify-between items-baseline mb-3">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+          {props.date}
+        </span>
         {props.isPinned && (
-          <span className="text-gray-400 text-base font-light">
-            PINNED&nbsp;&nbsp;
-            <FontAwesomeIcon
-              icon={faThumbtack}
-              className="rotate-45 text-red-600"
-            />
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent border border-accent/40 rounded-full px-2.5 py-0.5">
+            Pinned
           </span>
         )}
       </div>
-      <h2 className="text-3xl font-semibold">{props.title}</h2>
-      <p className="text-lg font-light">{props.content}</p>
+      <h2 className="font-serif text-2xl sm:text-4xl text-ink group-hover:italic transition-all">
+        {props.title}
+      </h2>
+      <p className="mt-3 text-soft leading-relaxed line-clamp-2">
+        {props.content}
+      </p>
     </Link>
   );
 };

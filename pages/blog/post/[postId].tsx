@@ -16,10 +16,9 @@ import isNumber from "@/utils/isNumber";
 import getPreview from "@/utils/getPreview";
 import Giscus from "@giscus/react";
 import Summary from "@/Components/uiComponents/Summary";
-import { Button } from "@/Components/uiComponents/MovingBorder";
 import { useEffect, useState } from "react";
 import useFetch from "@/hooks/useFetch";
-import { toast } from "react-toastify";
+import { toast } from "sonner";
 
 interface postProps {
   id: number;
@@ -67,17 +66,19 @@ const Post = (props: postProps) => {
         />
       </Head>
       <Navigation />
-      <main className="py-28 px-12 flex justify-center">
-        <div className="flex flex-col w-[60rem] max-w-full">
-          <div className="flex flex-wrap gap-x-4 gap-y-1 justify-between items-end border-b border-black py-2 text-base font-light">
-            <div className="flex flex-wrap gap-x-4 gap-y-1 ">
-              <span>{props.date}</span>
+      <main className="pt-32 pb-24 px-6 sm:px-10 flex justify-center">
+        <div className="flex flex-col w-full max-w-3xl">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 justify-between items-end border-b border-line pb-4">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 items-baseline">
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                {props.date}
+              </span>
               <span>
                 {props.tags.map((tag) => (
                   <Link
                     key={tag.id}
                     href={`/blog/category/${tag.id}/page/1`}
-                    className="text-purple-900 font-semibold mr-2"
+                    className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent hover:text-ink transition-colors mr-3"
                   >
                     {tag.name}
                   </Link>
@@ -85,21 +86,19 @@ const Post = (props: postProps) => {
               </span>
             </div>
           </div>
-          <div className="py-4 mb-12">
-            <h1 className="text-3xl font-semibold mb-4">{props.title}</h1>
+          <div className="py-8 mb-12">
+            <h1 className="font-serif text-4xl sm:text-6xl leading-[1.1] text-ink mb-8">
+              {props.title}
+            </h1>
             {summary ? (
               <Summary content={summary} />
             ) : (
-              <div className="mb-4">
-                <Button
-                  borderRadius="1.75rem"
-                  className="bg-white text-black border-neutral-200"
-                  onClick={generateSummary}
-                >
+              <div className="mb-8">
+                <button className="btn-outline" onClick={generateSummary}>
                   {loading ? (
-                    <div className="flex">
+                    <span className="flex items-center">
                       <svg
-                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-purple-900"
+                        className="animate-spin -ml-1 mr-3 h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -119,11 +118,11 @@ const Post = (props: postProps) => {
                         ></path>
                       </svg>
                       生成中...
-                    </div>
+                    </span>
                   ) : (
-                    <span>試試 AI 摘要✨</span>
+                    <span>試試 AI 摘要</span>
                   )}
-                </Button>
+                </button>
               </div>
             )}
 
@@ -164,7 +163,7 @@ const Post = (props: postProps) => {
             reactionsEnabled="1"
             emitMetadata="0"
             inputPosition="top"
-            theme="light"
+            theme="noborder_light"
             lang="en"
             loading="lazy"
           />

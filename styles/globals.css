@@ -6,9 +6,34 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  @apply text-sm sm:text-sm  md:text-base lg:text-lg;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "PingFang TC",
+    "PingFang SC", "Noto Sans TC", "Segoe UI", Roboto, Helvetica Neue, sans-serif;
+  @apply bg-paper text-ink antialiased text-[15px] md:text-base;
+}
+
+::selection {
+  @apply bg-ink text-paper;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1.5px #1b1a17;
+  color: transparent;
+}
+
+/* Subtle film grain over the whole page */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
 }
 
 .scrollbar-hide,
@@ -35,12 +60,6 @@ body {
   display: auto;
 }
 
-/* Fix: Elements disappear when virtual scroll happening */
-.scroll-container > section,
-.scroll-container > footer {
-  perspective: 1px;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -51,29 +70,41 @@ a {
 }
 
 .btn {
-  @apply py-3 px-5 no-underline border-none cursor-pointer text-white font-normal text-center bg-purple-700 rounded-[100px] transition-all hover:bg-purple-900 hover:scale-105 outline-none;
+  @apply inline-block py-3 px-7 no-underline border border-ink cursor-pointer text-paper text-sm tracking-wide text-center bg-ink rounded-full transition-colors duration-300 hover:bg-transparent hover:text-ink outline-none;
+}
+
+.btn-outline {
+  @apply inline-block py-3 px-7 no-underline border border-ink cursor-pointer text-ink text-sm tracking-wide text-center bg-transparent rounded-full transition-colors duration-300 hover:bg-ink hover:text-paper outline-none;
 }
 
 .input {
-  @apply w-full p-3 text-xl bg-gray-100 border-none outline outline-gray-200 transition-all focus:outline focus:outline-2 focus:outline-purple-200 focus:bg-white resize-none;
+  @apply w-full py-3 text-base bg-transparent border-0 border-b border-line rounded-none outline-none transition-colors duration-300 focus:border-ink placeholder:text-muted/70 resize-none;
 }
 
 .label {
-  @apply text-base transition-all px-2 translate-y-[-5rem];
+  @apply font-mono text-[11px] uppercase tracking-[0.18em] text-muted transition-all duration-300 translate-y-[-4.25rem];
 }
 
 .input:placeholder-shown ~ label {
-  @apply opacity-0 invisible translate-y-[-2.5rem];
+  @apply opacity-0 invisible translate-y-[-1.75rem];
 }
 
 .form_group {
   @apply w-full flex-1 mb-3 sm:mr-4 sm:last:mr-0 flex flex-col;
 }
 
+.markdown-body {
+  @apply !bg-transparent !text-ink;
+}
+
+.markdown-body a {
+  @apply text-ink underline decoration-line underline-offset-4 hover:decoration-ink transition-colors;
+}
+
 #nprogress .bar {
-  @apply !bg-purple-900 !h-[0.2rem];
+  @apply !bg-ink !h-[2px];
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px #581c87, 0 0 5px #581c87 !important;
+  box-shadow: 0 0 10px rgba(27, 26, 23, 0.4), 0 0 5px rgba(27, 26, 23, 0.4) !important;
 }

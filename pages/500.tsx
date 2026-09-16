@@ -8,37 +8,32 @@ export default function Custom500() {
         <title>500 Internal Server Error</title>
         <meta name="description" content={"500 Internal Server Error"} />
       </Head>
-      <section className="bg-gray-900 h-screen">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-          <div className="mx-auto max-w-screen-sm text-center">
-            <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-[#9333ea]">
-              500
-            </h1>
-            <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-white">
-              Internal Server Error.
-            </p>
-            <p className="mb-4 text-lg font-light text-gray-400">
-              We are already working to solve the problem.{" "}
-            </p>
-            <div className="flex items-center justify-center gap-x-6">
-              <Link
-                href={"/"}
-                className="rounded-md bg-purple-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-900"
-              >
-                Go back home
-              </Link>
-              <Link
-                target="_blank"
-                rel="noopener noreferrer"
-                href="mailto:hello@jackycheung.dev"
-                className="text-sm font-semibold text-white"
-              >
-                Contact support <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </div>
+      <main className="grid min-h-screen place-items-center px-6 py-24">
+        <div className="text-center">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+            500
+          </p>
+          <h1 className="mt-6 font-serif text-4xl sm:text-6xl text-ink">
+            Internal Server <span className="italic">Error.</span>
+          </h1>
+          <p className="mt-6 text-soft leading-relaxed">
+            We are already working to solve the problem.
+          </p>
+          <div className="mt-10 flex items-center justify-center gap-x-8">
+            <Link href={"/"} className="btn">
+              Go back home
+            </Link>
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
+              href="mailto:hello@jackycheung.dev"
+              className="text-sm text-soft underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink transition-colors"
+            >
+              Contact support <span aria-hidden="true">&rarr;</span>
+            </Link>
           </div>
         </div>
-      </section>
+      </main>
     </>
   );
 }

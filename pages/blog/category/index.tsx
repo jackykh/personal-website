@@ -7,7 +7,6 @@ import { authClient } from "@/lib/apollo-client";
 import { gql } from "@apollo/client";
 import Giscus from "@giscus/react";
 import BlinkText from "@/Components/uiComponents/BlinkText";
-import classes from "@/styles/Category.module.css";
 
 const categoriesList = (props: {
   categories: Array<{
@@ -23,21 +22,22 @@ const categoriesList = (props: {
         <meta name="description" content="Categories - Jacky's Blog" />
       </Head>
       <Navigation />
-      <main
-        className={`py-24 px-8 flex flex-col items-center ${classes.bgGrid}`}
-      >
-        <h1 className="text-4xl pb-4 font-bold">Categories</h1>
-        <div className="flex flex-col w-[60rem] max-w-full items-center">
-          <div className="pt-8 pb-32 max-w-[40rem] flex gap-y-2 gap-x-4 flex-wrap">
+      <main className="pt-32 pb-24 px-6 sm:px-10 flex flex-col items-center min-h-screen">
+        <div className="w-full max-w-3xl">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-6">
+            Blog
+          </p>
+          <h1 className="font-display font-medium uppercase tracking-[-0.02em] leading-none text-[clamp(2.5rem,6vw,4.5rem)] text-ink mb-12">
+            Categories
+          </h1>
+          <div className="pb-24 flex gap-3 flex-wrap">
             {categories.map((category) => (
               <Link
                 href={`/blog/category/${category.id}/page/1`}
                 key={category.name}
+                className="border border-line rounded-full px-5 py-2 text-sm text-soft hover:border-ink hover:text-ink transition-colors"
               >
-                <BlinkText
-                  text={category.name}
-                  className="text-xl rounded px-2 py-1 bg-[#1A1E23] text-white"
-                />
+                <BlinkText text={category.name} />
               </Link>
             ))}
           </div>
@@ -52,7 +52,7 @@ const categoriesList = (props: {
               reactionsEnabled="1"
               emitMetadata="0"
               inputPosition="top"
-              theme="light_high_contrast"
+              theme="noborder_light"
               lang="en"
             />
           </div>

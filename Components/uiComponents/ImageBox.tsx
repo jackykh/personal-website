@@ -1,41 +1,51 @@
 import Image, { StaticImageData } from "next/image";
 import { motion } from "framer-motion";
-import classes from "@/styles/ImageBox.module.css";
 
 const ImageBox: React.FC<{
   img: StaticImageData;
   caption: string;
   btnOnClick: () => void;
+  index?: string;
 }> = (props) => {
   const item = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
+      y: 0,
     },
   };
 
   return (
-    <motion.div
-      className="w-full h-[18rem] md:h-[15rem] rounded-xl overflow-hidden group relative bg-slate-200 shadow-lg shadow-black/30 border border-solid"
+    <motion.button
+      className="group w-full text-left"
       variants={item}
-      transition={{ duration: 0.4 }}
-      onTouchStart={(e) => e.stopPropagation()}
-      onTouchMove={(e) => e.stopPropagation()}
-      onTouchEnd={(e) => e.stopPropagation()}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      onClick={props.btnOnClick}
     >
-      <Image
-        src={props.img}
-        alt="image"
-        className="w-full h-full group-hover:blur-sm group-hover:brightness-50 transition-all object-cover object-top absolute"
-        placeholder="blur"
-      />
-      <div className="text-white text-center translate-y-[20rem] font-bold group-hover:translate-y-[6.5rem] md:group-hover:translate-y-[5rem] transition-all">
-        <figcaption className="mb-5 text-lg ">{props.caption}</figcaption>
-        <button className="btn text-base" onClick={props.btnOnClick}>
-          See Details
-        </button>
+      <div className="w-full aspect-[4/3] overflow-hidden border border-line bg-white">
+        <Image
+          src={props.img}
+          alt={props.caption}
+          className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          {...(props.img.src.endsWith(".gif")
+            ? {}
+            : { placeholder: "blur" as const })}
+        />
       </div>
-    </motion.div>
+      <div className="mt-4 flex items-baseline justify-between gap-4">
+        <span className="text-sm text-soft leading-snug">
+          {props.index && (
+            <span className="font-mono text-[11px] text-muted mr-3">
+              {props.index}
+            </span>
+          )}
+          {props.caption}
+        </span>
+        <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] text-muted group-hover:text-ink transition-colors">
+          View →
+        </span>
+      </div>
+    </motion.button>
   );
 };
 

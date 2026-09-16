@@ -15,9 +15,11 @@ const Pagination = (props: paginationProps) => {
       <Link
         key={page}
         href={`${link}${page}`}
-        className={`w-10 h-10 rounded-lg ${
-          props.currentPage === page && "bg-purple-300"
-        } border-slate-700 border flex justify-center items-center hover:bg-purple-300`}
+        className={`w-10 h-10 font-mono text-xs ${
+          props.currentPage === page
+            ? "bg-ink text-paper border-ink"
+            : "text-soft hover:border-ink hover:text-ink"
+        } border-line border flex justify-center items-center transition-colors`}
       >
         {page}
       </Link>
@@ -25,8 +27,8 @@ const Pagination = (props: paginationProps) => {
   };
 
   const ellipsis = (
-    <div className="w-10 h-10 rounded-lg border-slate-700 border flex justify-center items-center hover:bg-purple-300">
-      <span>...</span>
+    <div className="w-10 h-10 flex justify-center items-center text-muted font-mono text-xs">
+      <span>···</span>
     </div>
   );
 

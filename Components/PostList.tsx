@@ -25,16 +25,23 @@ const PostList = (props: postListProps) => {
 
   return (
     <>
-      <main className="py-24  px-8 flex flex-col items-center">
-        <h1 className="text-4xl mb-4 font-bold">{props.listTitle}</h1>
-        <div className="mb-12 w-full flex flex-col items-center">
-          {postPreviewList}
+      <main className="pt-32 pb-24 px-6 sm:px-10 flex flex-col items-center min-h-screen">
+        <div className="w-full max-w-3xl">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-6">
+            Blog
+          </p>
+          <h1 className="font-display font-medium uppercase tracking-[-0.02em] leading-none text-[clamp(2.5rem,6vw,4.5rem)] text-ink mb-12">
+            {props.listTitle}
+          </h1>
+          <div className="mb-14 w-full flex flex-col border-t border-line">
+            {postPreviewList}
+          </div>
+          <Pagination
+            currentPage={props.currentPage}
+            totalPage={props.totalPage}
+            link={props.link}
+          />
         </div>
-        <Pagination
-          currentPage={props.currentPage}
-          totalPage={props.totalPage}
-          link={props.link}
-        />
       </main>
       <Footer />
     </>

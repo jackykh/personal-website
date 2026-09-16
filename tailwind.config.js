@@ -2,7 +2,6 @@
 // tailwind.config.js
 const { join } = require("path");
 const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -14,18 +13,49 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        paper: "#FAF9F4",
+        ink: "#1B1A17",
+        soft: "#57544C",
+        muted: "#8B877C",
+        line: "#E4E1D7",
+        accent: "#3E5C49",
+      },
+      fontFamily: {
+        sans: [
+          "var(--font-sans)",
+          "PingFang TC",
+          "PingFang SC",
+          "Noto Sans TC",
+          ...defaultTheme.fontFamily.sans,
+        ],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
+        display: [
+          "var(--font-display)",
+          "var(--font-sans)",
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
+      },
       gridTemplateColumns: {
         // auto-fit columns
         "autofit-20": "repeat(auto-fit, minmax(20rem, 1fr))",
       },
       screens: {
-        print: { raw: "print" }
+        print: { raw: "print" },
       },
     },
   },
-  plugins: [
-    addVariablesForColors
-  ],
+  plugins: [addVariablesForColors],
 };
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).

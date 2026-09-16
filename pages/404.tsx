@@ -9,27 +9,26 @@ export default function Custom404() {
         <title>404 Not Found</title>
         <meta name="description" content={"404 Not Found"} />
       </Head>
-      <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <main className="grid min-h-screen place-items-center px-6 py-24">
         <div className="text-center">
-          <p className="text-base font-semibold text-purple-900">404</p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-            Page not found
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+            404
+          </p>
+          <h1 className="mt-6 font-serif text-4xl sm:text-6xl text-ink">
+            Page not <span className="italic">found.</span>
           </h1>
-          <p className="mt-6 text-base leading-7 text-gray-600">
+          <p className="mt-6 text-soft leading-relaxed">
             Sorry, we couldn’t find the page you’re looking for.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link
-              href={"/"}
-              className="rounded-md bg-purple-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-purple-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-900"
-            >
+          <div className="mt-10 flex items-center justify-center gap-x-8">
+            <Link href={"/"} className="btn">
               Go back home
             </Link>
             <Link
               target="_blank"
               rel="noopener noreferrer"
               href="mailto:hello@jackycheung.dev"
-              className="text-sm font-semibold text-gray-900"
+              className="text-sm text-soft underline decoration-line underline-offset-4 hover:text-ink hover:decoration-ink transition-colors"
             >
               Contact support <span aria-hidden="true">&rarr;</span>
             </Link>

@@ -1,6 +1,3 @@
-.navi_toggle {
-  @apply absolute right-6 top-6 z-[100];
-}
 .navi_icon,
 .navi_icon_close {
   @apply relative;
@@ -9,16 +6,16 @@
 .navi_icon,
 .navi_icon::before,
 .navi_icon::after {
-  @apply w-8 h-[2px] inline-block;
+  @apply w-5 h-px bg-ink inline-block;
 }
 
 .navi_icon_close {
-  @apply w-8 h-[2px] bg-transparent inline-block;
+  @apply w-5 h-px bg-transparent inline-block;
 }
 
 .navi_icon_close::before,
 .navi_icon_close::after {
-  @apply w-8 h-[2px]  inline-block;
+  @apply w-5 h-px bg-ink inline-block;
 }
 
 .navi_icon::before,
@@ -32,11 +29,11 @@
 }
 
 .navi_icon::before {
-  top: -0.8rem;
+  top: -0.35rem;
 }
 
 .navi_icon::after {
-  top: 0.8rem;
+  top: 0.35rem;
 }
 
 .navi_icon_close::before {

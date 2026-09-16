@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import cn from "@/utils/cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
+import { faArrowsLeftRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 
@@ -167,7 +167,7 @@ export const Compare = ({
     >
       <AnimatePresence initial={false}>
         <motion.div
-          className="h-full w-px absolute top-0 m-auto z-30 bg-gradient-to-b from-[5%] via-indigo-500 to-transparent"
+          className="h-full w-px absolute top-0 m-auto z-30 bg-ink/60"
           style={{
             left: `${sliderXPercent}%`,
             top: "0",
@@ -175,11 +175,12 @@ export const Compare = ({
           }}
           transition={{ duration: 0 }}
         >
-          <div className="w-36 h-full [mask-image:radial-gradient(100px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-indigo-400 via-transparent to-transparent z-20 opacity-50" />
-          <div className="w-10 h-1/2 [mask-image:radial-gradient(50px_at_left,white,transparent)] absolute top-1/2 -translate-y-1/2 left-0 bg-gradient-to-r from-cyan-400 via-transparent to-transparent z-10 opacity-100" />
           {showHandlebar && (
-            <div className="h-5 w-5 rounded-md top-1/2 -translate-y-1/2 bg-white z-30 -right-2.5 absolute   flex items-center justify-center shadow-[0px_-1px_0px_0px_#FFFFFF40]">
-              <FontAwesomeIcon icon={faReact} />
+            <div className="h-6 w-6 rounded-full top-1/2 -translate-y-1/2 bg-ink text-paper z-30 -right-3 absolute flex items-center justify-center">
+              <FontAwesomeIcon
+                icon={faArrowsLeftRight}
+                className="text-[9px]"
+              />
             </div>
           )}
         </motion.div>
@@ -189,7 +190,7 @@ export const Compare = ({
           {firstImage ? (
             <motion.div
               className={cn(
-                "absolute inset-0 z-20 rounded-2xl flex-shrink-0 w-full h-full select-none overflow-hidden",
+                "absolute inset-0 z-20 flex-shrink-0 w-full h-full select-none overflow-hidden",
                 firstImageClassName
               )}
               style={{
@@ -201,7 +202,7 @@ export const Compare = ({
                 alt="first image"
                 src={firstImage}
                 className={cn(
-                  "absolute inset-0  z-20 rounded-2xl flex-shrink-0 w-full h-full select-none",
+                  "absolute inset-0  z-20 flex-shrink-0 w-full h-full select-none",
                   firstImageClassName
                 )}
                 placeholder="blur"
@@ -216,13 +217,13 @@ export const Compare = ({
         {secondImage ? (
           <motion.div
             className={cn(
-              "absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none overflow-hidden",
+              "absolute top-0 left-0 z-[19] w-full h-full select-none overflow-hidden",
               secondImageClassname
             )}
           >
             <Image
               className={cn(
-                "absolute top-0 left-0 z-[19] rounded-2xl w-full h-full select-none",
+                "absolute top-0 left-0 z-[19] w-full h-full select-none",
                 secondImageClassname
               )}
               alt="second image"
