@@ -12,7 +12,9 @@ import {
   personalWebsiteDetails,
   resignationCalculatorDetails,
   doraSearchDetails,
-  PastScanDetails
+  PastScanDetails,
+  foodMapDetails,
+  webVseDetails
 } from "@/utils/projects";
 
 const ProjectList = () => {
@@ -76,6 +78,20 @@ const ProjectList = () => {
               img={resignationCalculatorImage}
               caption="Resignation Date Calculator"
               btnOnClick={imageBoxOnClickHandler(resignationCalculatorDetails)}
+            />
+          </div>
+          <ImageBox
+            index="05"
+            img={foodMapDetails.img}
+            caption="Hong Kong YouTube Food Review Map"
+            btnOnClick={imageBoxOnClickHandler(foodMapDetails)}
+          />
+          <div className="sm:mt-24">
+            <ImageBox
+              index="06"
+              img={webVseDetails.img}
+              caption="WebVSE - Web-based Visual Scripting Engine"
+              btnOnClick={imageBoxOnClickHandler(webVseDetails)}
             />
           </div>
         </div>

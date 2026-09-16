@@ -1,11 +1,9 @@
-import bookstoreGif from "@/public/bookstore.gif";
-import milkTeaStoreGif from "@/public/milktea.gif";
-import myWebsiteImage from "@/public/mywebsite.png";
-import puzzleLocationGameImage from "@/public/questcard.jpg";
-import replytTrackImage from "@/public/replytrack.jpg";
+import myWebsiteImage from "@/public/mywebsite.jpeg";
 import resignationCalculatorImage from "@/public/resign.gif";
 import doraSearchImage from "@/public/dorasearch.png";
 import PastScanImage from "@/public/pastscan.png";
+import foodMapImage from "@/public/foodmap.jpeg";
+import webVseImage from "@/public/webvse.jpeg";
 
 import { StaticImageData } from "next/image";
 
@@ -18,34 +16,6 @@ export interface projectDetailsType {
   website: string;
   github?: string;
 }
-
-export const bookstoreDetails: projectDetailsType = {
-  name: "A Reponsive Bookstore Website DEMO",
-  desc: "Developed a bookstore website using React.js for the frontend.",
-  about: [
-    "Responsive Design: Ensuring a seamless browsing experience across all devices, from desktops to mobile phones using modern CSS practices.",
-    "Custom Styling with SCSS: Leveraging SCSS for styling provided an enhanced level of control over the design, allowing for dynamic variables and mixins that simplify complex styles.",
-  ],
-  img: bookstoreGif,
-  website: "https://bookstore-demo.pages.dev",
-  github: "https://github.com/jackykh/bookstore-demo",
-  techs: ["React", "SCSS", "Firebase Realtime Database"],
-};
-
-export const milkTeaStoretoreDetails: projectDetailsType = {
-  name: "A Full Stack e-commerce Website Project",
-  desc: "Developed a full-stack e-commerce platform using the MERN stack to create a virtual milk tea shop.",
-  about: [
-    "User Authentication: Implementing registration, login, logout, and role-based access control.",
-    "Homepage Effects: Interactive scrolling effects and progress indicators.",
-    "E-commerce Functionality: Product purchase, shopping cart management, order tracking, and product/image uploads with previews.",
-    "Order Management: User-friendly order history review.",
-  ],
-  img: milkTeaStoreGif,
-  website: "https://milk-tea-8ddb5.web.app/home",
-  github: "https://github.com/jackykh/Milk-Tea-Store",
-  techs: ["MongoDB", "Express.js", "React", "Node.js", "JWT"],
-};
 
 export const personalWebsiteDetails: projectDetailsType = {
   name: "Personal Website",
@@ -62,44 +32,46 @@ export const personalWebsiteDetails: projectDetailsType = {
   techs: ["Next.js", "Framer Motion", "Strapi", "GraphQL"],
 };
 
-export const puzzleLocationGameDetails: projectDetailsType = {
-  name: "Quest Card",
-  desc: "Developed a mobile game using React Native and Firebase Realtime Database, where players solve location-based puzzles.",
-  about: [
-    "Single Player: Solve location puzzles by guessing on Google Maps or visiting the actual spot.",
-    "Multiplayer: Create rooms, set custom puzzles, and compete with others in real-time.",
-    "Real-Time Sync: Firebase Realtime Database enables seamless multiplayer interactions.",
-    "Custom Puzzles: Players can design and share their own puzzles.",
-    "Google Maps API: Integrated for interactive location-based gameplay.",
-  ],
-  img: puzzleLocationGameImage,
-  website: "https://apps.apple.com/hk/app/quest-card/id6740688552",
-  techs: [
-    "React Native",
-    "Firebase Realtime Database",
-    "Google Maps API",
-    "App Store Deployment",
-  ],
-};
+   export const foodMapDetails: projectDetailsType = {
+     name: "Hong Kong YouTube Food Review Map",
+     desc: "An interactive map plotting restaurants reviewed by Hong Kong YouTube food channels, built with Next.js + MapLibre GL and deployed on Cloudflare Workers with a D1-backed read-only datastore.",
+     about: [
+       "Interactive Map Experience: MapLibre GL renders all restaurants via a GeoJSON source + symbol layers (no DOM markers) and a custom projected tooltip card that auto-flips to stay in viewport.",
+       "Dual Browse Modes: Explore by restaurant or by YouTube channel, with full-text search, multi-facet filters (cuisine, venue type, rating, district).",
+       "Edge Deployment: Runs on Cloudflare Workers via OpenNext, with an OpenFreeMap vector basemap.",
+     ],
+     img: foodMapImage,
+     website: "https://food.shashin.cc/",
+     techs: [
+       "Next.js",
+       "MapLibre GL",
+       "TanStack Query",
+       "Cloudflare Workers",
+       "Cloudflare D1",
+       "OpenNext",
+     ],
+   };
+ 
 
-export const replyTrackDetails: projectDetailsType = {
-  name: "ReplyTrack",
-  desc: "Developed a privacy-first iOS reminder app using React Native, solving 'read-but-forgot-to-reply' scenarios through Share Extension integration and localized data processing.",
+export const webVseDetails: projectDetailsType = {
+  name: "WebVSE — Web-based Visual Scripting Engine",
+  desc: "A web-based visual scripting engine for creating interactive web applications, built with React and TypeScript.",
   about: [
-    "Share Extension Workflow: Allow users to save messages from IM app via iOS Share Extension without data upload",
-    "Cross-Language Support: Implemented i18n for Chinese(Trad/Simp)/Japanese/English",
-    "Privacy by Design: All message metadata processed locally using MMKV, zero cloud synchronization",
-    "Reminders: Notification system considering message urgency and time patterns",
+    "Fully Client-Side OCR Pipeline: Runs PP-OCRv6 tiny in ONNX Runtime Web WASM inside dedicated Web Workers.",
+    "Browser-Native Video Decoding: Streaming container parsing via Mediabunny + WebCodecs supporting MP4, MOV, MKV, WebM, MPEG-TS, and FLV.",
+    "Parallel Worker Architecture: Orchestrator worker coordinates a pool of up to 6 single-threaded OCR lanes (auto-sized from device cores/memory).",
+    "Subtitle Archive & Search: Extraction records persisted in SQLite WASM (OPFS) with FTS5 trigram indexing.",
+    "Interactive Editing & Export: Draggable/resizable ROI editor, editable subtitle text and timestamps, SRT download, and multilingual UI.",
   ],
-  img: replytTrackImage,
-  website: "https://apps.apple.com/hk/app/replytrack/id6741432172",
+  img: webVseImage,
+  website: "https://video.shashin.cc/",
   techs: [
-    "React Native",
-    "iOS Share Extension",
-    "i18n-js Localization",
-    "MMKV",
-    "iOS Notifications",
-    "App Store Deployment",
+    "React 19",
+    "ONNX Runtime Web",
+    "WebCodecs",
+    "OpenCV.js",
+    "SQLite WASM",
+    "Cloudflare Workers",
   ],
 };
 
@@ -150,14 +122,14 @@ export const PastScanDetails: projectDetailsType = {
     "Metadata Extraction: Automated extraction of structured metadata (Table of Contents, title, author, date) for research citation generation",
     "Semantic Search: Vectorization of OCR results using pgvector to enable highly accurate semantic search",
   ],
-  img: PastScanImage, 
-  website: "https://pastscan.com/", 
+  img: PastScanImage,
+  website: "https://pastscan.com/",
   techs: [
-    "Next.js", 
-    "PyMuPDF", 
-    "Supabase", 
-    "Cloudflare Workers", 
-    "Gemini 3.1", 
-    "pgvector", 
+    "Next.js",
+    "PyMuPDF",
+    "Supabase",
+    "Cloudflare Workers",
+    "Gemini 3.1",
+    "pgvector",
   ],
 };
