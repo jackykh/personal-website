@@ -54,7 +54,7 @@ export const personalWebsiteDetails: projectDetailsType = {
  
 
 export const webVseDetails: projectDetailsType = {
-  name: "WebVSE — Web-based Visual Scripting Engine",
+  name: "SubKu — Web-based Visual Scripting Engine",
   desc: "A web-based visual scripting engine for creating interactive web applications, built with React and TypeScript.",
   about: [
     "Fully Client-Side OCR Pipeline: Runs PP-OCRv6 tiny in ONNX Runtime Web WASM inside dedicated Web Workers.",
@@ -64,7 +64,7 @@ export const webVseDetails: projectDetailsType = {
     "Interactive Editing & Export: Draggable/resizable ROI editor, editable subtitle text and timestamps, SRT download, and multilingual UI.",
   ],
   img: webVseImage,
-  website: "https://video.shashin.cc/",
+  website: "https://subku.app/",
   techs: [
     "React 19",
     "ONNX Runtime Web",
