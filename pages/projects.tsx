@@ -29,8 +29,8 @@ const projects: {
   },
   { details: foodMapDetails },
   { details: webVseDetails },
+    { details: doraSearchDetails },
   { details: PastScanDetails },
-  { details: doraSearchDetails },
   {
     details: resignationCalculatorDetails,
     img: resignationCalculatorImage,

@@ -11,18 +11,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   projectDetailsType,
-  PastScanDetails,
   webVseDetails,
   foodMapDetails,
   doraSearchDetails,
-  resignationCalculatorDetails,
-  personalWebsiteDetails,
 } from "@/utils/projects";
 
 const projects = [
-  PastScanDetails,
   foodMapDetails,
   webVseDetails,
+  doraSearchDetails
 ];
 
 const ProjectShowcase = () => {
