@@ -54,8 +54,8 @@ export const personalWebsiteDetails: projectDetailsType = {
  
 
 export const webVseDetails: projectDetailsType = {
-  name: "SubKu — Web-based Visual Scripting Engine",
-  desc: "A web-based visual scripting engine for creating interactive web applications, built with React and TypeScript.",
+  name: "SubKu — Browser-Local Hard Subtitle Extractor",
+  desc: "A privacy-first tool that extracts hardcoded subtitles from local videos entirely in the browser — decoding, OCR, and SRT generation run client-side with zero uploads",
   about: [
     "Fully Client-Side OCR Pipeline: Runs PP-OCRv6 tiny in ONNX Runtime Web WASM inside dedicated Web Workers.",
     "Browser-Native Video Decoding: Streaming container parsing via Mediabunny + WebCodecs supporting MP4, MOV, MKV, WebM, MPEG-TS, and FLV.",
