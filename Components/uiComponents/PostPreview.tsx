@@ -24,7 +24,7 @@ const PostPreview = (props: PostPreviewProps) => {
           </span>
         )}
       </div>
-      <h2 className="font-serif text-2xl sm:text-4xl text-ink group-hover:italic transition-all">
+      <h2 className="font-serif text-2xl sm:text-4xl text-ink transition-all">
         {props.title}
       </h2>
       <p className="mt-3 text-soft leading-relaxed line-clamp-2">
